@@ -8,7 +8,7 @@
 
     <test verbose="2" preserve-order="true" name="C:/Users/kcvij/IdeaProjects/OrangeHRMAutomation">
         <classes>
-            <class name="com.orangehrm.cucumber_runner.RunCuke"/>
+            <class name="com.orangehrm.testcases.OHRMTEST1_TC01_Verify_Valid_Login"/>
         </classes>
     </test>
 </suite>
