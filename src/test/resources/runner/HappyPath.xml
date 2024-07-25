@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="Chrome">
+        <parameter name="browser" value="chrome"/>
+
+        <classes>
+            <class name="com.orangehrm.web.testcases.Login.LoginTests">
+                <methods>
+                    <include name="verify_Login_With_Valid_Credentials" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
