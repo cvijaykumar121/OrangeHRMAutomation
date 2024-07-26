@@ -302,7 +302,7 @@ public class TestBase {
     }
 
     public void uploadFile() {
-        WebElement browseButton = driver.findElement(By.xpath("//div[@class='oxd-file-button']"));
+        WebElement browseButton = Hooks.driver.findElement(By.xpath("//div[@class='oxd-file-button']"));
         clickElement(browseButton, "Browse button clicked", true, 10);
         try {
             Robot robot = new Robot();

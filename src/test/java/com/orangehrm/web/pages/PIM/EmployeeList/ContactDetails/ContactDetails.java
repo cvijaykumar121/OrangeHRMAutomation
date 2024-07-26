@@ -138,6 +138,10 @@ public class ContactDetails extends TestBase {
         validateText(otherEmailInputText, "Other Email", "Validated Other Email input header successfully", 5);
     }
 
+    public void clickOnSaveButton() {
+
+    }
+
     public WebElement validate_Other_Email_Input_Box_Is_Present() {
         WebElement otherEmailInput = contactDetailsLocators.otherEmailInput;
         waitForElementToBeVisible(otherEmailInput, 10, "Validated Other Email Input Box successfully");

@@ -1,4 +1,4 @@
-package com.orangehrm.web.StepDefinitions.PIM.AddEmployee;
+package com.orangehrm.web.StepDefinitions.PIM;
 
 import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.pages.PIM.AddEmployee.AddEmployee;
@@ -9,7 +9,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en_scouse.An;
-import org.apache.commons.math3.analysis.function.Add;
 
 public class AddEmployeeFeature {
     @When("I navigate to the PIM module")
