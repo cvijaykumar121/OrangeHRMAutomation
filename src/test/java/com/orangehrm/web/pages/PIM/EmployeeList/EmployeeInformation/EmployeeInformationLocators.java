@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class EmployeeInformationLocators {
     public EmployeeInformationLocators(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -18,4 +20,7 @@ public class EmployeeInformationLocators {
 
     @FindBy(xpath = "//h5[text()='Employee Information']")
     public WebElement employeeInformationTitle;
+
+    @FindBy(xpath = "//ul[@class='oxd-pagination__ul']/*")
+    public List<WebElement> paginationNumbers;
 }

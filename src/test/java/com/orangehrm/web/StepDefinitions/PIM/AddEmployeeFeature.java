@@ -2,6 +2,8 @@ package com.orangehrm.web.StepDefinitions.PIM;
 
 import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.pages.PIM.AddEmployee.AddEmployee;
+import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationLocators;
+import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationPage;
 import com.orangehrm.web.pages.PIM.EmployeeList.Job.JobPage;
 import com.orangehrm.web.pages.PIM.EmployeeList.PersonalDetails.PersonalDetails;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
@@ -21,6 +23,13 @@ public class AddEmployeeFeature {
     public void click_On_Add_Employee_Button() {
         AddEmployee addEmployee = new AddEmployee(Hooks.driver);
         addEmployee.clickOnAddEmployeeNavButton();
+    }
+
+    @And("I click on the Employee List button")
+    public void click_On_Employee_List_Button() {
+        EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
+        employeeInformationPage.click_On_Employee_List_Button();
+        employeeInformationPage.validate_Employee_Information_Title();
     }
 
     @And("I click on the Add Employee button and enter all the employee details without Login Details {string} {string} {string} {string}")

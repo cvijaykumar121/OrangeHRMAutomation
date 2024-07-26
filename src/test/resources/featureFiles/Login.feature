@@ -1,4 +1,10 @@
-Feature: Login Feature
+Feature: Login and Logout Feature
+
+#  Scenario: Test Scenario
+#    Given I login with valid Admin credentials and I am on the dashboard page
+#    Then I navigate to the PIM module
+#    And I click on the Employee List button
+#    And I delete all the employees from the employee list table
 
   Scenario: Validating if all the elements in the Login Page are present correctly
     Given I am on the OrangeHRM login page
@@ -105,4 +111,19 @@ Feature: Login Feature
       | vijay123   |
       | ajay123    |
       | bhaskar123 |
+
+  Scenario: Logout Functionality for Security For Admin User
+    Given I login with valid Admin credentials and I am on the dashboard page
+    Then I logout from the application
+
+  Scenario Outline: Logout Functionality for Security For ESS User
+    Given I login with valid Admin credentials and I am on the dashboard page
+    Then I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "<Disabled Status>" "<Password>" "<Confirm Password>"
+    Then I logout from the application
+
+    Examples:
+      | First Name | Middle Name | Last Name | Employee ID | Username   | Disabled Status | Password      | Confirm Password |
+      | Bhaskar    | Kumar       | Gupta     | 1001        | bhaskar123 | Disabled        | Password@1234 | Password@1234    |
+
+
 

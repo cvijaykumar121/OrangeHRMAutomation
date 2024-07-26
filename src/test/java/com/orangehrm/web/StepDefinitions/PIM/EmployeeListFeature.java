@@ -29,4 +29,10 @@ public class EmployeeListFeature {
             e.printStackTrace();
         }
     }
+
+    @And("I delete all the employees from the employee list table")
+    public void delete_All_Employees_From_Employee_List_Table() {
+        EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
+        employeeInformationPage.pagination();
+    }
 }
