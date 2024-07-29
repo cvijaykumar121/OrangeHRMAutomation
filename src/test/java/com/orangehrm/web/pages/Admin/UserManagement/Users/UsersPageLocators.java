@@ -10,23 +10,38 @@ public class UsersPageLocators {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//nav[@aria-label='Topbar Menu']//span[text()='User Management ']")
-    public WebElement userManagementNavButton;
-
-    @FindBy(xpath = "//ul[@class='oxd-dropdown-menu']/li/a[text()='Users']")
-    public WebElement usersLink;
-
     @FindBy(xpath = "//h5[text()='System Users']")
     public WebElement systemUsersHeader;
+
+    @FindBy(xpath = "//label[text()='Username']/parent::div/following-sibling::div/input")
+    public WebElement usernameInputBox;
+
+    @FindBy(xpath = "//label[text()='User Role']/parent::div/following-sibling::div//i")
+    public WebElement userRoleDropdown;
+
+    @FindBy(xpath = "//label[text()='Employee Name']/parent::div/following-sibling::div//input")
+    public WebElement employeeNameInputBox;
+
+    @FindBy(xpath = "//label[text()='Status']/parent::div/following-sibling::div//i")
+    public WebElement statusDropdown;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Reset ']")
+    public WebElement resetButton;
 
     @FindBy(xpath = "//button[@type='submit' and text()=' Search ']")
     public WebElement searchButton;
 
+    @FindBy(xpath = "//button[@type='button' and text()=' Add ']")
+    public WebElement usersAddButton;
+
+    @FindBy(xpath = "//div[@class='orangehrm-card-container']/h6[text()='Add User']")
+    public WebElement addUserTitle;
+
+    @FindBy(xpath = "//label[text()='Password']/parent::div/following-sibling::div//input")
+    public WebElement passwordInputBox;
+
     @FindBy(xpath = "//h6[text()='Edit User']")
     public WebElement editUserHeader;
-
-//    @FindBy(xpath = "//div[@class='oxd-input-group__label-wrapper' and ./child::label[contains(text(),'Change')]]/following-sibling::div//input[@type='checkbox']")
-//    public WebElement changePasswordCheckbox;
 
     @FindBy(xpath = "//*[text()='Yes']")
     public WebElement changePasswordCheckbox;
@@ -36,4 +51,10 @@ public class UsersPageLocators {
 
     @FindBy(xpath = "//label[text()='Status']/parent::div/following-sibling::div//i")
     public WebElement userStatusDropdown;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Cancel ']")
+    public WebElement cancelButton;
+
+    @FindBy(xpath = "//button[@type='submit' and text()=' Save ']")
+    public WebElement saveButton;
 }

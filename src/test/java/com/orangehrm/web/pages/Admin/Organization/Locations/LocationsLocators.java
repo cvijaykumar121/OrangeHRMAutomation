@@ -25,6 +25,9 @@ public class LocationsLocators {
     @FindBy(xpath = "//button[@type='submit' and text()=' Search ']")
     public WebElement searchButton;
 
+    @FindBy(xpath = "//button[@type='button' and text()=' Reset ']")
+    public WebElement resetButton;
+
     @FindBy(xpath = "//button[@type='button' and text()=' Add ']")
     public WebElement addButton;
 

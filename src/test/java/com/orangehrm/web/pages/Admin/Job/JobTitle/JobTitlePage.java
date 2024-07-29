@@ -1,6 +1,7 @@
 package com.orangehrm.web.pages.Admin.Job.JobTitle;
 
 import com.orangehrm.web.base.TestBase;
+import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenuLocators;
 import com.orangehrm.web.pages.Login.LoginPage;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
 import org.openqa.selenium.By;
@@ -13,40 +14,14 @@ public class JobTitlePage extends TestBase {
     public JobTitleLocators jobTitleLocators;
     public SideMenu sideMenu;
     public LoginPage loginPage;
+    public AdminTopNavMenuLocators adminTopNavMenuLocators;
 
     public JobTitlePage(WebDriver driver) {
         this.driver = driver;
         this.jobTitleLocators = new JobTitleLocators(driver);
         sideMenu = new SideMenu(driver);
         loginPage = new LoginPage(driver);
-    }
-
-    private void clickOnJobNavButton() {
-        WebElement jobNavButton = jobTitleLocators.jobNavButton;
-        waitForElementToBeClickable(jobNavButton, 5, "Job Nav button is clickable");
-        clickElement(jobNavButton, "Job Nav button clicked successfully", true, 5);
-    }
-
-    public void clickOnJobNavOptions(String option) {
-        clickOnJobNavButton();
-        if (option.equalsIgnoreCase("job titles")) {
-            WebElement jobTitleOption = jobTitleLocators.jobTitlesLink;
-            waitForElementToBeClickable(jobTitleOption, 5, "Job Titles option is clickable");
-            clickElement(jobTitleOption, "Job Titles Option is clicked successfully", true, 5);
-            validate_Job_Title_Page_Header();
-        } else if (option.equalsIgnoreCase("pay grades")) {
-            WebElement payGradesOption = jobTitleLocators.payGradesLink;
-            waitForElementToBeClickable(payGradesOption, 5, "Pay Grades option is clickable");
-            clickElement(payGradesOption, "Pay Grades Option is clicked successfully", true, 5);
-        } else if (option.equalsIgnoreCase("job categories")) {
-            WebElement jobCategoriesOption = jobTitleLocators.jobCategoriesLink;
-            waitForElementToBeClickable(jobCategoriesOption, 5, "Job Categories option is clickable");
-            clickElement(jobCategoriesOption, "Job Categories Option is clicked successfully", true, 5);
-        } else if (option.equalsIgnoreCase("work shifts")) {
-            WebElement workShiftsOption = jobTitleLocators.workShiftsLink;
-            waitForElementToBeClickable(workShiftsOption, 5, "Work Shifts option is clickable");
-            clickElement(workShiftsOption, "Work Shifts Option is clicked successfully", true, 5);
-        }
+        adminTopNavMenuLocators = new AdminTopNavMenuLocators(driver);
     }
 
     public void validate_Job_Title_Page_Header() {

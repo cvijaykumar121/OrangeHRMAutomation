@@ -1,6 +1,7 @@
-package com.orangehrm.web.StepDefinitions.Admin.Job.JobTitles;
+package com.orangehrm.web.StepDefinitions.Admin.Job;
 
 import com.orangehrm.web.StepDefinitions.Hooks;
+import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.web.pages.Admin.Job.JobTitle.JobTitlePage;
 import com.orangehrm.web.pages.PIM.EmployeeList.Job.JobPage;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
@@ -15,9 +16,10 @@ public class AddJobTitleFeature {
     public void i_navigate_to_add_job_titles_page() {
         SideMenu sideMenu = new SideMenu(Hooks.driver);
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        AdminTopNavMenu adminTopNavMenu = new AdminTopNavMenu(Hooks.driver);
 
         sideMenu.clickOnAdminLink();
-        jobTitlePage.clickOnJobNavOptions("job titles");
+        adminTopNavMenu.navigate_To_JobTitles_Page();
         jobTitlePage.validate_Add_Button();
         jobTitlePage.click_on_Add_Button();
         jobTitlePage.validate_Add_Job_Titles_Page_Header();

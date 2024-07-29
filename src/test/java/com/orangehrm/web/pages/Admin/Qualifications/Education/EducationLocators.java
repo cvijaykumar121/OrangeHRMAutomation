@@ -19,4 +19,9 @@ public class EducationLocators {
     @FindBy(xpath = "//label[text()='Level']/parent::div/following-sibling::div/input")
     public WebElement levelInputBox;
 
+    @FindBy(xpath = "//button[@type='submit' and text()=' Save ']")
+    public WebElement saveButton;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Cancel ']")
+    public WebElement cancelButton;
 }

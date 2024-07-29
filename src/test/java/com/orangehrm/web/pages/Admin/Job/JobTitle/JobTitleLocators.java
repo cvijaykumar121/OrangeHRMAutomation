@@ -14,24 +14,6 @@ public class JobTitleLocators {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//span[@class='oxd-topbar-body-nav-tab-item' and text()='Job ']")
-    public WebElement jobNavButton;
-
-    @FindBy(xpath = "//a[@class='oxd-topbar-body-nav-tab-link' and text()='Job Titles']")
-    public WebElement jobTitlesLink;
-
-    @FindBy(xpath = "//a[@class='oxd-topbar-body-nav-tab-link' and text()='Pay Grades']")
-    public WebElement payGradesLink;
-
-    @FindBy(xpath = "//a[@class='oxd-topbar-body-nav-tab-link' and text()='Employment Status']")
-    public WebElement employmentStatusLink;
-
-    @FindBy(xpath = "//a[@class='oxd-topbar-body-nav-tab-link' and text()='Job Categories']")
-    public WebElement jobCategoriesLink;
-
-    @FindBy(xpath = "//a[@class='oxd-topbar-body-nav-tab-link' and text()='Work Shifts']")
-    public WebElement workShiftsLink;
-
     @FindBy(xpath = "//h6[@class='oxd-text oxd-text--h6 orangehrm-main-title' or text()='Job Titles']")
     public WebElement jobTitlesHeader;
 

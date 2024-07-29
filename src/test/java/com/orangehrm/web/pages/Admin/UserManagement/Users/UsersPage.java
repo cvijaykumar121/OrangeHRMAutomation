@@ -1,6 +1,6 @@
 package com.orangehrm.web.pages.Admin.UserManagement.Users;
-import com.orangehrm.web.StepDefinitions.Admin.Job.JobTitles.AddJobTitleFeature;
 import com.orangehrm.web.base.TestBase;
+import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenuLocators;
 import com.orangehrm.web.pages.PIM.AddEmployee.AddEmployeeLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,20 +10,22 @@ public class UsersPage extends TestBase {
     public WebDriver driver;
     public UsersPageLocators usersPageLocators;
     public AddEmployeeLocators addEmployeeLocators;
+    public AdminTopNavMenuLocators adminTopNavMenuLocators;
 
     public UsersPage(WebDriver driver) {
         this.driver = driver;
         this.usersPageLocators = new UsersPageLocators(driver);
         this.addEmployeeLocators = new AddEmployeeLocators(driver);
+        this.adminTopNavMenuLocators = new AdminTopNavMenuLocators(driver);
     }
 
     private void click_On_UserManagement_NavButton() {
-        clickElement(usersPageLocators.userManagementNavButton, "Successfully clicked on Users link", true, 20);
+        clickElement(adminTopNavMenuLocators.userManagementNavButton, "Successfully clicked on Users link", true, 20);
     }
 
     public void click_On_Users_From_User_Management_Dropdown() {
         click_On_UserManagement_NavButton();
-        clickElement(usersPageLocators.usersLink, "Successfully clicked on Users link", true, 20);
+        clickElement(adminTopNavMenuLocators.usersLink, "Successfully clicked on Users link", true, 20);
     }
 
     public void validate_System_Users_Header() {

@@ -60,4 +60,7 @@ public class GeneralInformationLocators {
 
     @FindBy(xpath = "//label[text()='Notes']/parent::div/following-sibling::div/textarea")
     public WebElement notesInputBox;
+
+    @FindBy(xpath = "//button[@type='submit' and text()=' Save ']")
+    public WebElement saveButton;
 }
