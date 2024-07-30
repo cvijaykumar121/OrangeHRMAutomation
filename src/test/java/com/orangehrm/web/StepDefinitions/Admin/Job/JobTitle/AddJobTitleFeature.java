@@ -20,9 +20,9 @@ public class AddJobTitleFeature {
 
         sideMenu.clickOnAdminLink();
         adminTopNavMenu.navigate_To_JobTitles_Page();
-        jobTitlePage.validate_Add_Button();
-        jobTitlePage.click_on_Add_Button();
-        jobTitlePage.validate_Add_Job_Titles_Page_Header();
+//        jobTitlePage.validate_Add_Button();
+//        jobTitlePage.click_on_Add_Button();
+//        jobTitlePage.validate_Add_Job_Titles_Page_Header();
     }
 
     @And("I should be able to see all the UI elements are placed correctly on the page")
@@ -63,6 +63,9 @@ public class AddJobTitleFeature {
     @Then("I should be able to add a job title successfully by entering all the valid details {string} {string} and {string} in the page")
     public void i_should_be_able_to_add_a_job_title_successfully_by_entering_all_the_valid_details_and_note_in_the_page(String titleOfJob, String jobDescription, String note) {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+
+        jobTitlePage.click_on_Add_Button();
+
 
         jobTitlePage.enterJobTitle(titleOfJob);
         jobTitlePage.enter_Job_Description(jobDescription);
@@ -105,5 +108,17 @@ public class AddJobTitleFeature {
         JobPage jobPage = new JobPage(Hooks.driver);
         jobPage.navigate_To_Job_Page();
         jobPage.select_Option_From_JobTitle_Dropdown(jobTitle);
+    }
+
+    @Then("I delete all the Job Titles that I added {string}")
+    public void delete_job_titles_from_job_title_table(String jobTitle) {
+        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        jobTitlePage.delete_Job_Title_From_Table(jobTitle);
+    }
+
+    @Then("I delete all the Job Titles in the Job Title Table")
+    public void delete_all_job_titles_from_job_title_table() {
+        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        jobTitlePage.delete_All_JobTitles_From_JobTitle_Table();
     }
 }

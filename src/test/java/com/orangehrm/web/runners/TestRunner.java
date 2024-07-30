@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         plugin = {"pretty"},
-        features = "src/test/resources/featureFiles/Login.feature",
+        features = "src/test/resources/featureFiles/Admin/Job/JobTitles/AddJobTitle.feature",
         glue = "com.orangehrm.web.StepDefinitions"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {

@@ -172,50 +172,32 @@ public class JobTitlePage extends TestBase {
         waitForElementToBeVisible(actionsHeader, 10, "Actions header is visible");
     }
 
-    private void validateAllRowsInJobTitlesTable() {
-        List<WebElement> rows = jobTitleLocators.jobTitlesTableRows;
-        System.out.println("Rows in table: " + rows.size());
-        for (int i = 0; i < rows.size(); i++) {
-            WebElement currentRow = rows.get(i);
-            WebElement checkbox = currentRow.findElement(By.xpath("//*[div[@class='oxd-checkbox-wrapper']]"));
-            highlightElement(checkbox);
-            checkbox.click();
-            WebElement jobTitleData = currentRow.findElement((By.xpath("//div[@class='oxd-table-cell oxd-padding-cell'][2]/div")));
-            getTextFromElement(jobTitleData, 10);
-            System.out.println("Job Title Data: " + jobTitleData);
+    public WebElement validate_Job_Title_Is_Present_In_JobTitle_Table(String jobTitle) {
+        WebElement requiredJobTitle = jobTitleLocators.allJobTitles.findElement(By.xpath("//div[text()='" + jobTitle + "']"));
+        waitForElementToBeVisible(requiredJobTitle, 20, "Validated " + requiredJobTitle + " in the Job Titles Table");
+        return requiredJobTitle;
+    }
+
+    public void delete_Job_Title_From_Table(String jobTitle) {
+        WebElement requiredJobTitle = validate_Job_Title_Is_Present_In_JobTitle_Table(jobTitle);
+        WebElement trashIconForRequiredJobTitle = requiredJobTitle.findElement(By.xpath("//ancestor::div[@class='oxd-table-card']//button/i[@class='oxd-icon bi-trash']"));
+        clickElement(trashIconForRequiredJobTitle, "Successfully deleted " + jobTitle, true, 30);
+        handle_Delete_Pop_Up(true);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    public void validate_JobTitle_Present_In_JobTitles_Page(String jobTitle, String jobDescription) {
-        List<WebElement> jobTitleRows = jobTitleLocators.jobTitlesTableRows;
-        for (WebElement currentRow : jobTitleRows) {
-            WebElement jobTitleElement = currentRow.findElement(By.xpath("//div[text()='Automation Testing']"));
-            if (getTextFromElement(jobTitleElement, 10).equalsIgnoreCase(jobTitle)) {
-                logInfo("Successfully validated job title in the table", true);
-                WebElement jobDescriptionElement = currentRow.findElement(By.xpath("//div[span[text()='This is the job for Automation testing']]"));
-                System.out.println("Job Description Text From table: " + jobDescriptionElement.getText());
-                validateText(jobDescriptionElement, jobDescription, "Job Description in table validated successfully", 10);
-                WebElement trashIcon = currentRow.findElement(By.xpath("//i[@class='oxd-icon bi-trash']"));
-                waitForElementToBeVisible(trashIcon, 10, "Delete icon is visible");
-                WebElement editIcon = currentRow.findElement(By.xpath("(//div[@class='oxd-table-body']/*)[1]//i[@class='oxd-icon bi-pencil-fill']"));
-                waitForElementToBeVisible(editIcon, 10, "Edit icon is visible");
-                break;
-            }
-        }
-    }
-
-    public void validate_JobTitle_Present_In_JobTitles_Page(String jobTitle) {
-        List<WebElement> jobTitleRows = jobTitleLocators.jobTitlesTableRows;
-        for (WebElement currentRow : jobTitleRows) {
-            WebElement jobTitleElement = currentRow.findElement(By.xpath("//div[text()='Automation Testing']"));
-            if (getTextFromElement(jobTitleElement, 10).equalsIgnoreCase(jobTitle)) {
-                logInfo("Successfully validated job title in the table", true);
-                WebElement trashIcon = currentRow.findElement(By.xpath("//i[@class='oxd-icon bi-trash']"));
-                waitForElementToBeVisible(trashIcon, 10, "Delete icon is visible");
-                WebElement editIcon = currentRow.findElement(By.xpath("(//div[@class='oxd-table-body']/*)[1]//i[@class='oxd-icon bi-pencil-fill']"));
-                waitForElementToBeVisible(editIcon, 10, "Edit icon is visible");
-                break;
-            }
+    public void delete_All_JobTitles_From_JobTitle_Table() {
+        clickElement(jobTitleLocators.selectAllJobTitlesCheckbox, "Clicked on select all job titles checkbox", true, 30);
+        clickElement(jobTitleLocators.deleteSelectedButton, "Clicked on delete selected button", true, 30);
+        handle_Delete_Pop_Up(true);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

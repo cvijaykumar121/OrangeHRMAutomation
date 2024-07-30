@@ -65,17 +65,11 @@ public class JobTitleLocators {
     @FindBy(xpath = "(//div[@class='oxd-table-header-cell oxd-padding-cell oxd-table-th'])[1]")
     public WebElement checkboxHeader;
 
-    @FindBy(xpath = "//div[@class='oxd-table']//div[@class='oxd-table-header-cell oxd-padding-cell oxd-table-th' and text()='Job Titles']")
-    public WebElement jobTitlesTableHeader;
-
     @FindBy(xpath = "//div[@class='oxd-table']//div[@class='oxd-table-header-cell oxd-padding-cell oxd-table-th' and text()='Job Description']")
     public WebElement jobDescriptionTableHeader;
 
     @FindBy(xpath = "//div[@class='oxd-table']//div[@class='oxd-table-header-cell oxd-padding-cell oxd-table-th' and text()='Actions']")
     public WebElement actionsTableHeader;
-
-    @FindBy(xpath = "//div[@class='oxd-table-body']")
-    public WebElement jobTitlesBody;
 
     @FindBy(xpath = "//div[@class='oxd-table-body']/*")
     public List<WebElement> jobTitlesTableRows;
@@ -91,6 +85,15 @@ public class JobTitleLocators {
 
     @FindBy(xpath = "//button[@class='oxd-button oxd-button--medium oxd-button--text orangehrm-button-margin']")
     public WebElement noCancelJobTitleButton;
+
+    @FindBy(xpath = "//div[@class='oxd-table-body']//div[@role='row']")
+    public WebElement allJobTitles;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']//input[@type='checkbox']")
+    public WebElement selectAllJobTitlesCheckbox;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Delete Selected ']")
+    public WebElement deleteSelectedButton;
 
     public WebElement getMaximumCharactersErrorMessageXpath(String fieldHeader) {
         String requiredXpath = "//div[@class='oxd-form-row' and .//label='" + fieldHeader + "']//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']";
