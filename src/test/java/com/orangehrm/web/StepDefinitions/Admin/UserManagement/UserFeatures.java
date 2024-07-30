@@ -7,6 +7,7 @@ import com.orangehrm.web.pages.PIM.AddEmployee.AddEmployee;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.apache.commons.math3.geometry.partitioning.Side;
 
 public class UserFeatures {
     @Then("I navigate to User Management in Admin menu")
@@ -19,8 +20,8 @@ public class UserFeatures {
         usersPage.validate_System_Users_Header();
     }
 
-    @And("I search for the same employee that I added in PIM {string}")
-    public void search_For_Employee_In_PIM_By_Username(String username) {
+    @And("I search for the same employee in User Search by username that I added in PIM {string}")
+    public void search_For_Employee_In_User_Search_By_Username(String username) {
         AddEmployee addEmployee = new AddEmployee(Hooks.driver);
         UsersPage usersPage = new UsersPage(Hooks.driver);
 
@@ -53,7 +54,9 @@ public class UserFeatures {
     public void click_On_Delete_Option_For_Employee(String username) {
         UsersPage usersPage = new UsersPage(Hooks.driver);
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        SideMenu sideMenu = new SideMenu(Hooks.driver);
 
+        sideMenu.clickOnPIMLink();
         usersPage.click_On_Delete_Button_For_Username(username);
         jobTitlePage.handle_Delete_Pop_Up(true);
         try {

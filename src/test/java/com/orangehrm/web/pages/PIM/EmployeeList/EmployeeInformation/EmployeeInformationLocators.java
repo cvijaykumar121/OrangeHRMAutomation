@@ -21,6 +21,12 @@ public class EmployeeInformationLocators {
     @FindBy(xpath = "//h5[text()='Employee Information']")
     public WebElement employeeInformationTitle;
 
+    @FindBy(xpath = "//div[@class='orangehrm-container']//div[@class='oxd-table-card']/div[@role='row']")
+    public List<WebElement> searchUsersList;
+
+    @FindBy(xpath = "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']/span[@class='oxd-text oxd-text--span']")
+    public WebElement recordsFoundText;
+
     @FindBy(xpath = "//ul[@class='oxd-pagination__ul']/*")
     public List<WebElement> paginationNumbers;
 }

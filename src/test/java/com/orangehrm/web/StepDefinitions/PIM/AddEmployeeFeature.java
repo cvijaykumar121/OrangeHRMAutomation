@@ -2,7 +2,6 @@ package com.orangehrm.web.StepDefinitions.PIM;
 
 import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.pages.PIM.AddEmployee.AddEmployee;
-import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationLocators;
 import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationPage;
 import com.orangehrm.web.pages.PIM.EmployeeList.Job.JobPage;
 import com.orangehrm.web.pages.PIM.EmployeeList.PersonalDetails.PersonalDetails;
