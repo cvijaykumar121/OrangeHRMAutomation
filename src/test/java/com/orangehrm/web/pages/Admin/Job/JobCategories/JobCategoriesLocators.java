@@ -11,12 +11,21 @@ public class JobCategoriesLocators {
     }
 
     @FindBy(xpath = "//div[@class='orangehrm-header-container']/h6[text()='Job Categories']")
-    public WebElement employmentStatusTitle;
+    public WebElement jobCategoriesTitle;
 
     @FindBy(xpath = "//h6[text()='Job Categories']/following-sibling::div/button")
-    public WebElement employmentStatusAddButton;
+    public WebElement jobCategoriesAddButton;
+
+    @FindBy(xpath = "//div[@class='orangehrm-card-container']/h6[text()='Add Job Category']")
+    public WebElement addJobCategoryTitle;
 
     @FindBy(xpath = "//label[text()='Name']/parent::div/following-sibling::div/input")
     public WebElement addJobCategory_NameInputBox;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Cancel ']")
+    public WebElement cancelButton;
+
+    @FindBy(xpath = "//button[@type='submit' and text()=' Save ']")
+    public WebElement saveButton;
 
 }

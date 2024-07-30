@@ -16,6 +16,15 @@ public class EmploymentStatusLocators {
     @FindBy(xpath = "//h6[text()='Employment Status']/following-sibling::div/button")
     public WebElement employmentStatusAddButton;
 
+    @FindBy(xpath = "//div[@class='orangehrm-card-container']/h6[text()='Add Employment Status']")
+    public WebElement addEmploymentStatusTitle;
+
     @FindBy(xpath = "//label[text()='Name']/parent::div/following-sibling::div/input")
     public WebElement addEmploymentStatus_NameInputBox;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Cancel ']")
+    public WebElement cancelButton;
+
+    @FindBy(xpath = "//button[@type='submit' and text()=' Save ']")
+    public WebElement saveButton;
 }

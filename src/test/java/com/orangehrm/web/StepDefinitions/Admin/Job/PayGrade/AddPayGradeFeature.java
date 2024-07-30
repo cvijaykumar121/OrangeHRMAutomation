@@ -1,4 +1,4 @@
-package com.orangehrm.web.StepDefinitions.Admin.Job;
+package com.orangehrm.web.StepDefinitions.Admin.Job.PayGrade;
 
 import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
