@@ -38,19 +38,19 @@ jobs:
       - name: Execute on Chrome
         if: github.event.inputs.BROWSER == 'Chrome'
         run: |
-          echo ${{ github.event.inputs.DEVICE }}
+          echo ${{ github.event.inputs.BROWSER }}
           mvn -B package --file pom.xml -Dbrowser="chrome"
 
       - name: Execute on Edge
         if: github.event.inputs.BROWSER == 'Edge'
         run: |
-          echo ${{ github.event.inputs.DEVICE }}
+          echo ${{ github.event.inputs.BROWSER }}
           mvn -B package --file pom.xml -Dbrowser="edge"
 
       - name: Execute on Firefox
         if: github.event.inputs.BROWSER == 'Firefox'
         run: |
-          echo ${{ github.event.inputs.DEVICE }}
+          echo ${{ github.event.inputs.BROWSER }}
           mvn -B package --file pom.xml -Dbrowser="firefox"
 
       - name: Verify Java version
