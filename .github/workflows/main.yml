@@ -35,6 +35,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Execute on Chrome
+        if: github.event.inputs.BROWSER == 'Chrome'
+        run: |
+          echo ${{ github.event.inputs.DEVICE }}
+          mvn -B package --file pom.xml -Dbrowser="chrome"
+
+      - name: Execute on Edge
+        if: github.event.inputs.BROWSER == 'Edge'
+        run: |
+          echo ${{ github.event.inputs.DEVICE }}
+          mvn -B package --file pom.xml -Dbrowser="edge"
+
+      - name: Execute on Firefox
+        if: github.event.inputs.BROWSER == 'Firefox'
+        run: |
+          echo ${{ github.event.inputs.DEVICE }}
+          mvn -B package --file pom.xml -Dbrowser="firefox"
+
       - name: Verify Java version
         run: java -version
 

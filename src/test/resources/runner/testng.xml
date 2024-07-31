@@ -8,7 +8,6 @@
 
     <test name="Chrome">
         <parameter name="browser" value="chrome"/>
-
         <classes>
             <class name="com.orangehrm.web.runners.TestRunner"/>
         </classes>
