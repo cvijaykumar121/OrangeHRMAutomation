@@ -1,4 +1,4 @@
-name: OrangeHRM workflow
+name: High Level Regression
 on:
   workflow_dispatch:
     inputs:
@@ -29,7 +29,7 @@ env:
   email_to: 'kcvijay121@gmail.com'
   subject: 'Chrome High Level Regression'
 jobs:
-  High_Level_Regression:
+  build:
     runs-on: self-hosted
     steps:
       - name: Checkout code
