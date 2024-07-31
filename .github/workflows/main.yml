@@ -1,11 +1,35 @@
-name: First Workflow
+name: OrangeHRM workflow
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+    inputs:
+      BROWSER:
+        description: 'Choose Browser'
+        type: choice
+        options:
+          - 'Chrome'
+          - 'Edge'
+          - 'Firefox'
+        default: 'Chrome'
+        required: true
+
+      EMAIL_TO:
+        description: 'Enter emails to send to.'
+        default: 'kcvijay121@gmail.com'
+        required: true
+
+      SUBJECT:
+        description: 'Enter Subject of the Email'
+        default: Chrome High Level Regression
+        required: true
+
+#  push:
+#    branches:
+#      - main
+env:
+  email_to: 'kcvijay121@gmail.com'
+  subject: 'Chrome High Level Regression'
 jobs:
-  first-job:
+  High_Level_Regression:
     runs-on: self-hosted
     steps:
       - name: Checkout code

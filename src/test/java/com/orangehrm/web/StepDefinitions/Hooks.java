@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import static com.orangehrm.web.runners.TestRunner.browser;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,7 +29,6 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        String browser = "chrome";
         String currentDirectory = System.getProperty("user.dir");
         String configPropertyFilePath = currentDirectory + "\\src\\test\\resources\\properties\\Config.properties";
         String ORPropertyFilePath = currentDirectory + "\\src\\test\\resources\\properties\\OR.properties";
