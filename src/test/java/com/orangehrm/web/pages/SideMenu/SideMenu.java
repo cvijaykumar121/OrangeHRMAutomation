@@ -13,45 +13,28 @@ public class SideMenu extends TestBase {
         this.sideMenuLocators = new SideMenuLocators(driver);
     }
 
-//    public WebElement validateAdminLinkIsPresentInSideMenu() {
-//        WebElement adminLink = sideMenuLocators.adminLink;
-//        if(waitForElementToBeClickable(adminLink, 20)) {
-//            logPass("Admin ");
-//        }
-//        return null;
-//    }
-
     public void validateAdminLinkIsNotPresentInSideMenu() {
-//        if (!(waitForElementToBeClickable(sideMenuLocators.adminLink, 10, false))) {
-//            logPass("PASS: Admin Link is not present in the page", true);
-//        } else {
-//            logFail("FAIL: Admin Link is present in the page", true);
-//        }
-
-        if(!(sideMenuLocators.adminLink.isDisplayed())) {
-            logPass("FAIL: Admin Link is not present in the page", true);
+        if (!isElementPresent(sideMenuLocators.adminLink)) {
+            logPass("Admin Link is not displayed", true);
         } else {
-            logFail("PASS: Admin Link is present in the page", true);
+            logFail("Admin Link is displayed", true);
         }
     }
 
     public void clickOnAdminLink() {
-//        WebElement adminLink = validateAdminLinkIsPresentInSideMenu();
         WebElement adminLink = sideMenuLocators.adminLink;
         clickElement(adminLink, "Admin link clicked successfully", true, 5);
     }
 
-    public WebElement validatePIMLinkIsPresentInSideMenu() {
-        WebElement pimLink = sideMenuLocators.pimLink;
-        waitForElementToBeClickable(pimLink, 30, "PIM link is visible");
-        return pimLink;
-    }
+//    public void validatePIMLinkIsPresentInSideMenu() {
+//
+//    }
 
     public void validatePIMLinkIsNotPresentInSideMenu() {
-        if (!(waitForElementToBeClickable(sideMenuLocators.pimLink, 10, false))) {
-            logPass("PASS: PIM Link is not present in the page", true);
+        if (!isElementPresent(sideMenuLocators.pimLink)) {
+            logPass("PIM Link is not displayed", true);
         } else {
-            logFail("FAIL: PIM Link is present in the page", true);
+            logFail("PIM Link is displayed", true);
         }
     }
 
@@ -80,10 +63,10 @@ public class SideMenu extends TestBase {
     }
 
     public void validateRecruitmentLinkIsNotPresentInSideMenu() {
-        if (!(waitForElementToBeClickable(sideMenuLocators.recruitmentLink, 10, false))) {
-            logPass("PASS: Recruitment Link is not present in the page", true);
+        if (!isElementPresent(sideMenuLocators.recruitmentLink)) {
+            logPass("Recruitment Link is not displayed", true);
         } else {
-            logFail("FAIL: Recruitment Link is present in the page", true);
+            logFail("Recruitment Link is displayed", true);
         }
     }
 
@@ -118,10 +101,10 @@ public class SideMenu extends TestBase {
     }
 
     public void validateMaintenanceLinkIsNotPresentInSideMenu() {
-        if (!(waitForElementToBeClickable(sideMenuLocators.maintenanceLink, 20, false))) {
-            logPass("PASS: Maintenance Link is not present in the page", true);
+        if (!isElementPresent(sideMenuLocators.maintenanceLink)) {
+            logPass("Maintenance Link is not displayed", true);
         } else {
-            logFail("FAIL: Maintenance Link is present in the page", true);
+            logFail("Maintenance Link is displayed", true);
         }
     }
 

@@ -4,9 +4,8 @@ import com.orangehrm.web.base.TestBase;
 import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenuLocators;
 import com.orangehrm.web.pages.Login.LoginPage;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+
 import java.util.List;
 
 public class JobTitlePage extends TestBase {
@@ -49,6 +48,7 @@ public class JobTitlePage extends TestBase {
 
     public void enterJobTitle(String jobTitle) {
         WebElement jobTitleInputBox = validate_Job_Title_Input_Box_Is_Present();
+//        clickElement(jobTitleInputBox, "Clicked on Job title input box", true, 30);
         sendKeys(jobTitleInputBox, jobTitle, "Successfully entered " + jobTitle + " into text box", 10);
     }
 
@@ -190,15 +190,15 @@ public class JobTitlePage extends TestBase {
         }
     }
 
-    public void delete_All_JobTitles_From_JobTitle_Table() {
-        clickElement(jobTitleLocators.selectAllJobTitlesCheckbox, "Clicked on select all job titles checkbox", true, 30);
-        clickElement(jobTitleLocators.deleteSelectedButton, "Clicked on delete selected button", true, 30);
-        handle_Delete_Pop_Up(true);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void deleteAllJobTitlesFromJobTitlePage() {
+        while (isElementPresent(jobTitleLocators.allJobTitles)) {
+            clickElement(jobTitleLocators.selectAllJobTitlesCheckbox, "Clicked on select all Job Title checkbox", true, 30);
+            clickElement(jobTitleLocators.deleteSelectedButton, "Clicked on delete selected button", true, 30);
+            handle_Delete_Pop_Up(true);
+
+            waitForElementToBeVisible(jobTitleLocators.jobTitlesTableHeaderRow, 30, "All Job Titles deleted");
         }
+        System.out.println("No jobs present now");
     }
 
     private void validateJobTitleRequiredErrorMessage(String fieldName) {
@@ -209,7 +209,7 @@ public class JobTitlePage extends TestBase {
     public void click_On_Trash_Icon_In_Job_Titles_Table(String jobTitle) {
         List<WebElement> jobTitleRows = jobTitleLocators.jobTitlesTableRows;
         for (WebElement currentRow : jobTitleRows) {
-            WebElement jobTitleElement = currentRow.findElement(By.xpath("//div[text()='Automation Testing']"));
+            WebElement jobTitleElement = currentRow.findElement(By.xpath("//div[text()='" + jobTitle + "']"));
             if (getTextFromElement(jobTitleElement, 10).equalsIgnoreCase(jobTitle)) {
                 logInfo("Successfully validated job title in the table", true);
                 WebElement trashIcon = currentRow.findElement(By.xpath("//i[@class='oxd-icon bi-trash']"));
@@ -218,6 +218,12 @@ public class JobTitlePage extends TestBase {
                 break;
             }
         }
+    }
+
+    public void click_On_Edit_Icon_In_Job_Titles_Table(String jobTitle) {
+        WebElement jobTitleElementRow = driver.findElement(By.xpath("//div[@class='oxd-table-body']//div[@role='row' and .//div[text()='" + jobTitle + "']]//i[@class='oxd-icon bi-pencil-fill']"));
+        WebElement editIcon = jobTitleElementRow.findElement(By.xpath("//i[@class='oxd-icon bi-pencil-fill']"));
+        clickElement(editIcon, "Edit Icon for the " + jobTitle + " is clicked successfully", true, 10);
     }
 
     public void handle_Delete_Pop_Up(boolean clickOnDelete) {

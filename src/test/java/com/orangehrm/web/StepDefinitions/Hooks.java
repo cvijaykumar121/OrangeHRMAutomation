@@ -71,7 +71,7 @@ public class Hooks {
 
         driver.get(config.getProperty("application_url"));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         loginPage = new LoginPage(driver);
 
         validUsername_Admin = config.getProperty("validUsername_Admin");

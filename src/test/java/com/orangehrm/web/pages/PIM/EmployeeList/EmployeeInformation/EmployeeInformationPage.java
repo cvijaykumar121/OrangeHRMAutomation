@@ -51,7 +51,7 @@ public class EmployeeInformationPage extends TestBase {
         System.out.println("Half Name: " + halfName);
         int numberOfUsers = users.size();
         System.out.println("Users list size: " + numberOfUsers);
-        if(numberOfUsers > 0) {
+        if (numberOfUsers > 0) {
             WebElement row1 = users.get(0);
             WebElement firstNameInTable = row1.findElement(By.xpath("//div[text()='" + halfName + "']"));
             System.out.println("First Name: " + firstNameInTable.getText());
@@ -70,8 +70,8 @@ public class EmployeeInformationPage extends TestBase {
         System.out.println("Half Name: " + halfName);
         int numberOfUsers = users.size();
         System.out.println("Users list size: " + numberOfUsers);
-        if(numberOfUsers > 0) {
-            for(int i=0; i<users.size(); i++) {
+        if (numberOfUsers > 0) {
+            for (int i = 0; i < users.size(); i++) {
                 WebElement currentUser = users.get(i);
                 WebElement trashIcon = currentUser.findElement(By.xpath("//button/i[@class='oxd-icon bi-trash']"));
                 clickElement(trashIcon, "Clicked on delete icon", true, 30);
@@ -80,26 +80,24 @@ public class EmployeeInformationPage extends TestBase {
         }
     }
 
+    public void deleteAllEmployeesFromPIM() {
+        while (isElementPresent(employeeInformationLocators.allEmployeesListInTable)) {
+            if (employeeInformationLocators.allEmployeesListInTable.size() > 1) {
+                clickElement(employeeInformationLocators.selectAllEmployeesCheckbox, "Clicked on select all employee checkbox", true, 30);
+                clickElement(employeeInformationLocators.deleteSelectedButton, "Clicked on delete selected button", true, 30);
+                jobTitlePage.handle_Delete_Pop_Up(true);
 
-
-    public void pagination() {
-        List<WebElement> paginationNumbers = employeeInformationLocators.paginationNumbers;
-        if(paginationNumbers.isEmpty()) {
-            System.out.println("Pagination not found");
-        }
-        int totalPages = paginationNumbers.size();
-        for (int i = 0; i < totalPages; i++) {
-            WebElement currentPaginationNumber = paginationNumbers.get(i);
-            System.out.println(currentPaginationNumber.getText());
-            clickElement(paginationNumbers.get(i), "Clicked on page number", true, 30);
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if(i==0) {
-                i=i+1;
+                try {
+                    Thread.sleep(5000);  // Waiting for deletion to complete, consider using explicit wait instead
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                logInfo("Only 1 job present, cannot be deleted further", true);
+                break;
             }
         }
     }
+
 }
+

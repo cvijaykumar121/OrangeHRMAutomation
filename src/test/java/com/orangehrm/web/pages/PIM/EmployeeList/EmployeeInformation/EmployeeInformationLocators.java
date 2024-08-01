@@ -27,6 +27,12 @@ public class EmployeeInformationLocators {
     @FindBy(xpath = "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']/span[@class='oxd-text oxd-text--span']")
     public WebElement recordsFoundText;
 
-    @FindBy(xpath = "//ul[@class='oxd-pagination__ul']/*")
-    public List<WebElement> paginationNumbers;
+    @FindBy(xpath = "//div[@role='row' and .//ancestor::div[@class='oxd-table-body']]")
+    public List<WebElement> allEmployeesListInTable;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']//div[@class='oxd-checkbox-wrapper']")
+    public WebElement selectAllEmployeesCheckbox;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Delete Selected ']")
+    public WebElement deleteSelectedButton;
 }

@@ -33,7 +33,7 @@ public class EmployeeListFeature {
     @And("I delete all the employees from the employee list table")
     public void delete_All_Employees_From_Employee_List_Table() {
         EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
-        employeeInformationPage.pagination();
+        employeeInformationPage.deleteAllEmployeesFromPIM();
     }
 
     @Then("I search for the same employee in PIM that I added {string} {string}")

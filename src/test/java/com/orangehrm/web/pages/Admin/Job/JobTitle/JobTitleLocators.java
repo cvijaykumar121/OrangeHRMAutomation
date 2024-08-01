@@ -89,11 +89,14 @@ public class JobTitleLocators {
     @FindBy(xpath = "//div[@class='oxd-table-body']//div[@role='row']")
     public WebElement allJobTitles;
 
-    @FindBy(xpath = "//div[@class='oxd-table-header']//input[@type='checkbox']")
+    @FindBy(xpath = "//div[@class='oxd-table-header']//div[@class='oxd-checkbox-wrapper']")
     public WebElement selectAllJobTitlesCheckbox;
 
     @FindBy(xpath = "//button[@type='button' and text()=' Delete Selected ']")
     public WebElement deleteSelectedButton;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']")
+    public WebElement jobTitlesTableHeaderRow;
 
     public WebElement getMaximumCharactersErrorMessageXpath(String fieldHeader) {
         String requiredXpath = "//div[@class='oxd-form-row' and .//label='" + fieldHeader + "']//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']";

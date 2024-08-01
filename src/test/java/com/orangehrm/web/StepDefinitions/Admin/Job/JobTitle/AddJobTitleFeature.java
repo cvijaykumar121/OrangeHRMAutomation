@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AddJobTitleFeature {
-    @Then("I navigate to Add Job Titles Page")
+    @Then("I navigate to Job Titles Page")
     public void i_navigate_to_add_job_titles_page() {
         SideMenu sideMenu = new SideMenu(Hooks.driver);
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
@@ -20,9 +20,14 @@ public class AddJobTitleFeature {
 
         sideMenu.clickOnAdminLink();
         adminTopNavMenu.navigate_To_JobTitles_Page();
-//        jobTitlePage.validate_Add_Button();
-//        jobTitlePage.click_on_Add_Button();
-//        jobTitlePage.validate_Add_Job_Titles_Page_Header();
+    }
+
+    @Then("I click on Add Button and navigate to Add Job Titles Page")
+    public void i_navigate_to_add_job_title_page() {
+        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        jobTitlePage.validate_Add_Button();
+        jobTitlePage.click_on_Add_Button();
+        jobTitlePage.validate_Add_Job_Titles_Page_Header();
     }
 
     @And("I should be able to see all the UI elements are placed correctly on the page")
@@ -74,6 +79,12 @@ public class AddJobTitleFeature {
         jobTitlePage.click_On_Save_Button();
     }
 
+    @And("I validate that the Job Title is displayed in the Job Title table {string}")
+    public void validate_job_title_displayed_in_job_title_table(String jobTitle) {
+        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        jobTitlePage.validate_Job_Title_Is_Present_In_JobTitle_Table(jobTitle);
+    }
+
     @Then("I should be able to add a job title successfully by entering only the required details in the page")
     public void Add_Job_Title_By_Entering_Only_Required_Fields(io.cucumber.datatable.DataTable dataTable) {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
@@ -106,7 +117,6 @@ public class AddJobTitleFeature {
     @And("I open the Job Title dropdown in Job Section and I select the same {string} that I added from Admin menu")
     public void open_Job_Title_Dropdown_In_Job_Section(String jobTitle) {
         JobPage jobPage = new JobPage(Hooks.driver);
-        jobPage.navigate_To_Job_Page();
         jobPage.select_Option_From_JobTitle_Dropdown(jobTitle);
     }
 
@@ -119,6 +129,6 @@ public class AddJobTitleFeature {
     @Then("I delete all the Job Titles in the Job Title Table")
     public void delete_all_job_titles_from_job_title_table() {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
-        jobTitlePage.delete_All_JobTitles_From_JobTitle_Table();
+        jobTitlePage.deleteAllJobTitlesFromJobTitlePage();
     }
 }

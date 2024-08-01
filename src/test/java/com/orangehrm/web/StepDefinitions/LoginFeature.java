@@ -132,9 +132,9 @@ public class LoginFeature {
     public void validate_that_the_user_should_be_able_to_access_only_the_features_that_an_ESS_user_can_have() {
         SideMenu sideMenu = new SideMenu(Hooks.driver);
         sideMenu.validateAdminLinkIsNotPresentInSideMenu();
-//        sideMenu.validatePIMLinkIsNotPresentInSideMenu();
-//        sideMenu.validateRecruitmentLinkIsNotPresentInSideMenu();
-//        sideMenu.validateMaintenanceLinkIsNotPresentInSideMenu();
+        sideMenu.validatePIMLinkIsNotPresentInSideMenu();
+        sideMenu.validateRecruitmentLinkIsNotPresentInSideMenu();
+        sideMenu.validateMaintenanceLinkIsNotPresentInSideMenu();
     }
 
     @And("I login as the same employee that I changed the password and check whether I am able to login with the updated password or not {string} {string}")

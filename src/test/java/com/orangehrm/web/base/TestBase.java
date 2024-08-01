@@ -4,7 +4,6 @@ import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.utilities.ExtentManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
@@ -15,6 +14,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.time.Duration;
+import java.util.List;
 import java.util.Properties;
 
 public class TestBase {
@@ -171,6 +171,22 @@ public class TestBase {
         }
     }
 
+    public boolean isElementPresent(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean isElementPresent(List<WebElement> element) {
+        try {
+            return element.get(0).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
     public void waitForFrameAndSwitchToIt(WebElement frameElement, int timeOut) {
         WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(timeOut));
         try {
@@ -205,6 +221,19 @@ public class TestBase {
         }
     }
 
+    public void clearTextBoxWithJS(WebElement element) {
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("arguments[0].value = '';", element);
+
+
+    }
+
+
+    public void clearTextBoxUsingKeys(WebElement element) {
+        element.sendKeys(Keys.CONTROL + "a");  // Select all text
+        element.sendKeys(Keys.BACK_SPACE);     // Delete the selected text
+    }
+
     public void sendKeys(WebElement element, String data, String message, int timeOut) {
         waitForElementToBeClickable(element, timeOut);
         try {
@@ -220,6 +249,7 @@ public class TestBase {
             Assert.fail("WebDriver error: " + e.getMessage());
         }
     }
+
 
     public String getTextFromElement(WebElement element, int timeOut) {
         waitForElementToBeVisible(element, timeOut);

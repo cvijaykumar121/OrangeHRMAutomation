@@ -24,13 +24,6 @@ public class AddEmployeeFeature {
         addEmployee.clickOnAddEmployeeNavButton();
     }
 
-    @And("I click on the Employee List button")
-    public void click_On_Employee_List_Button() {
-        EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
-        employeeInformationPage.click_On_Employee_List_Button();
-        employeeInformationPage.validate_Employee_Information_Title();
-    }
-
     @And("I click on the Add Employee button and enter all the employee details without Login Details {string} {string} {string} {string}")
     public void enter_Add_Employee_Page_Details(String firstName, String middleName, String lastName, String employeeID) {
         AddEmployee addEmployee = new AddEmployee(Hooks.driver);
