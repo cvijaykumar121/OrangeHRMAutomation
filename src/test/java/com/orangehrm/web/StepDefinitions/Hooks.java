@@ -7,8 +7,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
 import static com.orangehrm.web.runners.TestRunner.browser;
 
 import java.io.FileInputStream;
@@ -58,12 +61,19 @@ public class Hooks {
         }
 
         if (browser.equalsIgnoreCase("chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
             System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-            driver = new ChromeDriver();
+
+            driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("Edge")) {
+            EdgeOptions options = new EdgeOptions();
+            options.addArguments("headless");
             System.setProperty("webdriver.edge.driver", edgeDriverPath);
             driver = new EdgeDriver();
         } else if(browser.equalsIgnoreCase("firefox")) {
+//            FirefoxOptions options = new FirefoxOptions();
+//            options.setHeadless(true);
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
         }

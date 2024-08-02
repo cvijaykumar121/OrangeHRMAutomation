@@ -22,9 +22,9 @@ on:
         default: Chrome High Level Regression
         required: true
 
-#  push:
-#    branches:
-#      - main
+  push:
+    branches:
+      - main
 env:
   email_to: 'kcvijay121@gmail.com'
   subject: 'Chrome High Level Regression'
