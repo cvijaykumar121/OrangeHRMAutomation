@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class UsersPageLocators {
     public UsersPageLocators(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -32,6 +34,9 @@ public class UsersPageLocators {
     public WebElement searchButton;
 
     @FindBy(xpath = "//button[@type='button' and text()=' Add ']")
+    public WebElement addButton;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Add ']")
     public WebElement usersAddButton;
 
     @FindBy(xpath = "//div[@class='orangehrm-card-container']/h6[text()='Add User']")
@@ -39,6 +44,9 @@ public class UsersPageLocators {
 
     @FindBy(xpath = "//label[text()='Password']/parent::div/following-sibling::div//input")
     public WebElement passwordInputBox;
+
+    @FindBy(xpath = "//label[text()='Confirm Password']/parent::div/following-sibling::div//input")
+    public WebElement confirmPasswordInputBox;
 
     @FindBy(xpath = "//h6[text()='Edit User']")
     public WebElement editUserHeader;
@@ -48,6 +56,18 @@ public class UsersPageLocators {
 
     @FindBy(xpath = "//div[@class='oxd-table']")
     public WebElement usersTable;
+
+    @FindBy(xpath = "//div[@role='row' and .//ancestor::div[@class='oxd-table-body']]")
+    public List<WebElement> allUsersListInTable;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']//div[@class='oxd-checkbox-wrapper']")
+    public WebElement selectAllUsersCheckbox;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Delete Selected ']")
+    public WebElement deleteSelectedButton;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']")
+    public WebElement usersTableHeaderRow;
 
     @FindBy(xpath = "//label[text()='Status']/parent::div/following-sibling::div//i")
     public WebElement userStatusDropdown;

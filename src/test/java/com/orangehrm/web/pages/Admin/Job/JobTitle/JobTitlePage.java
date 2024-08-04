@@ -1,5 +1,6 @@
 package com.orangehrm.web.pages.Admin.Job.JobTitle;
 
+import com.orangehrm.web.base.StepDefinition;
 import com.orangehrm.web.base.TestBase;
 import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenuLocators;
 import com.orangehrm.web.pages.Login.LoginPage;
@@ -13,6 +14,7 @@ public class JobTitlePage extends TestBase {
     public JobTitleLocators jobTitleLocators;
     public SideMenu sideMenu;
     public LoginPage loginPage;
+    public StepDefinition stepDefinition;
     public AdminTopNavMenuLocators adminTopNavMenuLocators;
 
     public JobTitlePage(WebDriver driver) {
@@ -21,6 +23,7 @@ public class JobTitlePage extends TestBase {
         sideMenu = new SideMenu(driver);
         loginPage = new LoginPage(driver);
         adminTopNavMenuLocators = new AdminTopNavMenuLocators(driver);
+        this.stepDefinition = new StepDefinition(driver);
     }
 
     public void validate_Job_Title_Page_Header() {
@@ -182,7 +185,7 @@ public class JobTitlePage extends TestBase {
         WebElement requiredJobTitle = validate_Job_Title_Is_Present_In_JobTitle_Table(jobTitle);
         WebElement trashIconForRequiredJobTitle = requiredJobTitle.findElement(By.xpath("//ancestor::div[@class='oxd-table-card']//button/i[@class='oxd-icon bi-trash']"));
         clickElement(trashIconForRequiredJobTitle, "Successfully deleted " + jobTitle, true, 30);
-        handle_Delete_Pop_Up(true);
+        stepDefinition.handle_Delete_Pop_Up(true);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -194,7 +197,7 @@ public class JobTitlePage extends TestBase {
         while (isElementPresent(jobTitleLocators.allJobTitles)) {
             clickElement(jobTitleLocators.selectAllJobTitlesCheckbox, "Clicked on select all Job Title checkbox", true, 30);
             clickElement(jobTitleLocators.deleteSelectedButton, "Clicked on delete selected button", true, 30);
-            handle_Delete_Pop_Up(true);
+            stepDefinition.handle_Delete_Pop_Up(true);
 
             waitForElementToBeVisible(jobTitleLocators.jobTitlesTableHeaderRow, 30, "All Job Titles deleted");
         }
@@ -226,30 +229,30 @@ public class JobTitlePage extends TestBase {
         clickElement(editIcon, "Edit Icon for the " + jobTitle + " is clicked successfully", true, 10);
     }
 
-    public void handle_Delete_Pop_Up(boolean clickOnDelete) {
-        validateText(jobTitleLocators.deleteJobTitlePopUpHeader, "Are you Sure?",
-                "Delete Job Title pop up header validated successfully", 10);
-        validateText(jobTitleLocators.deleteJobTitlePopUpBody,
-                "The selected record will be permanently deleted. Are you sure you want to continue?",
-                "Delete Job Title pop up message body validated successfully", 10);
-        if (clickOnDelete) {
-            click_On_Yes_Delete_Button();
-        } else {
-            click_No_Cancel_Button();
-        }
-    }
-
-    private void click_On_Yes_Delete_Button() {
-        WebElement yesDeleteButton = jobTitleLocators.yesDeleteJobTitleButton;
-        waitForElementToBeVisible(yesDeleteButton, 10, "Yes Delete button is displayed successfully");
-        clickElement(yesDeleteButton, "Yes, Delete button is clicked successfully", true, 10);
-    }
-
-    private void click_No_Cancel_Button() {
-        WebElement noCancelButton = jobTitleLocators.noCancelJobTitleButton;
-        waitForElementToBeVisible(noCancelButton, 10, "No Cancel button is displayed successfully");
-        clickElement(noCancelButton, "No Cancel button is clicked successfully", true, 10);
-    }
+//    public void handle_Delete_Pop_Up(boolean clickOnDelete) {
+//        validateText(jobTitleLocators.deleteJobTitlePopUpHeader, "Are you Sure?",
+//                "Delete Job Title pop up header validated successfully", 10);
+//        validateText(jobTitleLocators.deleteJobTitlePopUpBody,
+//                "The selected record will be permanently deleted. Are you sure you want to continue?",
+//                "Delete Job Title pop up message body validated successfully", 10);
+//        if (clickOnDelete) {
+//            click_On_Yes_Delete_Button();
+//        } else {
+//            click_No_Cancel_Button();
+//        }
+//    }
+//
+//    private void click_On_Yes_Delete_Button() {
+//        WebElement yesDeleteButton = jobTitleLocators.yesDeleteJobTitleButton;
+//        waitForElementToBeVisible(yesDeleteButton, 10, "Yes Delete button is displayed successfully");
+//        clickElement(yesDeleteButton, "Yes, Delete button is clicked successfully", true, 10);
+//    }
+//
+//    private void click_No_Cancel_Button() {
+//        WebElement noCancelButton = jobTitleLocators.noCancelJobTitleButton;
+//        waitForElementToBeVisible(noCancelButton, 10, "No Cancel button is displayed successfully");
+//        clickElement(noCancelButton, "No Cancel button is clicked successfully", true, 10);
+//    }
 
     public void validateJobTitleAlreadyExistsErrorMessage(String fieldName) {
         WebElement jobTitleRequiredErrorMessage = driver.findElement(By.xpath("//div[@class='oxd-form-row' and .//label[text()='" + fieldName + "']]//span[text()='Already exists']"));
@@ -283,7 +286,7 @@ public class JobTitlePage extends TestBase {
 
     public void delete_Job_Title_Using_Trash_Icon_In_Job_Titles_Page(String validJobTitle) {
         click_On_Trash_Icon_In_Job_Titles_Table(validJobTitle);
-        handle_Delete_Pop_Up(true);
+        stepDefinition.handle_Delete_Pop_Up(true);
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {

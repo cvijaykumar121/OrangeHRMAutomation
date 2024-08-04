@@ -4,19 +4,25 @@ import com.orangehrm.web.pages.Login.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static com.orangehrm.web.runners.TestRunner.browser;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -29,6 +35,7 @@ public class Hooks {
     public LoginPage loginPage;
     public String validUsername_Admin;
     public String validPassword_Admin;
+    public String hubURL = "http://172.20.224.1:4444";
 
     @Before
     public void setUp() {
@@ -63,19 +70,34 @@ public class Hooks {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
-            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+            try {
+                driver = new RemoteWebDriver(new URL(hubURL), options);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+//            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 
-            driver = new ChromeDriver(options);
+//            driver = new ChromeDriver(options);
+//            driver = new ChromeDriver();
         } else if (browser.equalsIgnoreCase("Edge")) {
             EdgeOptions options = new EdgeOptions();
             options.addArguments("headless");
-            System.setProperty("webdriver.edge.driver", edgeDriverPath);
-            driver = new EdgeDriver();
+            try {
+                driver = new RemoteWebDriver(new URL(hubURL), options);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+//            System.setProperty("webdriver.edge.driver", edgeDriverPath);
+//            driver = new EdgeDriver();
         } else if(browser.equalsIgnoreCase("firefox")) {
-//            FirefoxOptions options = new FirefoxOptions();
-//            options.setHeadless(true);
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("headless");
+            try {
+                driver = new RemoteWebDriver(new URL(hubURL), options);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+//            driver = new FirefoxDriver();
         }
         js = (JavascriptExecutor) driver;
 

@@ -77,11 +77,6 @@ public class AddEmployee extends TestBase {
 
     public void enterEmployeeID(String employeeId) {
         WebElement employeeIdInputBox = validate_Employee_ID_Input_Box_Is_Present();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         employeeIdInputBox.clear();
         sendKeys(employeeIdInputBox, employeeId, "Successfully entered " + employeeId + " into text box", 10);
     }

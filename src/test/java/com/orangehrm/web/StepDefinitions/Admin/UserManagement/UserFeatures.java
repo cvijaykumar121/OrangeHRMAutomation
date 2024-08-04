@@ -1,9 +1,11 @@
 package com.orangehrm.web.StepDefinitions.Admin.UserManagement;
 
 import com.orangehrm.web.StepDefinitions.Hooks;
+import com.orangehrm.web.base.StepDefinition;
 import com.orangehrm.web.pages.Admin.Job.JobTitle.JobTitlePage;
 import com.orangehrm.web.pages.Admin.UserManagement.Users.UsersPage;
 import com.orangehrm.web.pages.PIM.AddEmployee.AddEmployee;
+import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationPage;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -55,10 +57,11 @@ public class UserFeatures {
         UsersPage usersPage = new UsersPage(Hooks.driver);
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
         SideMenu sideMenu = new SideMenu(Hooks.driver);
+        StepDefinition stepDefinition = new StepDefinition(Hooks.driver);
 
         sideMenu.clickOnPIMLink();
         usersPage.click_On_Delete_Button_For_Username(username);
-        jobTitlePage.handle_Delete_Pop_Up(true);
+        stepDefinition.handle_Delete_Pop_Up(true);
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
@@ -75,5 +78,33 @@ public class UserFeatures {
         addEmployee.clickOnSaveButton();
 
         usersPage.validate_System_Users_Header();
+    }
+
+    @And("I click on Add Button to add a User")
+    public void click_on_Add_Button_In_User_Management_Page() {
+        UsersPage usersPage = new UsersPage(Hooks.driver);
+        usersPage.click_on_Add_Button();
+        usersPage.validate_Add_User_Title();
+    }
+
+    @Then("I enter all the details and add the user into the system through User Management {string} {string} {string} {string} {string} {string}")
+    public void enter_all_details_and_add_user_into_the_system_through_User_Management(String userRole, String employeeName, String status, String username, String password, String confirmPassword) {
+        UsersPage usersPage = new UsersPage(Hooks.driver);
+
+        usersPage.selectUserRole(userRole);
+        usersPage.enterEmployeeName(employeeName);
+        usersPage.select_the_status_of_the_employee_account_from_dropdown(status);
+        usersPage.enterUsername(username);
+        usersPage.enterPassword(password);
+        usersPage.enterConfirmPassword(confirmPassword);
+        usersPage.click_On_Save_Button();
+
+        usersPage.validate_System_Users_Header();
+    }
+
+    @And("I delete all the Users from the Users List table")
+    public void delete_all_users_from_users_list_table() {
+        UsersPage usersPage = new UsersPage(Hooks.driver);
+        usersPage.deleteAllUsersFromUsersTable();
     }
 }

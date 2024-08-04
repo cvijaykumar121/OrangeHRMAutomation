@@ -285,6 +285,23 @@ public class TestBase {
         }
     }
 
+    public void selectOptionFromDropdown(String option, String message) {
+        try {
+            WebElement optionToBeSelected = Hooks.driver.findElement(By.xpath("//div[@role='listbox']/div/span[text()='" + option + "']"));
+            clickElement(optionToBeSelected, message, true, 20);
+            logInfo(message, true);
+        } catch (NoSuchElementException e) {
+            Assert.fail("Error: Option not found in the dropdown.");
+        } catch (StaleElementReferenceException e) {
+            Assert.fail("Error: Dropdown element is no longer attached to the DOM.");
+        } catch (ElementNotInteractableException e) {
+            Assert.fail("Error: Dropdown element is present but not interactable.");
+        } catch (WebDriverException e) {
+            Assert.fail("WebDriver error: " + e.getMessage());
+        }
+    }
+
+
     public void switchToFrame(WebElement frameElement, String message, int timeOut) {
         waitForFrameAndSwitchToIt(frameElement, timeOut);
         try {

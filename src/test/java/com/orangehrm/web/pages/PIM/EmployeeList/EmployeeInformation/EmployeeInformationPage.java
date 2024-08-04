@@ -1,5 +1,6 @@
 package com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation;
 
+import com.orangehrm.web.base.StepDefinition;
 import com.orangehrm.web.base.TestBase;
 import com.orangehrm.web.pages.Admin.Job.JobTitle.JobTitlePage;
 import com.orangehrm.web.pages.Admin.UserManagement.Users.UsersPage;
@@ -16,6 +17,7 @@ public class EmployeeInformationPage extends TestBase {
     public AddEmployee addEmployee;
     public UsersPage usersPage;
     public JobTitlePage jobTitlePage;
+    public StepDefinition stepDefinition;
 
     public EmployeeInformationPage(WebDriver driver) {
         this.driver = driver;
@@ -23,6 +25,7 @@ public class EmployeeInformationPage extends TestBase {
         this.addEmployee = new AddEmployee(driver);
         this.usersPage = new UsersPage(driver);
         this.jobTitlePage = new JobTitlePage(driver);
+        this.stepDefinition = new StepDefinition(driver);
     }
 
     public void click_On_Employee_List_Button() {
@@ -75,7 +78,7 @@ public class EmployeeInformationPage extends TestBase {
                 WebElement currentUser = users.get(i);
                 WebElement trashIcon = currentUser.findElement(By.xpath("//button/i[@class='oxd-icon bi-trash']"));
                 clickElement(trashIcon, "Clicked on delete icon", true, 30);
-                jobTitlePage.handle_Delete_Pop_Up(true);
+                stepDefinition.handle_Delete_Pop_Up(true);
             }
         }
     }
@@ -85,7 +88,7 @@ public class EmployeeInformationPage extends TestBase {
             if (employeeInformationLocators.allEmployeesListInTable.size() > 1) {
                 clickElement(employeeInformationLocators.selectAllEmployeesCheckbox, "Clicked on select all employee checkbox", true, 30);
                 clickElement(employeeInformationLocators.deleteSelectedButton, "Clicked on delete selected button", true, 30);
-                jobTitlePage.handle_Delete_Pop_Up(true);
+                stepDefinition.handle_Delete_Pop_Up(true);
 
                 try {
                     Thread.sleep(5000);  // Waiting for deletion to complete, consider using explicit wait instead

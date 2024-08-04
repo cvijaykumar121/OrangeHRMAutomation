@@ -81,7 +81,7 @@ Feature: Add Job Title Feature
     When I navigate to the PIM module
     And I click on the Add Employee button and enter all the employee details without Login Details "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>"
     And I navigate to Job Page
-    And I open the Job Title dropdown in Job Section and I select the same "<Job Title>" that I added from Admin menu
+    And I open the Job Title dropdown in Job Section and I select the same "<Job Title>" that I added from Admin menu and save it
 
 #    Deleting the Job Title that was added
     Then I navigate to Job Titles Page

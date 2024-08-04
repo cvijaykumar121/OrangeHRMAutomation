@@ -1,6 +1,7 @@
 package com.orangehrm.web.StepDefinitions.Admin.Job.JobTitle;
 
 import com.orangehrm.web.StepDefinitions.Hooks;
+import com.orangehrm.web.base.StepDefinition;
 import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.web.pages.Admin.Job.JobTitle.JobTitlePage;
 import com.orangehrm.web.pages.PIM.EmployeeList.Job.JobPage;
@@ -114,7 +115,7 @@ public class AddJobTitleFeature {
         }
     }
 
-    @And("I open the Job Title dropdown in Job Section and I select the same {string} that I added from Admin menu")
+    @And("I open the Job Title dropdown in Job Section and I select the same {string} that I added from Admin menu and save it")
     public void open_Job_Title_Dropdown_In_Job_Section(String jobTitle) {
         JobPage jobPage = new JobPage(Hooks.driver);
         jobPage.select_Option_From_JobTitle_Dropdown(jobTitle);
@@ -123,7 +124,10 @@ public class AddJobTitleFeature {
     @Then("I delete all the Job Titles that I added {string}")
     public void delete_job_titles_from_job_title_table(String jobTitle) {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        StepDefinition stepDefinition = new StepDefinition(Hooks.driver);
+
         jobTitlePage.delete_Job_Title_From_Table(jobTitle);
+//        stepDefinition.click
     }
 
     @Then("I delete all the Job Titles in the Job Title Table")

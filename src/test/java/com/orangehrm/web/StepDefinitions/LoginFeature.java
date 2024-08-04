@@ -61,14 +61,11 @@ public class LoginFeature {
         loginPage.validatePresenceOfPasswordInputField();
         loginPage.enterPassword(password);
         loginPage.clickOnLoginButton();
-
-//        i_should_see_the_dashboard_page();
     }
 
     @When("I click the Login button")
     public void i_click_the_button() {
         LoginPage loginPage = new LoginPage(Hooks.driver);
-//        loginPage.validatePresenceOfLoginButton();
         loginPage.clickOnLoginButton();
     }
 
@@ -146,5 +143,12 @@ public class LoginFeature {
     public void validate_Account_Disabled_Error_Message() {
         LoginPage loginPage = new LoginPage(Hooks.driver);
         loginPage.validateAccountDisabledErrorMessage();
+    }
+
+    @Then("I login as the same user that was added through User Management and validate if the user is able to login successfully {string} {string}")
+    public void i_login_as_the_same_user_that_was_added_through_User_Management_and_validate_if_the_user_is_able_to_login_successfully(String username, String password) {
+
+        i_enter_username_and_password(username, password);
+        i_should_see_the_dashboard_page();
     }
 }

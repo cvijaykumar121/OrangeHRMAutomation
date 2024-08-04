@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression">
+<suite name="Regression" parallel="tests" thread-count="5">
 
     <listeners>
         <listener class-name="com.orangehrm.web.listeners.CustomListener"/>
     </listeners>
 
-    <test name="Chrome">
-        <parameter name="browser" value="chrome"/>
+    <test name="chrome">
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="com.orangehrm.web.runners.TestRunner"/>
         </classes>
     </test>
+
+<!--    <test name="edge">-->
+<!--        <parameter name="browser" value="edge"/>-->
+<!--        <classes>-->
+<!--            <class name="com.orangehrm.web.runners.TestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
 </suite>

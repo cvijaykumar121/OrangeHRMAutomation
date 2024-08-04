@@ -58,7 +58,6 @@ public class LoginPage extends TestBase {
     }
 
     public void clickOnLoginButton() {
-//        validatePresenceOfLoginButton();
         clickElement(loginPageLocators.loginButton, "Clicked on Login button", true, 5);
     }
 

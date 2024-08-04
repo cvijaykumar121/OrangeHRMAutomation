@@ -1,5 +1,6 @@
 package com.orangehrm.web.pages.PIM.EmployeeList.Job;
 
+import com.orangehrm.web.base.StepDefinition;
 import com.orangehrm.web.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,10 +9,12 @@ import org.openqa.selenium.WebElement;
 public class JobPage extends TestBase {
     public WebDriver driver;
     public JobPageLocators jobPageLocators;
+    public StepDefinition stepDefinition;
 
     public JobPage(WebDriver driver) {
         this.driver = driver;
         this.jobPageLocators = new JobPageLocators(driver);
+        this.stepDefinition = new StepDefinition(driver);
     }
 
     public void navigate_To_Job_Page() {
