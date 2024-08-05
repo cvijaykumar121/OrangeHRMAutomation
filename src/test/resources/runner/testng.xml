@@ -6,18 +6,24 @@
         <listener class-name="com.orangehrm.web.listeners.CustomListener"/>
     </listeners>
 
-    <test name="chrome">
-        <parameter name="browser" value="firefox"/>
+    <test name="Chrome browser Execution">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.orangehrm.web.runners.TestRunner"/>
         </classes>
     </test>
 
-<!--    <test name="edge">-->
-<!--        <parameter name="browser" value="edge"/>-->
-<!--        <classes>-->
-<!--            <class name="com.orangehrm.web.runners.TestRunner"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Edge browser Execution">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="com.orangehrm.web.runners.TestRunner"/>
+        </classes>
+    </test>
 
+    <test name="Firefox browser Execution">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.orangehrm.web.runners.TestRunner"/>
+        </classes>
+    </test>
 </suite>
