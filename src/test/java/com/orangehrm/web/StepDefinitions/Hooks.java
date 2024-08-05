@@ -70,34 +70,34 @@ public class Hooks {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
-            try {
-                driver = new RemoteWebDriver(new URL(hubURL), options);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-//            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+//            try {
+//                driver = new RemoteWebDriver(new URL(hubURL), options);
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//            }
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 
-//            driver = new ChromeDriver(options);
-//            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
+            driver = new ChromeDriver();
         } else if (browser.equalsIgnoreCase("Edge")) {
             EdgeOptions options = new EdgeOptions();
             options.addArguments("headless");
-            try {
-                driver = new RemoteWebDriver(new URL(hubURL), options);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-//            System.setProperty("webdriver.edge.driver", edgeDriverPath);
-//            driver = new EdgeDriver();
+//            try {
+//                driver = new RemoteWebDriver(new URL(hubURL), options);
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//            }
+            System.setProperty("webdriver.edge.driver", edgeDriverPath);
+            driver = new EdgeDriver();
         } else if(browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("headless");
-            try {
-                driver = new RemoteWebDriver(new URL(hubURL), options);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-//            driver = new FirefoxDriver();
+//            try {
+//                driver = new RemoteWebDriver(new URL(hubURL), options);
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//            }
+            driver = new FirefoxDriver();
         }
         js = (JavascriptExecutor) driver;
 

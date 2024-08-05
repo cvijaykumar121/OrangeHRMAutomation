@@ -178,7 +178,6 @@ Feature: Login and Logout Feature
 
 ##########################################################################################################################################################################################################
 
-  @currentRun
   Scenario Outline: Adding an employee in PIM without login details and then Adding login details in User Management for the same user
 
 #    Login
