@@ -207,7 +207,7 @@ Feature: Login and Logout Feature
       | First Name | Middle Name | Last Name | Employee ID | User Role | Employee Name        | Status  | Username | Password      | Confirm Password |
       | Vijay      | Kumar       | Chadayan  | 1001        | ESS       | Vijay Kumar Chadayan | Enabled | vijay123 | Password@1234 | Password@1234    |
 
-##########################################################################################################################################################################################################
+#########################################################################################################################################################################################################
 
   Scenario Outline: Admin Account Creation
 
@@ -217,15 +217,18 @@ Feature: Login and Logout Feature
     And I delete all the employees from the employee list table
 
 #    Add an employee with login credentials of an ESS user
-
     And I click on the Add Employee button and enter all the employee details without Login Details "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>"
+
     Then I navigate to User Management in Admin menu
-    And I search for the same employee in PIM that I added "<Employee Name>"
+    And I delete all the Users from the Users List table
+
+    And I click on Add Button to add a User
+    Then I enter all the details and add the user into the system through User Management "<User Role>" "<Employee Name>" "<Status>" "<Username>" "<Password>" "<Confirm Password>"
     Then I logout from the application
 
-#    Login with the ESS user
+#    Login with the Admin user
     And I login as the same employee that I added in PIM as an Admin "<Username>" "<Password>"
-    And I validate that the user should be able to access only the features that an ESS user can have
+    And I validate that the user should be able to access all the features of an Admin User
     Then I logout from the application
 
 #    Delete the ESS user
@@ -236,6 +239,6 @@ Feature: Login and Logout Feature
     Then I delete the employee and validate that the employee is removed from PIM "<First Name>" "<Middle Name>" "<Last Name>"
 
     Examples:
-      | First Name | Middle Name | Last Name | Employee ID | Username | Status  | Password      | Confirm Password | Employee Name        |
-      | Vijay      | Kumar       | Chadayan  | 1001        | vijay123 | Enabled | Password@1234 | Password@1234    | Vijay Kumar Chadayan |
+      | First Name | Middle Name | Last Name | Employee ID | Username | Password      | Confirm Password | Employee Name        | User Role | Status  |
+      | Vijay      | Kumar       | Chadayan  | 1001        | vijay123 | Password@1234 | Password@1234    | Vijay Kumar Chadayan | Admin     | Enabled |
 

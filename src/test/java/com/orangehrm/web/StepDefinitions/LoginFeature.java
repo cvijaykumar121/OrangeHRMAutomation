@@ -134,6 +134,15 @@ public class LoginFeature {
         sideMenu.validateMaintenanceLinkIsNotPresentInSideMenu();
     }
 
+    @And("I validate that the user should be able to access all the features of an Admin User")
+    public void validate_that_the_user_should_be_able_to_access_all_the_features_that_an_Admin_user() {
+        SideMenu sideMenu = new SideMenu(Hooks.driver);
+        sideMenu.clickOnAdminLink();
+        sideMenu.clickOnPIMLink();
+        sideMenu.clickOnRecruitmentLink();
+//        sideMenu.clickOnMaintenanceLink();
+    }
+
     @And("I login as the same employee that I changed the password and check whether I am able to login with the updated password or not {string} {string}")
     public void login_With_Same_Employee_For_Which_Password_Was_Changed(String username, String changedPassword) {
         i_enter_username_and_password(username, changedPassword);
