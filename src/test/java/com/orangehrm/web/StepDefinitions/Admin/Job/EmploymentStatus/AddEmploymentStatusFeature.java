@@ -9,9 +9,10 @@ import io.cucumber.java.en.Then;
 public class AddEmploymentStatusFeature {
     @Then("I navigate to Employment Status Page")
     public void i_navigate_to_employment_status_page() {
-        SideMenu sideMenu = new SideMenu(Hooks.driver);
-        AdminTopNavMenu adminTopNavMenu = new AdminTopNavMenu(Hooks.driver);
-        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        Hooks hooks = new Hooks();
+        SideMenu sideMenu = new SideMenu(hooks.getDriver());
+        AdminTopNavMenu adminTopNavMenu = new AdminTopNavMenu(hooks.getDriver());
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(hooks.getDriver());
 
         sideMenu.clickOnAdminLink();
         adminTopNavMenu.navigate_To_EmploymentStatus_Page();
@@ -20,7 +21,8 @@ public class AddEmploymentStatusFeature {
 
     @Then("I add an {string} and save it")
     public void i_add_an_employment_status_and_save_it(String employmentStatusName) {
-        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        Hooks hooks = new Hooks();
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(hooks.getDriver());
         employmentStatusPage.validate_Employment_Status_Title();
         employmentStatusPage.click_On_Employment_Status_Add_Button();
         employmentStatusPage.validate_Add_Employment_Status_Title();
@@ -30,7 +32,8 @@ public class AddEmploymentStatusFeature {
 
     @Then("I validate that after adding valid Employment status, user is redirected to Employment Status Page")
     public void validate_Employment_Status_Page() {
-        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        Hooks hooks = new Hooks();
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(hooks.getDriver());
         employmentStatusPage.validate_Employment_Status_Title();
     }
 }

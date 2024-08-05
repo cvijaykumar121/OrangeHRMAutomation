@@ -10,9 +10,10 @@ import io.cucumber.java.en.Then;
 public class AddJobCategoriesFeature {
     @Then("I navigate to Job Categories Page")
     public void i_navigate_to_job_categories_page() {
-        AdminTopNavMenu adminTopNavMenu = new AdminTopNavMenu(Hooks.driver);
-        JobCategoriesPage jobCategoriesPage = new JobCategoriesPage(Hooks.driver);
-        SideMenu sideMenu = new SideMenu(Hooks.driver);
+        Hooks hooks = new Hooks();
+        AdminTopNavMenu adminTopNavMenu = new AdminTopNavMenu(hooks.getDriver());
+        JobCategoriesPage jobCategoriesPage = new JobCategoriesPage(hooks.getDriver());
+        SideMenu sideMenu = new SideMenu(hooks.getDriver());
 
         sideMenu.clickOnAdminLink();
         adminTopNavMenu.navigate_To_JobCategories_Page();
@@ -21,7 +22,8 @@ public class AddJobCategoriesFeature {
 
     @And("I add a valid Job Category and save it {string}")
     public void i_add_a_valid_job_category_and_save_it(String jobCategory) {
-        JobCategoriesPage jobCategoriesPage = new JobCategoriesPage(Hooks.driver);
+        Hooks hooks = new Hooks();
+        JobCategoriesPage jobCategoriesPage = new JobCategoriesPage(hooks.getDriver());
         jobCategoriesPage.validate_Job_Categories_Title();
         jobCategoriesPage.click_On_Job_Categories_Add_Button();
         jobCategoriesPage.validate_Add_Job_Category_Title();
@@ -32,7 +34,8 @@ public class AddJobCategoriesFeature {
 
     @Then("I validate that after adding valid Job Category, user is redirected to Job Categories Page")
     public void validate_Job_Categories_Page() {
-        JobCategoriesPage jobCategoriesPage = new JobCategoriesPage(Hooks.driver);
+        Hooks hooks = new Hooks();
+        JobCategoriesPage jobCategoriesPage = new JobCategoriesPage(hooks.getDriver());
         jobCategoriesPage.validate_Job_Categories_Title();
     }
 }

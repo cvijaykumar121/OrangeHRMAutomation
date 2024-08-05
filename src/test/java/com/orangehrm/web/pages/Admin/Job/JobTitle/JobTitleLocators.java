@@ -99,7 +99,8 @@ public class JobTitleLocators {
     public WebElement jobTitlesTableHeaderRow;
 
     public WebElement getMaximumCharactersErrorMessageXpath(String fieldHeader) {
+        Hooks hooks = new Hooks();
         String requiredXpath = "//div[@class='oxd-form-row' and .//label='" + fieldHeader + "']//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']";
-        return Hooks.driver.findElement(By.xpath(requiredXpath));
+        return hooks.getDriver().findElement(By.xpath(requiredXpath));
     }
 }

@@ -9,9 +9,10 @@ import io.cucumber.java.en.Then;
 public class AddWorkShiftFeature {
     @Then("I navigate to Work Shifts Page")
     public void i_navigate_to_Work_Shifts_Page() {
-        AdminTopNavMenu adminTopNavMenu = new AdminTopNavMenu(Hooks.driver);
-        WorkShiftsPage workShiftsPage = new WorkShiftsPage(Hooks.driver);
-        SideMenu sideMenu = new SideMenu(Hooks.driver);
+        Hooks hooks = new Hooks();
+        AdminTopNavMenu adminTopNavMenu = new AdminTopNavMenu(hooks.getDriver());
+        WorkShiftsPage workShiftsPage = new WorkShiftsPage(hooks.getDriver());
+        SideMenu sideMenu = new SideMenu(hooks.getDriver());
 
         sideMenu.clickOnAdminLink();
         adminTopNavMenu.navigate_To_WorkShifts_Page();

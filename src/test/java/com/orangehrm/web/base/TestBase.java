@@ -23,10 +23,12 @@ public class TestBase {
     public static Properties OR = new Properties();
     public static FileInputStream fis;
     public static JavascriptExecutor js;
+    public static Hooks hooks = new Hooks();
 
     @BeforeSuite
     @Parameters({"browser"})
     public void setUp(String browser) {
+//        hooks = new Hooks();
         fis = Hooks.fis;
         config = Hooks.config;
         OR = Hooks.OR;
@@ -55,7 +57,7 @@ public class TestBase {
 
     public void waitForElementToBeVisible(WebElement element, int timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(timeoutInSeconds));
+            WebDriverWait wait = new WebDriverWait(hooks.getDriver(), Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOf(element));
         } catch (TimeoutException e) {
             Assert.fail("Timeout: Element is not visible within the specified time.", e);
@@ -72,7 +74,7 @@ public class TestBase {
 
     public void waitForElementToBeVisible(WebElement element, int timeoutInSeconds, String message) {
         try {
-            WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(timeoutInSeconds));
+            WebDriverWait wait = new WebDriverWait(hooks.getDriver(), Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOf(element));
             logPass(message, true);
         } catch (TimeoutException e) {
@@ -91,7 +93,7 @@ public class TestBase {
     public void waitForElementToBeClickable(WebElement element, int timeoutInSeconds) {
         boolean result = false;
 
-        WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(timeoutInSeconds));
+        WebDriverWait wait = new WebDriverWait(hooks.getDriver(), Duration.ofSeconds(timeoutInSeconds));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(element));
         } catch (TimeoutException e) {
@@ -108,7 +110,7 @@ public class TestBase {
     }
 
     public void waitForElementToBeClickable(WebElement element, int timeoutInSeconds, String message) {
-        WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(timeoutInSeconds));
+        WebDriverWait wait = new WebDriverWait(hooks.getDriver(), Duration.ofSeconds(timeoutInSeconds));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(element));
             logPass(message, true);
@@ -127,7 +129,7 @@ public class TestBase {
 
     public boolean waitForElementToBeClickable(WebElement element, int timeoutInSeconds, String passMessage, String failMessage, boolean throwException) {
         boolean result = false;
-        WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(timeoutInSeconds));
+        WebDriverWait wait = new WebDriverWait(hooks.getDriver(), Duration.ofSeconds(timeoutInSeconds));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(element));
             logInfo(passMessage, true);
@@ -145,7 +147,7 @@ public class TestBase {
 
     public boolean waitForElementToBeClickable(WebElement element, int timeoutInSeconds, boolean throwException) {
         boolean result = false;
-        WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(timeoutInSeconds));
+        WebDriverWait wait = new WebDriverWait(hooks.getDriver(), Duration.ofSeconds(timeoutInSeconds));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(element));
             result = true;
@@ -160,7 +162,7 @@ public class TestBase {
     }
 
     public void waitForAlertToBePresent(int timeOut, String message) {
-        WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(timeOut));
+        WebDriverWait wait = new WebDriverWait(hooks.getDriver(), Duration.ofSeconds(timeOut));
         try {
             wait.withTimeout(Duration.ofSeconds(5)).until(ExpectedConditions.alertIsPresent());
             logPass(message, true);
@@ -188,7 +190,7 @@ public class TestBase {
     }
 
     public void waitForFrameAndSwitchToIt(WebElement frameElement, int timeOut) {
-        WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(timeOut));
+        WebDriverWait wait = new WebDriverWait(hooks.getDriver(), Duration.ofSeconds(timeOut));
         try {
             wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameElement));
             System.out.println("Switched to frame successfully");
@@ -271,7 +273,7 @@ public class TestBase {
         waitForElementToBeClickable(element, timeOut);
         try {
             clickElement(element, "Dropdown clicked", true, 20);
-            WebElement optionToBeSelected = Hooks.driver.findElement(By.xpath("//div[@role='listbox']/div/span[text()='" + option + "']"));
+            WebElement optionToBeSelected = hooks.getDriver().findElement(By.xpath("//div[@role='listbox']/div/span[text()='" + option + "']"));
             clickElement(optionToBeSelected, message, true, 20);
             logInfo(message, true);
         } catch (NoSuchElementException e) {
@@ -287,7 +289,7 @@ public class TestBase {
 
     public void selectOptionFromDropdown(String option, String message) {
         try {
-            WebElement optionToBeSelected = Hooks.driver.findElement(By.xpath("//div[@role='listbox']/div/span[text()='" + option + "']"));
+            WebElement optionToBeSelected = hooks.getDriver().findElement(By.xpath("//div[@role='listbox']/div/span[text()='" + option + "']"));
             clickElement(optionToBeSelected, message, true, 20);
             logInfo(message, true);
         } catch (NoSuchElementException e) {
@@ -320,7 +322,7 @@ public class TestBase {
 
     public void switchToDefaultContent() {
         try {
-            Hooks.driver.switchTo().defaultContent();
+            hooks.getDriver().switchTo().defaultContent();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -349,7 +351,7 @@ public class TestBase {
     }
 
     public void uploadFile() {
-        WebElement browseButton = Hooks.driver.findElement(By.xpath("//div[@class='oxd-file-button']"));
+        WebElement browseButton = hooks.getDriver().findElement(By.xpath("//div[@class='oxd-file-button']"));
         clickElement(browseButton, "Browse button clicked", true, 10);
         try {
             Robot robot = new Robot();
@@ -384,14 +386,14 @@ public class TestBase {
 
 
     public void highlightElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) Hooks.driver;
+        JavascriptExecutor js = (JavascriptExecutor) hooks.getDriver();
         // Change the element's border and background color to highlight it
         js.executeScript("arguments[0].style.border='3px solid red'", element);
         js.executeScript("arguments[0].style.backgroundColor='yellow'", element);
     }
 
     public static String captureScreenshot() {
-        TakesScreenshot ts = (TakesScreenshot) Hooks.driver;
+        TakesScreenshot ts = (TakesScreenshot) hooks.getDriver();
         return ts.getScreenshotAs(OutputType.BASE64);
     }
 
