@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 public class StepDefinition extends TestBase {
     public WebDriver driver;
     public Locators locators;
+    public static String employeeID;
 
     public StepDefinition(WebDriver driver) {
         this.driver = driver;
@@ -42,5 +43,9 @@ public class StepDefinition extends TestBase {
         WebElement noCancelButton = locators.noCancelJobTitleButton;
         waitForElementToBeVisible(noCancelButton, 10, "No Cancel button is displayed successfully");
         clickElement(noCancelButton, "No Cancel button is clicked successfully", true, 10);
+    }
+
+    public static void setEmployeeID(String employeeId) {
+        employeeID = employeeId;
     }
 }

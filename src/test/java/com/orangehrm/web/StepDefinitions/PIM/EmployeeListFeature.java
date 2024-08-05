@@ -1,6 +1,7 @@
 package com.orangehrm.web.StepDefinitions.PIM;
 
 import com.orangehrm.web.StepDefinitions.Hooks;
+import com.orangehrm.web.base.StepDefinition;
 import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -36,11 +37,11 @@ public class EmployeeListFeature {
         employeeInformationPage.deleteAllEmployeesFromPIM();
     }
 
-    @Then("I search for the same employee in PIM that I added {string} {string}")
-    public void search_for_employee_in_PIM(String employeeFullName, String employeeID) {
+    @Then("I search for the same employee in PIM that I added {string}")
+    public void search_for_employee_in_PIM(String employeeFullName) {
         EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
         employeeInformationPage.enterEmployeeName(employeeFullName);
-//        employeeInformationPage.enterEmployeeID(employeeID);
+//        employeeInformationPage.enterEmployeeID(StepDefinition.employeeID);
         employeeInformationPage.clickOnSearchButton();
         try {
             Thread.sleep(3000);

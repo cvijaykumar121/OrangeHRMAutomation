@@ -26,4 +26,5 @@
             <class name="com.orangehrm.web.runners.TestRunner"/>
         </classes>
     </test>
+
 </suite>
