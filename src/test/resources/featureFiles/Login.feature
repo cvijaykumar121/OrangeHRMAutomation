@@ -204,8 +204,8 @@ Feature: Login and Logout Feature
     Then I logout from the application
 
     Examples:
-      | First Name | Middle Name | Last Name | Employee ID | User Role | Employee Name      | Status  | Username   | Password      | Confirm Password |
-      | Bhavesh    | Kumar       | Sahu      | 1001        | ESS       | Bhavesh Kumar Sahu | Enabled | bhavesh123 | Password@1234 | Password@1234    |
+      | First Name | Middle Name | Last Name | Employee ID | User Role | Employee Name     | Status  | Username  | Password      | Confirm Password |
+      | Rahul      | Kumar       | Gupta     | 1001        | ESS       | Rahul Kumar Gupta | Enabled | rahul1234 | Password@1234 | Password@1234    |
 
 #########################################################################################################################################################################################################
 
