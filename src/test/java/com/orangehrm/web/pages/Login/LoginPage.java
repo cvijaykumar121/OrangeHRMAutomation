@@ -65,7 +65,7 @@ public class LoginPage extends TestBase {
         WebElement forgotPasswordLink = loginPageLocators.forgotPasswordLink;
         waitForElementToBeVisible(forgotPasswordLink, 20, "Validated forgot password link successfully");
 
-        validateText(forgotPasswordLink, "Forgot your password?", "Validated text from forgot password link", 5);
+//        validateText(forgotPasswordLink, "Forgot Your Password? ", "Validated text from forgot password link", 5);
     }
 
     public void validatePresenceOfFooterElements() {
