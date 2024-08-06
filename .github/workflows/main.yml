@@ -1,4 +1,4 @@
-name: High Level Regression
+name: Chrome browser Execution
 on:
   workflow_dispatch:
     inputs:
