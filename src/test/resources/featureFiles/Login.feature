@@ -119,7 +119,7 @@ Feature: Login and Logout Feature
       | First Name | Middle Name | Last Name | Employee ID | Username | Status  | Password      | Confirm Password | Changed Password | Employee Name       |
       | Ajay       | Kumar       | Chadayan  | 1001        | ajay123  | Enabled | Password@1234 | Password@1234    | Password@1234    | Ajay Kumar Chadayan |
 
-###########################################################################################################################################################################################################
+##########################################################################################################################################################################################################
 
   Scenario Outline: Validating if the user is getting "Account Disabled" message if the Status of the account is selected as disabled
 
@@ -159,7 +159,7 @@ Feature: Login and Logout Feature
       | First Name | Middle Name | Last Name | Employee ID | Username   | Disabled Status | Password      | Confirm Password | Enabled Status | Employee Name       |
       | Bhaskar    | Kumar       | Gupta     | 1001        | bhaskar123 | Disabled        | Password@1234 | Password@1234    | Enabled        | Bhaskar Kumar Gupta |
 
-##########################################################################################################################################################################################################
+#########################################################################################################################################################################################################
 
   Scenario: Logout Functionality for Security For Admin User
     Given I login with valid Admin credentials and I am on the dashboard page
@@ -207,7 +207,7 @@ Feature: Login and Logout Feature
       | First Name | Middle Name | Last Name | Employee ID | User Role | Employee Name     | Status  | Username  | Password      | Confirm Password |
       | Rahul      | Kumar       | Gupta     | 1001        | ESS       | Rahul Kumar Gupta | Enabled | rahul1234 | Password@1234 | Password@1234    |
 
-#########################################################################################################################################################################################################
+##########################################################################################################################################################################################################
 
   Scenario Outline: Admin Account Creation
 
@@ -242,3 +242,5 @@ Feature: Login and Logout Feature
       | First Name | Middle Name | Last Name | Employee ID | Username | Password      | Confirm Password | Employee Name    | User Role | Status  |
       | Ayush      | Kumar       | Saha      | 1001        | ayush123 | Password@1234 | Password@1234    | Ayush Kumar Saha | Admin     | Enabled |
 
+#Validate if an we create an admin user and login with that user which is created, and then try to delete current admin user, we get an error
+#    and we are not able to delete the user

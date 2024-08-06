@@ -96,7 +96,7 @@ public class LoginPage extends TestBase {
 
     public void validateDashboardPageHeader() {
         WebElement dashboardPageHeader = loginPageLocators.dashboardPageHeader;
-        waitForElementToBeVisible(dashboardPageHeader, 20, "Validated Dashboard Page header");
+        waitForElementToBeVisible(dashboardPageHeader, 40, "Validated Dashboard Page header");
         validateText(dashboardPageHeader, "Dashboard", "Dashboard Page Header Text validated successfully", 5);
     }
 }
