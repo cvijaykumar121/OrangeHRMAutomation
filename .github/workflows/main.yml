@@ -1,4 +1,4 @@
-name: Chrome browser Execution
+name: Regression Execution
 on:
   workflow_dispatch:
     inputs:
