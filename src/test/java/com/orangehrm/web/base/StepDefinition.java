@@ -14,6 +14,7 @@ public class StepDefinition extends TestBase {
 
     public void clickOnSaveButton() {
         clickElement(locators.saveButton, "Clicked on save button", true, 20);
+        waitForElementToBeVisible(locators.toastMessage, 40, "Toast message displayed");
     }
 
     public void clickOnCancelButton() {

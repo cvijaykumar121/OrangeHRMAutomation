@@ -28,4 +28,7 @@ public class Locators {
     @FindBy(xpath = "//p[@class='oxd-text oxd-text--p oxd-text--card-body']")
     public WebElement deleteJobTitlePopUpBody;
 
+    @FindBy(xpath = "//div[@id='oxd-toaster_1']")
+    public WebElement toastMessage;
+
 }

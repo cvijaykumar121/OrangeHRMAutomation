@@ -38,5 +38,13 @@ public class JobPage extends TestBase {
         WebElement optionFromDropdown = driver.findElement(By.xpath("//div[@role='listbox']/div/span[text()='" + option + "']"));
         waitForElementToBeClickable(optionFromDropdown, 20, option + " is visible in the job title dropdown");
         clickElement(optionFromDropdown, option + " from the job title dropdown is clicked", true, 20);
+        stepDefinition.clickOnSaveButton();
+//        validate_Job_Title_Dropdown_Is_Present();
+        validate_Job_Title_Displayed_In_JobTitle_TextBox(option);
+    }
+
+    public void validate_Job_Title_Displayed_In_JobTitle_TextBox(String jobTitle) {
+        WebElement jobTitleTextInBox = driver.findElement(By.xpath("//label[text()='Job Title']/parent::div/following-sibling::div//div[text()='" + jobTitle + "']"));
+        validateText(jobTitleTextInBox, jobTitle, "Validated Job Title in Job Page", 40);
     }
 }

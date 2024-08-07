@@ -137,10 +137,10 @@ public class LoginFeature {
     @And("I validate that the user should be able to access all the features of an Admin User")
     public void validate_that_the_user_should_be_able_to_access_all_the_features_that_an_Admin_user() {
         SideMenu sideMenu = new SideMenu(Hooks.driver);
-        sideMenu.clickOnAdminLink();
-        sideMenu.clickOnPIMLink();
-        sideMenu.clickOnRecruitmentLink();
-//        sideMenu.clickOnMaintenanceLink();
+        sideMenu.validateAdminMenuIsPresent();
+        sideMenu.validatePIMMenuIsPresent();
+        sideMenu.validateRecruitmentMenuIsPresent();
+        sideMenu.validateMaintenanceMenuIsPresent();
     }
 
     @And("I login as the same employee that I changed the password and check whether I am able to login with the updated password or not {string} {string}")

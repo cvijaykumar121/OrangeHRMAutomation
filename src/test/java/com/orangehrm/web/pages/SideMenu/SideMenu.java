@@ -26,10 +26,6 @@ public class SideMenu extends TestBase {
         clickElement(adminLink, "Admin link clicked successfully", true, 5);
     }
 
-//    public void validatePIMLinkIsPresentInSideMenu() {
-//
-//    }
-
     public void validatePIMLinkIsNotPresentInSideMenu() {
         if (!isElementPresent(sideMenuLocators.pimLink)) {
             logPass("PIM Link is not displayed", true);
@@ -118,5 +114,21 @@ public class SideMenu extends TestBase {
         WebElement buzzLink = sideMenuLocators.buzzLink;
         waitForElementToBeClickable(buzzLink, 10, "Buzz menu link found successfully");
         clickElement(buzzLink, "Buzz link clicked successfully", true, 5);
+    }
+
+    public void validateAdminMenuIsPresent() {
+        waitForElementToBeClickable(sideMenuLocators.adminLink, 40, "Validated Admin Link successfully");
+    }
+
+    public void validatePIMMenuIsPresent() {
+        waitForElementToBeClickable(sideMenuLocators.pimLink, 40, "Validated PIM Link successfully");
+    }
+
+    public void validateRecruitmentMenuIsPresent() {
+        waitForElementToBeClickable(sideMenuLocators.recruitmentLink, 40, "Validated Recruitment Link successfully");
+    }
+
+    public void validateMaintenanceMenuIsPresent() {
+        waitForElementToBeClickable(sideMenuLocators.maintenanceLink, 40, "Validated Maintenance Link successfully");
     }
 }

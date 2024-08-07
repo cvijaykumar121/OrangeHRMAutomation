@@ -51,8 +51,16 @@ public class JobTitlePage extends TestBase {
 
     public void enterJobTitle(String jobTitle) {
         WebElement jobTitleInputBox = validate_Job_Title_Input_Box_Is_Present();
-//        clickElement(jobTitleInputBox, "Clicked on Job title input box", true, 30);
         sendKeys(jobTitleInputBox, jobTitle, "Successfully entered " + jobTitle + " into text box", 10);
+    }
+
+    public void enterJobTitle(String jobTitle, boolean clear) {
+        if (clear) {
+            WebElement jobTitleInputBox = validate_Job_Title_Input_Box_Is_Present();
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].value='';", jobTitleInputBox);
+            sendKeys(jobTitleInputBox, jobTitle, "Successfully entered " + jobTitle + " into text box", 10);
+        }
     }
 
 
@@ -105,8 +113,7 @@ public class JobTitlePage extends TestBase {
     }
 
     public void enterNote(String note) {
-        WebElement noteInputBox = validate_Note_Input_Box_Is_Present();
-        sendKeys(noteInputBox, note, "Entered note into note input box", 10);
+        sendKeys(jobTitleLocators.addNoteTextBox, note, "Entered note into note input box", 10);
     }
 
 
@@ -123,17 +130,17 @@ public class JobTitlePage extends TestBase {
 
     public void click_On_Save_Button() {
         WebElement saveButton = validate_Save_Button_Is_Present();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        clickElement(saveButton, "Save button clicked successfully", true, 20);
-        try {
-            Thread.sleep(12000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        clickElement(saveButton, "Save button clicked successfully", true, 30);
+//        try {
+//            Thread.sleep(12000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void validate_Required_Error_Message_Is_Present_At_Bottom_Of_Job_Title_Field() {
@@ -148,8 +155,7 @@ public class JobTitlePage extends TestBase {
     }
 
     public void click_on_Add_Button() {
-        WebElement addButton = validate_Add_Button();
-        clickElement(addButton, "Clicked on Add button in job titles page", true, 5);
+        clickElement(jobTitleLocators.jobTitleAddButton, "Clicked on Add button in job titles page", true, 5);
     }
 
     public void validate_Add_Job_Titles_Page_Header() {

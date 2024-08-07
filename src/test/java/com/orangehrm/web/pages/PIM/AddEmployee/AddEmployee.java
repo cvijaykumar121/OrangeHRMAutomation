@@ -37,7 +37,8 @@ public class AddEmployee extends TestBase {
     }
 
     public void enterFirstName(String firstName) {
-        WebElement firstNameInputBox = validate_First_Name_Input_Box_Is_Present();
+//        WebElement firstNameInputBox = validate_First_Name_Input_Box_Is_Present();
+        WebElement firstNameInputBox = addEmployeeLocators.firstNameInputBox;
         sendKeys(firstNameInputBox, firstName, "Successfully entered " + firstName + " into text box", 10);
     }
 

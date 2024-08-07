@@ -14,7 +14,7 @@ public class EditJobTitleFeature {
     @And("I edit the Job Title Name and save it {string}")
     public void edit_job_title_and_save_it(String updatedJobTitle) {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
-        jobTitlePage.enterJobTitle(updatedJobTitle);
+        jobTitlePage.enterJobTitle(updatedJobTitle, true);
         jobTitlePage.click_On_Save_Button();
         jobTitlePage.validate_Job_Title_Is_Present_In_JobTitle_Table(updatedJobTitle);
     }

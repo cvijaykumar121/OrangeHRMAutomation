@@ -3,6 +3,7 @@ package com.orangehrm.web.StepDefinitions.PIM;
 import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.base.StepDefinition;
 import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationPage;
+import com.orangehrm.web.pages.SideMenu.SideMenu;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
