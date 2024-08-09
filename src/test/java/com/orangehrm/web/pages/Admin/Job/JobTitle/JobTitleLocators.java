@@ -98,6 +98,9 @@ public class JobTitleLocators {
     @FindBy(xpath = "//div[@class='oxd-table-header']")
     public WebElement jobTitlesTableHeaderRow;
 
+    @FindBy(xpath = "//span[text()='No Records Found']")
+    public WebElement noRecordsFoundText;
+
     public WebElement getMaximumCharactersErrorMessageXpath(String fieldHeader) {
         String requiredXpath = "//div[@class='oxd-form-row' and .//label='" + fieldHeader + "']//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']";
         return Hooks.driver.findElement(By.xpath(requiredXpath));

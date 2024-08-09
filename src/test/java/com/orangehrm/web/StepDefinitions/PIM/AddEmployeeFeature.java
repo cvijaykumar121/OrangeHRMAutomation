@@ -25,12 +25,11 @@ public class AddEmployeeFeature {
         addEmployee.clickOnAddEmployeeNavButton();
     }
 
-    @And("I click on the Add Employee button and enter all the employee details without Login Details {string} {string} {string} {string}")
+    @And("I enter all the employee details without login details: {string}, {string}, {string}, {string}")
     public void enter_Add_Employee_Page_Details(String firstName, String middleName, String lastName, String employeeID) {
         AddEmployee addEmployee = new AddEmployee(Hooks.driver);
         PersonalDetails personalDetails = new PersonalDetails(Hooks.driver);
 
-        addEmployee.clickOnAddEmployeeNavButton();
         addEmployee.enterFirstName(firstName);
         addEmployee.enterMiddleName(middleName);
         addEmployee.enterLastName(lastName);

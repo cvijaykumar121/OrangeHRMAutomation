@@ -51,18 +51,13 @@ public class JobTitlePage extends TestBase {
 
     public void enterJobTitle(String jobTitle) {
         WebElement jobTitleInputBox = validate_Job_Title_Input_Box_Is_Present();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         sendKeys(jobTitleInputBox, jobTitle, "Successfully entered " + jobTitle + " into text box", 10);
     }
-
-    public void enterJobTitle(String jobTitle, boolean clear) {
-        if (clear) {
-            WebElement jobTitleInputBox = validate_Job_Title_Input_Box_Is_Present();
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].value='';", jobTitleInputBox);
-            sendKeys(jobTitleInputBox, jobTitle, "Successfully entered " + jobTitle + " into text box", 10);
-        }
-    }
-
 
     public void validate_Job_Description_Input_Text_Is_Present() {
         WebElement jobDescriptionInputHeader = jobTitleLocators.jobDescriptionInputHeader;
@@ -182,6 +177,7 @@ public class JobTitlePage extends TestBase {
     }
 
     public WebElement validate_Job_Title_Is_Present_In_JobTitle_Table(String jobTitle) {
+        waitForElementToBeVisible(jobTitleLocators.jobTitlesTable, 50, "Job Titles page is visible");
         WebElement requiredJobTitle = jobTitleLocators.allJobTitles.findElement(By.xpath("//div[text()='" + jobTitle + "']"));
         waitForElementToBeVisible(requiredJobTitle, 20, "Validated " + requiredJobTitle + " in the Job Titles Table");
         return requiredJobTitle;
@@ -265,44 +261,22 @@ public class JobTitlePage extends TestBase {
         waitForElementToBeVisible(jobTitleRequiredErrorMessage, 10, "Already exists error message in job title field is displayed correctly");
     }
 
-
-
-/* *************************************************************************************************************************************************************************************************************
-                                        Actual Methods to be called from tests starts
- *************************************************************************************************************************************************************************************************************
-*/
-
-    public void validateAllElementsPresentInJobTitlePage() {
-        validate_Job_Title_Page_Header();
-        validate_Add_Button();
-        validateTableIsPresent();
-        validateTableHeaders();
-//        validateAllRowsInJobTitlesTable();
-    }
-
-    public void Add_Job_Title_By_Entering_Only_Required_Fields(String jobTitle) {
-        enterJobTitle(jobTitle);
-        click_On_Save_Button();
-    }
-
-    public void validate_Error_Message_Displayed_While_Fields_Are_Empty() {
-        click_On_Save_Button();
-        validateJobTitleRequiredErrorMessage("Job Title");
-    }
-
-    public void delete_Job_Title_Using_Trash_Icon_In_Job_Titles_Page(String validJobTitle) {
-        click_On_Trash_Icon_In_Job_Titles_Table(validJobTitle);
-        stepDefinition.handle_Delete_Pop_Up(true);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void validate_error_message_displayed_while_entering_more_than_400_characters(String fieldName) {
         WebElement errorElement = jobTitleLocators.getMaximumCharactersErrorMessageXpath(fieldName);
         waitForElementToBeVisible(errorElement, 10, "Error message of maximum characters is displayed in the job description field");
         validateText(errorElement, "Should not exceed 400 characters", "Successfully validated the content of the error message", 10);
+    }
+
+    public void validate_No_Records_Found_Text_Displayed() {
+        validateText(jobTitleLocators.noRecordsFoundText, "No Records Found", "Validated No Records Found text successfully", 30);
+    }
+
+    public void validate_No_Records_Found_In_Table() {
+        List<WebElement> recordsList = jobTitleLocators.jobTitlesTableRows;
+        if(recordsList.size() == 0) {
+            logPass("No Records found in the table", true);
+        } else {
+            logFail("Records are found in the table", true);
+        }
     }
 }

@@ -63,6 +63,6 @@ public class JobPageLocators {
     @FindBy(xpath = "//label[@class='oxd-label'")
     public WebElement allInputTextHeaders;
 
-//    @FindBy(xpath = "")
-
+    @FindBy(xpath = "//div[@role='listbox']/div[text()='No Records Found']")
+    public WebElement noRecordsFoundTextInDropdown;
 }

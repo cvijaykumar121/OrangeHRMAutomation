@@ -27,24 +27,37 @@ public class JobPage extends TestBase {
         return jobTitleDropdown;
     }
 
-    private void click_On_JobTitle_Dropdown() {
+    public void click_On_JobTitle_Dropdown() {
         WebElement jobTitleDropdown = validate_Job_Title_Dropdown_Is_Present();
         clickElement(jobTitleDropdown, "Job Title Dropdown clicked successfully", true, 20);
     }
 
     public void select_Option_From_JobTitle_Dropdown(String option) {
-        validate_Job_Title_Dropdown_Is_Present();
-        click_On_JobTitle_Dropdown();
         WebElement optionFromDropdown = driver.findElement(By.xpath("//div[@role='listbox']/div/span[text()='" + option + "']"));
         waitForElementToBeClickable(optionFromDropdown, 20, option + " is visible in the job title dropdown");
         clickElement(optionFromDropdown, option + " from the job title dropdown is clicked", true, 20);
-        stepDefinition.clickOnSaveButton();
-//        validate_Job_Title_Dropdown_Is_Present();
-        validate_Job_Title_Displayed_In_JobTitle_TextBox(option);
     }
 
     public void validate_Job_Title_Displayed_In_JobTitle_TextBox(String jobTitle) {
         WebElement jobTitleTextInBox = driver.findElement(By.xpath("//label[text()='Job Title']/parent::div/following-sibling::div//div[text()='" + jobTitle + "']"));
         validateText(jobTitleTextInBox, jobTitle, "Validated Job Title in Job Page", 40);
     }
+
+    public void validate_No_Records_Found_Is_Displayed_In_JobTitle_Dropdown() {
+        click_On_JobTitle_Dropdown();
+        WebElement noRecordsFoundText = jobPageLocators.noRecordsFoundTextInDropdown;
+        validateText(noRecordsFoundText, "No Records Found", "No Records found validated in Job Title dropdown", 30);
+    }
+
+    public void validate_No_Job_Title_Displayed_In_JobTitle_InputBox() {
+        WebElement jobTitleInputBox = jobPageLocators.jobTitleDropdown;
+        String jobText = jobTitleInputBox.getText();
+        System.out.println("Job Title Input box text: " + jobText);
+        if(jobText.equals("-- Select --")) {
+            logPass("No Job Title displayed in the Job Title Input Box", true);
+        } else {
+            logFail("Job Title: " + jobText + " is displayed in the Job Title Input box", true);
+        }
+    }
+
 }

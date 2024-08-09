@@ -2,10 +2,15 @@ package com.orangehrm.web.StepDefinitions.PIM;
 
 import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.base.StepDefinition;
+import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationLocators;
 import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationPage;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class EmployeeListFeature {
     @And("I click on Employee List Button")
@@ -61,5 +66,11 @@ public class EmployeeListFeature {
     public void delete_employee_from_PIM_and_validate_employee_is_removed_from_PIM(String firstName, String middleName, String lastName) {
         EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
         employeeInformationPage.delete_Employee_From_PIM(firstName, middleName, lastName);
+    }
+
+    @Then("I navigate to the employee details page {string} {string}")
+    public void navigate_to_employee_details_page(String firstName, String middleName) {
+        EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
+        employeeInformationPage.edit_Employee_From_PIM(firstName, middleName);
     }
 }

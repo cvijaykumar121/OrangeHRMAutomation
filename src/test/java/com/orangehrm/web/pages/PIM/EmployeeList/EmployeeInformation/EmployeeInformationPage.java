@@ -83,6 +83,22 @@ public class EmployeeInformationPage extends TestBase {
         }
     }
 
+    public void edit_Employee_From_PIM(String firstName, String middleName) {
+        List<WebElement> users = employeeInformationLocators.searchUsersList;
+        waitForElementToBeVisible(users.get(0), 40, "Users table is displayed");
+        String halfName = firstName + " " + middleName;
+        System.out.println("Half Name: " + halfName);
+        int numberOfUsers = users.size();
+        System.out.println("Users list size: " + numberOfUsers);
+        if (numberOfUsers > 0) {
+            for (int i = 0; i < users.size(); i++) {
+                WebElement currentUser = users.get(i);
+                WebElement editIcon = currentUser.findElement(By.xpath("//button/i[@class='oxd-icon bi-pencil-fill']"));
+                clickElement(editIcon, "Clicked on Edit icon", true, 30);
+            }
+        }
+    }
+
     public void deleteAllEmployeesFromPIM() {
         while (isElementPresent(employeeInformationLocators.allEmployeesListInTable)) {
             if (employeeInformationLocators.allEmployeesListInTable.size() > 1) {

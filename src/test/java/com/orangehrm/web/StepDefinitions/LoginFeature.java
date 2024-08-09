@@ -1,5 +1,4 @@
 package com.orangehrm.web.StepDefinitions;
-
 import com.orangehrm.web.pages.Login.LoginPage;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
 import com.orangehrm.web.pages.UserMenu.UserMenu;
@@ -69,7 +68,7 @@ public class LoginFeature {
         loginPage.clickOnLoginButton();
     }
 
-    @Then("I should see the Dashboard page")
+    @Then("I should be on the dashboard page")
     public void i_should_see_the_dashboard_page() {
         LoginPage loginPage = new LoginPage(Hooks.driver);
         loginPage.validateDashboardPageHeader();
@@ -87,20 +86,21 @@ public class LoginFeature {
         loginPage.validateRequiredMessageError();
     }
 
-    @Then("I login with valid Admin credentials and I am on the dashboard page")
+    @Then("I login with valid Admin credentials")
     public void i_login_with_valid_admin_credentials() {
         LoginPage loginPage = new LoginPage(Hooks.driver);
 
-        loginPage.validatePresenceOfLoginPageHeader();
-        loginPage.validatePresenceOfUsernameInputHeader();
-        loginPage.validatePresenceOfUsernameInputField();
-        loginPage.enterUsername("Admin");
-        loginPage.validatePresenceOfPasswordInputHeader();
-        loginPage.validatePresenceOfPasswordInputField();
-        loginPage.enterPassword("admin123");
-        loginPage.validatePresenceOfLoginButton();
-        loginPage.clickOnLoginButton();
-        loginPage.validateDashboardPageHeader();
+//        loginPage.validatePresenceOfLoginPageHeader();
+//        loginPage.validatePresenceOfUsernameInputHeader();
+//        loginPage.validatePresenceOfUsernameInputField();
+//        loginPage.enterUsername("Admin");
+//        loginPage.validatePresenceOfPasswordInputHeader();
+//        loginPage.validatePresenceOfPasswordInputField();
+//        loginPage.enterPassword("admin123");
+//        loginPage.validatePresenceOfLoginButton();
+//        loginPage.clickOnLoginButton();
+        i_enter_username_and_password("Admin", "admin123");
+//        loginPage.validateDashboardPageHeader();
     }
 
     @Then("I logout from the application")
@@ -118,11 +118,6 @@ public class LoginFeature {
     @Then("I login as the same employee that I added in PIM as an Admin {string} {string}")
     public void login_as_the_same_employee_that_I_added_in_PIM_as_an_Admin(String username, String password) {
         i_enter_username_and_password(username, password);
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @And("I validate that the user should be able to access only the features that an ESS user can have")
@@ -154,10 +149,19 @@ public class LoginFeature {
         loginPage.validateAccountDisabledErrorMessage();
     }
 
-    @Then("I login as the same user that was added through User Management and validate if the user is able to login successfully {string} {string}")
-    public void i_login_as_the_same_user_that_was_added_through_User_Management_and_validate_if_the_user_is_able_to_login_successfully(String username, String password) {
+//    @Then("I login as the same user that was added through User Management and validate if the user is able to login successfully {string} {string}")
+//    public void i_login_as_the_same_user_that_was_added_through_User_Management_and_validate_if_the_user_is_able_to_login_successfully(String username, String password) {
+//
+//        i_enter_username_and_password(username, password);
+//    }
 
-        i_enter_username_and_password(username, password);
+    @When("I login as the same user that was added through User Management {string} {string}")
+    public void login_as_same_user_that_was_added_through_User_Management(String username, String changedPassword) {
+        i_enter_username_and_password(username, changedPassword);
+    }
+
+    @Then("I validate if the user is able to login successfully")
+    public void validate_user_is_able_to_login() {
         i_should_see_the_dashboard_page();
     }
 }
