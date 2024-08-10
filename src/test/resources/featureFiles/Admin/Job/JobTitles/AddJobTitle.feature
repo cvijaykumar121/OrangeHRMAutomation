@@ -4,7 +4,9 @@ Feature: Add Job Title Feature
     Given I am on the OrangeHRM login page
     When I login with valid Admin credentials
     Then I should be on the dashboard page
-    Then I navigate to Job Titles Page
+    And I navigate to Job Titles Page
+
+########################################################################################################################################################################################################################################
 
   Scenario: Validating if all the elements in the Add Job Title Page are present correctly
     When I click on Add Button and navigate to Add Job Titles Page
@@ -12,7 +14,6 @@ Feature: Add Job Title Feature
 
 ########################################################################################################################################################################################################################################
 
-  @currentRun
   Scenario Outline: Validating if the user is able to Add a Job Title by entering all the valid details
     Given I delete all the Job Titles in the Job Title Table
     When I add a job title by entering all the valid details "<Job Title>" "<Job Description>" and "<Note>" on the page
@@ -57,14 +58,12 @@ Feature: Add Job Title Feature
     And I click on Save Button
     Then I validate that the Job Title is displayed in the Job Title table "<Job Title>"
 
-##    Adding an employee with the same Job Title
+#    Adding an employee with the added Job Title
     When I navigate to the PIM module
-    And I delete all the employees from the employee list table
-
+    Then I delete all the employees from the employee list table
     When I click on the Add Employee button
     And I enter all the employee details without login details: "<First Name>", "<Middle Name>", "<Last Name>", "<Employee ID>"
     Then I navigate to Job Page
-
     When I open the Job Title dropdown in the Job Section
     And I select the "<Job Title>" that I added from the Admin menu
     And I save the selected Job Title

@@ -65,4 +65,7 @@ public class JobPageLocators {
 
     @FindBy(xpath = "//div[@role='listbox']/div[text()='No Records Found']")
     public WebElement noRecordsFoundTextInDropdown;
+
+    @FindBy(xpath = "//label[text()='Job Title']/../following-sibling::div//div[text()='demo (Deleted)']")
+    public WebElement jobTitleInputBoxDeletedText;
 }

@@ -4,6 +4,7 @@ import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.base.StepDefinition;
 import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.web.pages.Admin.Job.JobTitle.JobTitlePage;
+import com.orangehrm.web.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationPage;
 import com.orangehrm.web.pages.PIM.EmployeeList.Job.JobPage;
 import com.orangehrm.web.pages.PIM.EmployeeList.PersonalDetails.PersonalDetails;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
@@ -49,32 +50,16 @@ public class JobTitleFeature {
         jobTitlePage.validate_Save_Button_Is_Present();
     }
 
-//    @Then("I should be able to add a job title successfully by entering all the valid details in the page")
-//    public void Add_Job_Title_By_Entering_All_Valid_Data_In_All_Fields(io.cucumber.datatable.DataTable dataTable) {
-//        JobTitle jobTitle = new JobTitle(Hooks.driver);
-//        List<Map<String, String>> data = dataTable.asMaps();
-//        Map<String, String> row1 = data.get(0);
-//
-//        String titleOfJob = row1.get("Job Title");
-//        String jobDescription = row1.get("Job Description");
-//        String note = row1.get("Note");
-//
-//        jobTitle.enterJobTitle(titleOfJob);
-//        jobTitle.enter_Job_Description(jobDescription);
-//        jobTitle.enterNote(note);
-//        jobTitle.uploadFile();
-//        jobTitle.click_On_Save_Button();
-//    }
-
     @Then("I add a job title by entering all the valid details {string} {string} and {string} on the page")
     public void i_add_a_job_title_by_entering_all_the_valid_details_and_note_in_the_page(String titleOfJob, String jobDescription, String note) {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        StepDefinition stepDefinition = new StepDefinition(Hooks.driver);
 
         jobTitlePage.click_on_Add_Button();
         jobTitlePage.enterJobTitle(titleOfJob);
         jobTitlePage.enter_Job_Description(jobDescription);
         jobTitlePage.enterNote(note);
-//        jobTitle.uploadFile();
+        stepDefinition.uploadFile();
     }
 
     @And("I validate that the Job Title is displayed in the Job Title table {string}")
@@ -116,9 +101,9 @@ public class JobTitleFeature {
     @Then("I should get an error message in the {string} that more than 400 characters are not allowed")
     public void validate_error_message_for_maximum_characters(String errorValidationField) {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
-        if(errorValidationField.equalsIgnoreCase("job description")) {
+        if (errorValidationField.equalsIgnoreCase("job description")) {
             jobTitlePage.validate_error_message_displayed_while_entering_more_than_400_characters("Job Description");
-        } else if(errorValidationField.equalsIgnoreCase("note")) {
+        } else if (errorValidationField.equalsIgnoreCase("note")) {
             jobTitlePage.validate_error_message_displayed_while_entering_more_than_400_characters("Note");
         }
     }
@@ -208,7 +193,7 @@ public class JobTitleFeature {
     }
 
 
-//    These are Job Page methods PIM -> Job
+    //    These are Job Page methods PIM -> Job
     @And("I open the Job Title dropdown in Job Section and I validate that 'No Records Found' Message is displayed")
     public void validate_No_Records_Found_Text_Displayed_In_JobTitles_Dropdown() {
         JobPage jobPage = new JobPage(Hooks.driver);
@@ -234,5 +219,17 @@ public class JobTitleFeature {
     public void validate_No_Job_Title_Displayed_In_Job_Title_Input_Box() {
         JobPage jobPage = new JobPage(Hooks.driver);
         jobPage.validate_No_Job_Title_Displayed_In_JobTitle_InputBox();
+    }
+
+    @Then("I validate that the 'Deleted' text is displayed in the {string} Input Box")
+    public void validate_JobTitle_Deleted_Text_Is_Displayed_In_JobTitle_InputBox(String jobTitle) {
+        JobPage jobPage = new JobPage(Hooks.driver);
+        jobPage.validate_JobTitle_Deleted_Text_Is_Displayed_In_JobTitle_InputBox(jobTitle);
+    }
+
+    @And("I click on Edit option for the employee {string} {string}")
+    public void click_on_Edit_Button_For_Employee(String firstName, String middleName) {
+        EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
+        employeeInformationPage.click_On_Edit_Button_For_Employee_Name(firstName, middleName);
     }
 }

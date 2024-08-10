@@ -1,7 +1,6 @@
 package com.orangehrm.web.pages.Admin.AdminTopNavMenu;
 
 import com.orangehrm.web.base.TestBase;
-import com.orangehrm.web.pages.Admin.Job.EmploymentStatus.EmploymentStatusPage;
 import org.openqa.selenium.WebDriver;
 
 public class AdminTopNavMenu extends TestBase {

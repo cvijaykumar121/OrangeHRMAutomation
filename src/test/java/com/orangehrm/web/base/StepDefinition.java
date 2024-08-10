@@ -1,6 +1,12 @@
 package com.orangehrm.web.base;
+import com.orangehrm.web.StepDefinitions.Hooks;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 
 public class StepDefinition extends TestBase {
     public WebDriver driver;
@@ -49,4 +55,39 @@ public class StepDefinition extends TestBase {
     public static void setEmployeeID(String employeeId) {
         employeeID = employeeId;
     }
+
+    public void uploadFile() {
+        WebElement browseButton = Hooks.driver.findElement(By.xpath("//div[@class='oxd-file-button']"));
+        clickElement(browseButton, "Browse button clicked", true, 10);
+        try {
+            Robot robot = new Robot();
+            robot.delay(3000);
+
+            StringSelection selection = new StringSelection("D:\\Project\\File Upload.pdf");
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.delay(1000);
+            robot.keyPress(KeyEvent.VK_V);
+            robot.delay(1000);
+
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.delay(1000);
+            robot.keyRelease(KeyEvent.VK_V);
+            robot.delay(1000);
+
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.delay(1000);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+            robot.delay(1000);
+
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

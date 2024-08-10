@@ -4,10 +4,10 @@ import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.web.pages.Admin.Job.PayGrades.PayGradesPage;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-public class AddPayGradeFeature {
+public class PayGradeFeature {
     @Then("I navigate to Add Pay Grades Page")
     public void i_navigate_to_add_pay_grades_page() {
         SideMenu sideMenu = new SideMenu(Hooks.driver);
@@ -17,16 +17,16 @@ public class AddPayGradeFeature {
         adminTopNavMenu.navigate_To_PayGrades_Page();
     }
 
-    @And("I add a {string} and save it")
-    public void i_add_pay_grade_and_save_it(String payGrade) {
+    @When("I click on Add Button and navigate to Add Pay Grades page")
+    public void click_on_Add_Button_And_Navigate_to_Add_Pay_Grades_page() {
         PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
-
-        payGradesPage.addPayGrades_WithValidDetails(payGrade);
+        payGradesPage.click_On_PayGrades_AddButton();
+        payGradesPage.validate_AddPayGrade_Title();
     }
 
-    @And("I add {string} to that Pay grade and save it {string} {string}")
-    public void i_add_currency_to_payGrade_and_save_it(String currencyName, String maximumSalary, String minimumSalary) {
+    @Then("I should be able to see all the UI elements are placed correctly on the Add Pay Grade Page")
+    public void validate_All_UI_Elements_are_placed_correctly_on_the_Add_Pay_grades_Page() {
         PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
-        payGradesPage.addCurrency_WithValidDetails(currencyName, maximumSalary, minimumSalary);
+        payGradesPage.validate_AddPayGrade_Title();
     }
 }

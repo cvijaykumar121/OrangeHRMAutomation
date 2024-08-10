@@ -66,6 +66,13 @@ public class EmployeeInformationPage extends TestBase {
         }
     }
 
+    public void click_On_Edit_Button_For_Employee_Name(String firstName, String middleName) {
+        String fullName = firstName + " " + middleName;
+        WebElement editButton = driver.findElement(By.xpath("//div[@role='table']//div[@class='oxd-table-card']/div//div[text()='" + fullName + "']/parent::div/following-sibling::div/div[@class='oxd-table-cell-actions']//i[@class='oxd-icon bi-pencil-fill']" ));
+        clickElement(editButton, "Edit button for " + fullName + " is clicked", true, 20);
+    }
+
+
     public void delete_Employee_From_PIM(String firstName, String middleName, String lastName) {
 
         List<WebElement> users = employeeInformationLocators.searchUsersList;

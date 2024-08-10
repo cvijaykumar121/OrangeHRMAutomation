@@ -126,7 +126,6 @@ Feature: Login and Logout Feature
 
 ##########################################################################################################################################################################################################
 
-  @currentRun
   Scenario Outline: Validating if the user is getting "Account Disabled" message if the Status of the account is selected as disabled
 
 # Log in

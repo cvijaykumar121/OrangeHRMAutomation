@@ -5,6 +5,7 @@ import com.orangehrm.web.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class JobPage extends TestBase {
     public WebDriver driver;
@@ -60,4 +61,13 @@ public class JobPage extends TestBase {
         }
     }
 
+    public void validate_JobTitle_Deleted_Text_Is_Displayed_In_JobTitle_InputBox(String jobTitle) {
+        WebElement jobTitleInputBox = driver.findElement(By.xpath("//label[text()='Job Title']/../following-sibling::div//div[text()='" + jobTitle + " (Deleted)" + "']"));
+        String textFromJobTitleInputBox = getTextFromElement(jobTitleInputBox, 30);
+        System.out.println("Actual Text: " + textFromJobTitleInputBox);
+        String expectedText = jobTitle + " (Deleted)";
+        System.out.println("Expected Text: " + expectedText);
+
+        validateText(jobTitleInputBox, expectedText, textFromJobTitleInputBox, 30);
+    }
 }

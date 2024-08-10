@@ -9,9 +9,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.List;
@@ -221,14 +218,6 @@ public class TestBase {
         }
     }
 
-    public void clearTextBoxWithJS(WebElement element) {
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("arguments[0].value = '';", element);
-
-
-    }
-
-
     public void clearTextBoxUsingKeys(WebElement element) {
         element.sendKeys(Keys.CONTROL + "a");  // Select all text
         element.sendKeys(Keys.BACK_SPACE);     // Delete the selected text
@@ -348,41 +337,6 @@ public class TestBase {
         }
     }
 
-    public void uploadFile() {
-        WebElement browseButton = Hooks.driver.findElement(By.xpath("//div[@class='oxd-file-button']"));
-        clickElement(browseButton, "Browse button clicked", true, 10);
-        try {
-            Robot robot = new Robot();
-            robot.delay(3000);
-
-            StringSelection selection = new StringSelection("D:\\Project\\File Upload.pdf");
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.delay(1000);
-            robot.keyPress(KeyEvent.VK_V);
-            robot.delay(1000);
-
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.delay(1000);
-            robot.keyRelease(KeyEvent.VK_V);
-            robot.delay(1000);
-
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.delay(1000);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(1000);
-
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
     public void highlightElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) Hooks.driver;
         // Change the element's border and background color to highlight it
@@ -394,34 +348,4 @@ public class TestBase {
         TakesScreenshot ts = (TakesScreenshot) Hooks.driver;
         return ts.getScreenshotAs(OutputType.BASE64);
     }
-
-//    private String captureScreenshot(String fileName) {
-//        TakesScreenshot ts = (TakesScreenshot) driver;
-//        File source = ts.getScreenshotAs(OutputType.FILE);
-//        String destination = System.getProperty("user.dir") + "\\src\\test\\resources\\screenshots" + System.currentTimeMillis() + ".png";
-//
-//        try {
-//            FileUtils.copyFile(source, new File(destination));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return destination;
-//    }
-
-//    @AfterMethod
-//    public void tearDown() {
-//        if (driver != null) {
-//            driver.quit(); // Quits the WebDriver session, closing all browser windows
-//            driver = null; // Sets driver to null to avoid using a terminated instance
-//        }
-//    }
-//
-////    @AfterSuite
-////    public void openExtentReport() {
-////        try {
-////            Desktop.getDesktop().browse(new File(System.getProperty("user.dir") + "\\src\\test\\resources\\extent-report.html").toURI());
-////        } catch (IOException e) {
-////            throw new RuntimeException(e);
-////        }
-////    }
 }
