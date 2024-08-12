@@ -61,4 +61,19 @@ public class PayGradesLocators {
     @FindBy(xpath = "//div[@class='oxd-table']/div[@class='oxd-table-header']/div")
     public WebElement currencyTableHeaders;
 
+    @FindBy(xpath = "//div[@class='oxd-table-body']//div[@role='row']")
+    public WebElement allPayGrades;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']//div[@class='oxd-checkbox-wrapper']")
+    public WebElement selectAllPayGradesCheckbox;
+
+    @FindBy(xpath = "//button[@type='button' and text()=' Delete Selected ']")
+    public WebElement deleteSelectedButton;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']")
+    public WebElement payGradesTableHeaderRow;
+
+    @FindBy(xpath = "//span[text()='No Records Found']")
+    public WebElement noRecordsFoundText;
+
 }

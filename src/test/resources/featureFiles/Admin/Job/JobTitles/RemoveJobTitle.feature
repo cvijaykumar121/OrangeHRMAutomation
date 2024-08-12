@@ -2,7 +2,7 @@ Feature: Remove Job Title Feature
 
   Background:
     Given I am on the OrangeHRM login page
-    Given I login with valid Admin credentials
+    And I login with valid Admin credentials
     Then I should be on the dashboard page
     When I navigate to Job Titles Page
 

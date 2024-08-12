@@ -1,4 +1,5 @@
 package com.orangehrm.web.pages.Admin.Job.PayGrades;
+import com.orangehrm.web.base.StepDefinition;
 import com.orangehrm.web.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,10 +8,12 @@ import org.openqa.selenium.WebElement;
 public class PayGradesPage extends TestBase {
     public WebDriver driver;
     public PayGradesLocators payGradesLocators;
+    public StepDefinition stepDefinition;
 
     public PayGradesPage(WebDriver driver) {
         this.driver = driver;
         this.payGradesLocators = new PayGradesLocators(driver);
+        this.stepDefinition = new StepDefinition(driver);
     }
 
     public void validate_PayGrades_Title() {
@@ -66,6 +69,18 @@ public class PayGradesPage extends TestBase {
     public void click_On_AddCurrency_SaveButton() {
         clickElement(payGradesLocators.addCurrencySaveButton, "Successfully clicked on Add Currency Save Button", true, 30);
     }
+
+    public void deleteAllPayGradesFromPayGradesPage() {
+        while (isElementPresent(payGradesLocators.allPayGrades)) {
+            clickElement(payGradesLocators.selectAllPayGradesCheckbox, "Clicked on select all Pay Grades checkbox", true, 30);
+            clickElement(payGradesLocators.deleteSelectedButton, "Clicked on delete selected button", true, 30);
+            stepDefinition.handle_Delete_Pop_Up(true);
+
+            waitForElementToBeVisible(payGradesLocators.payGradesTableHeaderRow, 30, "All Pay Grades deleted");
+        }
+        System.out.println("No jobs present now");
+    }
+
 
 //    public void addPayGrades_WithValidDetails(String payGradeName) {
 //        validate_PayGrades_Title();

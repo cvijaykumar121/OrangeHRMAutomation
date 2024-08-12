@@ -4,6 +4,7 @@ import com.orangehrm.web.StepDefinitions.Hooks;
 import com.orangehrm.web.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.web.pages.Admin.Job.PayGrades.PayGradesPage;
 import com.orangehrm.web.pages.SideMenu.SideMenu;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -28,5 +29,31 @@ public class PayGradeFeature {
     public void validate_All_UI_Elements_are_placed_correctly_on_the_Add_Pay_grades_Page() {
         PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
         payGradesPage.validate_AddPayGrade_Title();
+    }
+
+    @Given("I delete all the Pay Grades in the Pay Grades Table")
+    public void delete_All_PayGrades_In_PayGrades_Table() {
+        PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
+        payGradesPage.deleteAllPayGradesFromPayGradesPage();
+    }
+
+    @When("I add a {string} by entering valid Pay Grade")
+    public void add_PayGrade_By_Entering_Valid_PayGrade(String payGradeName) {
+        PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
+        payGradesPage.enter_PayGrade_Name(payGradeName);
+    }
+
+    @Then("I add {string} for the Pay Grade {string} {string}")
+    public void add_Valid_Currency_For_PayGrade(String currencyName, String minimumSalary, String maximumSalary) {
+        PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
+        payGradesPage.select_CurrencyName_From_Dropdown(currencyName);
+        payGradesPage.enter_Minimum_Salary(minimumSalary);
+        payGradesPage.enter_Maximum_Salary(maximumSalary);
+    }
+
+    @Then("I validate that the Pay Grade and the associated Currency is successfully added into the system")
+    public void validate_PayGrade_And_Currency_Is_Added() {
+        PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
+
     }
 }

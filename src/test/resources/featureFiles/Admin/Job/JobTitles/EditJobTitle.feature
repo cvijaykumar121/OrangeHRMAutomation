@@ -10,7 +10,7 @@ Feature: Edit Job Title Feature
 
   Scenario Outline: Editing the Job Title Info and validating if the updated Info of Job Title is displayed correctly in the table
       #    Deleting all the Job Title that is already present
-    Then I delete all the Job Titles in the Job Title Table
+    And I delete all the Job Titles in the Job Title Table
 
   #    Adding a Job Title with Admin Login
     When I add a job title by entering all the valid details "<Job Title>" "<Job Description>" and "<Note>" on the page
@@ -22,8 +22,8 @@ Feature: Edit Job Title Feature
     Then I edit the Job Title Name and save it "<Updated Job Title>" "<Job Title>"
 
     Examples:
-      | Job Title         | Job Description   | Note         | Employee ID | Job Title         | Employee Name        | Updated Job Title |
-      | Software Engineer | Develops software | Note details | 1001        | Software Engineer | Vijay Kumar Chadayan | Edited            |
+      | Job Title         | Job Description   | Note         | Job Title         | Updated Job Title |
+      | Software Engineer | Develops software | Note details | Software Engineer | Edited            |
 
 #########################################################################################################################################################################################################
 
