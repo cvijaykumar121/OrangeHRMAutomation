@@ -3,13 +3,13 @@
 <suite name="Regression">
 
     <listeners>
-        <listener class-name="com.orangehrm.web.listeners.CustomListener"/>
+        <listener class-name="com.orangehrm.listeners.CustomListener"/>
     </listeners>
 
     <test name="Browser Execution">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="com.orangehrm.web.runners.TestRunner"/>
+            <class name="com.orangehrm.runners.TestRunner"/>
         </classes>
     </test>
 </suite>
