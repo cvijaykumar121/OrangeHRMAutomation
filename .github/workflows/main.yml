@@ -1,4 +1,4 @@
-name: Regression Execution
+name: Regression Execution and Deployment
 on:
   workflow_dispatch:
     inputs:
