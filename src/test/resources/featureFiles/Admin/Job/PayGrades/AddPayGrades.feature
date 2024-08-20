@@ -6,18 +6,18 @@
 #    Then I am on the dashboard page
 #    And I navigate to Pay Grades Page
 #
-###########################################################################################################################################################################################################################################
-###    Pre condition to delete all the Pay Grades from the system
-##  Scenario: Delete All Pay Grades from system
-##    And I delete all the Pay Grades
-##
-###########################################################################################################################################################################################################################################
-##
-##  Scenario: Validate if no Pay Grades are present, then 'No Records Found' text is displayed
-##    Given there are no Pay Grades in the Pay Grades table
-##    Then I validate 'No Records Found' Text is displayed
-##
-###########################################################################################################################################################################################################################################
+############################################################################################################################################################################################################################################
+##    Pre condition to delete all the Pay Grades from the system
+#  Scenario: Delete All Pay Grades from system
+#    And I delete all the Pay Grades
+#
+############################################################################################################################################################################################################################################
+#
+#  Scenario: Validate if no Pay Grades are present, then 'No Records Found' text is displayed
+#    Given there are no Pay Grades in the Pay Grades table
+#    Then I validate 'No Records Found' Text is displayed
+#
+############################################################################################################################################################################################################################################
 #
 #  Scenario Outline: Validating if the user is able to Add a Pay Grade by entering all the valid details
 ##    PreCondition
@@ -33,9 +33,9 @@
 #    And I click on Currency Save Button
 #    Then I should see that the "<Currency>" is successfully added into the system
 #
-###    Validate Pay Grade is added
-##    And I navigate to Pay Grades Page
-##    Then I validate that the "<Pay Grade>" is added successfully into the system
+##    Validate Pay Grade and Currency are properly reflected into the table
+#    And I navigate to Pay Grades Page
+##    Then I validate that the "<Pay Grade>" and "<Currency>" is displayed successfully into the system
 #
 #    Examples:
 #      | Pay Grade  | Currency                   | Minimum Salary | Maximum Salary |
@@ -46,7 +46,7 @@
 #      | grade 3    | ANG - NL Antillian Guilder | 3000           | 6000           |
 #      | Grade グレード | CUP - Cuban Peso           | 2000           | 5000           |
 #
-##########################################################################################################################################################################################################################################
+###########################################################################################################################################################################################################################################
 #
 #  Scenario Outline: Validating the error while Adding a Pay Grade with the same name
 #    When I add a valid "<Pay Grade>"
@@ -89,3 +89,7 @@
 #    And I delete all the Pay Grades
 #
 ##########################################################################################################################################################################################################################################
+
+#  Scenario: Validate the Number of Records Displayed on the Page
+
+###########################################################################################################################################################################################################################################

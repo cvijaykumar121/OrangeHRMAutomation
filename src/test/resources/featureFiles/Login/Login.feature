@@ -4,6 +4,7 @@ Feature: Login and Logout Feature
     Given I am on the OrangeHRM login page
 #######################################################################################################################################################################################################
 
+  @currentRun
   Scenario: Validating if all the elements in the Login Page are present correctly
     Then I should see the Login Header in the Login Page
     And I should see the Username and Password Headers

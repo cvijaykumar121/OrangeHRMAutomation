@@ -7,8 +7,9 @@ import org.testng.annotations.Parameters;
 
 @CucumberOptions(
         plugin = {"html:target/cucumber-reports/cucumber-html-report.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
-        features = "src/test/resources/featureFiles/Login",
-        glue = "com.orangehrm.StepDefinitions"
+        features = "src/test/resources/featureFiles/Login/Login.feature",
+        glue = "com.orangehrm.StepDefinitions",
+        tags = "@currentRun"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
     public static String browser;

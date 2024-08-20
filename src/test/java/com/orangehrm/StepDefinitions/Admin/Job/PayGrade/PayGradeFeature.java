@@ -100,6 +100,11 @@ public class PayGradeFeature {
     @When("I add a Pay Grade with all fields empty")
     public void add_PayGrade_With_All_Fields_Empty() {
         click_on_Add_Button_And_Navigate_to_Add_Pay_Grades_page();
+    }
+
+    @Then("I validate that the {string} and {string} is displayed successfully into the system")
+    public void validate_PayGrade_And_Currency_Displayed_In_Table(String payGrade, String currency) {
+        PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
 
     }
 }

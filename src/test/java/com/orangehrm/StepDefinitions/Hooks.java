@@ -74,7 +74,7 @@ public class Hooks {
             System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 
             driver = new ChromeDriver(options);
-            driver = new ChromeDriver();
+//            driver = new ChromeDriver();
         } else if (TestRunner.browser.equalsIgnoreCase("Edge")) {
             EdgeOptions options = new EdgeOptions();
             options.addArguments("headless");
