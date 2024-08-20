@@ -16,11 +16,13 @@ Feature: Login End To End Testing
 
   # Add an employee with login credentials of an ESS user
     And I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "<Status>" "<Password>" "<Confirm Password>"
+    And I save the details
+    Then I validate that I am on the Personal Details Page
     And I logout from the application
 
 # Login with the ESS user
     When I login as the same employee that I added in PIM as an Admin "<Username>" "<Password>"
-    And I am on the dashboard page
+    And I validate that I am on the Personal Details Page
     Then I validate that the user should be able to access only the features that an ESS user can have
     And I logout from the application
 
@@ -34,6 +36,8 @@ Feature: Login End To End Testing
 
 # Add an employee with login credentials of an ESS user
     When I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "<Status>" "<Password>" "<Confirm Password>"
+    And I save the details
+    Then I validate that I am on the Personal Details Page
     And I navigate to User Management in Admin menu
 
 # Search for the employee added in PIM
@@ -58,6 +62,10 @@ Feature: Login End To End Testing
 
 # Add a new employee and select status as disabled
     When I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "Disabled" "<Password>" "<Confirm Password>"
+    And I save the details
+    Then I validate that I am on the Personal Details Page
+
+#    Login with the same employee and validate if "disabled" error message is displayed
     And I logout from the application
     And I login as the same employee that I added in PIM as an Admin "<Username>" "<Password>"
     Then I should get an error message that the account is disabled
@@ -70,6 +78,7 @@ Feature: Login End To End Testing
     And I click on Edit option for the employee "<Username>"
     And I select the status of the employee account as "Enabled" and save
 
+#  Login with the same employee and validate if the user is able to login successfully
     When I logout from the application
     And I login as the same employee that I added in PIM as an Admin "<Username>" "<Password>"
     And I am on the dashboard page
@@ -88,8 +97,13 @@ Feature: Login End To End Testing
 ##########################################################################################################################################################################################################
 
   Scenario Outline: Logout Functionality for Security For ESS User
+#    Adding an employee and log out
     And I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "Enabled" "<Password>" "<Confirm Password>"
+    And I save the details
+    Then I validate that I am on the Personal Details Page
     And I logout from the application
+
+#    Login with same employee and validate that the user is able to logout
     When I login as the same employee that I added in PIM as an Admin "<Username>" "<Password>"
     And I logout from the application
     Then I am on the OrangeHRM login page
@@ -108,14 +122,12 @@ Feature: Login End To End Testing
     And I save the details
     Then I validate that I am on the Personal Details Page
 
-
 # Add User with login details
     And I navigate to User Management in Admin menu
     And I click on Add Button to add a User
     And I enter all the details and add the user into the system through User Management "<User Role>" "<Employee Name>" "<Status>" "<Username>" "<Password>" "<Confirm Password>"
     And I save the details
     Then I validate that I am on the System Users Page
-
 
 # Login as the same user that was added
     And I logout from the application
