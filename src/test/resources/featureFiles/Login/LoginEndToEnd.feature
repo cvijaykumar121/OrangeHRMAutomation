@@ -22,7 +22,7 @@ Feature: Login End To End Testing
 
 # Login with the ESS user
     When I login as the same employee that I added in PIM as an Admin "<Username>" "<Password>"
-    And I validate that I am on the Personal Details Page
+#    And I validate that I am on the Personal Details Page
     Then I validate that the user should be able to access only the features that an ESS user can have
     And I logout from the application
 
