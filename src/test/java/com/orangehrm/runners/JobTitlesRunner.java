@@ -7,16 +7,16 @@ import org.testng.annotations.Parameters;
 
 @CucumberOptions(
         plugin = {"html:target/cucumber-reports/cucumber-html-report.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
-        features = "src/test/resources/featureFiles/Login/Login.feature",
+        features = "src/test/resources/featureFiles/Admin/Job/EmploymentStatus/AddEmploymentStatus.feature",
         glue = "com.orangehrm.StepDefinitions",
         tags = "@currentRun"
 )
-public class TestRunner extends AbstractTestNGCucumberTests {
+public class JobTitlesRunner extends AbstractTestNGCucumberTests {
     public static String browser;
 
     @Parameters("browser")
     @BeforeClass(alwaysRun = true)
     public void setUp(String browser) {
-        TestRunner.browser = browser;
+        JobTitlesRunner.browser = browser;
     }
 }

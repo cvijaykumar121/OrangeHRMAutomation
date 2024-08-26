@@ -48,12 +48,12 @@ Feature: Remove Job Title Feature
     Given there are no Job Titles present in Job Titles Table
 #    Adding an employee in PIM with their login credentials
     When I navigate to the PIM module
-    Then I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "<Status>" "<Password>" "<Confirm Password>"
+    And I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "Enabled" "<Password>" "<Confirm Password>"
     And I save the details
     Then I validate that I am on the Personal Details Page
 
 #    Logout and login as employee
-    Then I logout from the application
+    And I logout from the application
     And I login as the same employee that I added in PIM as an Admin "<Username>" "<Password>"
     Then I am on the dashboard page
 
@@ -63,8 +63,8 @@ Feature: Remove Job Title Feature
     Then I should see that no Job Title is displayed in the Job Title Input Box
 
     Examples:
-      | First Name | Middle Name | Last Name | Employee ID | Username | Status  | Password      | Confirm Password |
-      | Vijay      | Kumar       | Chadayan  | 1001        | vijay123 | Enabled | Password@1234 | Password@1234    |
+      | First Name | Middle Name | Last Name | Employee ID | Username | Password      | Confirm Password |
+      | Rahul      | Kumar       | Gupta     | 1002        | rahul123 | Password@1234 | Password@1234    |
 
 ##########################################################################################################################################################################################################################################
 
@@ -72,22 +72,22 @@ Feature: Remove Job Title Feature
     Given there are no Job Titles present in Job Titles Table
 
 #      Adding a Job Title
-    When I add a job title by entering all the valid details "<Job Title>" "<Job Description>" and "<Note>" in the page
+    When I add a job title by entering all the valid details "<Job Title>" "<Job Description>" and "<Note>"
     And I save the details
     Then I validate that the Job Title is displayed in the Job Title table "<Job Title>"
 
 #    Adding employee
     When I navigate to the PIM module
-    And I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "<Disabled Status>" "<Password>" "<Confirm Password>"
+    And I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "Enabled" "<Password>" "<Confirm Password>"
     And I save the details
     Then I validate that I am on the Personal Details Page
 
 #    Add the employee with the job title that was added above
     When I navigate to Job Page
-    And I open the Job Title dropdown in the Job Section
+    And I open the "<Job Title>" dropdown in the Job Section
     And I select the "<Job Title>" that I added from the Admin menu
     And I save the selected Job Title
-    Then I validate that the Job Title is displayed correctly in the employee's profile "<Job Title>"
+    Then I validate that the "<Job Title>" is displayed correctly in the employee's profile
 
 #    Delete all the Job Titles
     And I navigate to Job Titles Page
@@ -103,15 +103,24 @@ Feature: Remove Job Title Feature
 
     #    Validate Delete text displayed in Job Titles Input Box by Employee login
     And I logout from the application
-    Then I login as the same employee that I added in PIM as an Admin "<Username>" "<Password>"
+    And I login as the same employee that I added in PIM as an Admin "<Username>" "<Password>"
     When I navigate to My Info Page
     And I navigate to Job Page
     Then I validate that the 'Deleted' text is displayed in the "<Job Title>" Input Box
 
     Examples:
-      | Job Title         | Job Description   | Note         | First Name | Middle Name | Last Name | Employee Name        | Employee ID | Job Title         | Username | Disabled Status | Password      | Confirm Password |
-      | Software Engineer | Develops software | Note details | Vijay      | Kumar       | Chadayan  | Vijay Kumar Chadayan | 1001        | Software Engineer | vijay123 | Enabled         | Password@1234 | Password@1234    |
+      | Job Title         | Job Description   | Note         | First Name | Middle Name | Last Name | Employee Name       | Employee ID | Job Title         | Username   | Password      | Confirm Password |
+      | Software Engineer | Develops software | Note details | Bhaskar    | Kumar       | Gupta     | Bhaskar Kumar Gupta | 1003        | Software Engineer | bhaskar123 | Password@1234 | Password@1234    |
 
 ##########################################################################################################################################################################################################################################
 
+  Scenario: Delete all Job Titles and Employees Data
+#    Delete all Job Titles
+    And I delete all the Job Titles in the Job Title Table
+    Then I validate there are no Job Titles present in Job Titles Table
+#    Delete all employees
+    And I navigate to the PIM module
+    And I delete all the employees from the employee list table
+    Then I validate there are no employees present in PIM
 
+##########################################################################################################################################################################################################################################

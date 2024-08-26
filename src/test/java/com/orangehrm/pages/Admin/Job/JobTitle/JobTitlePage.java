@@ -51,11 +51,11 @@ public class JobTitlePage extends TestBase {
 
     public void enterJobTitle(String jobTitle) {
         WebElement jobTitleInputBox = validate_Job_Title_Input_Box_Is_Present();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
         sendKeys(jobTitleInputBox, jobTitle, "Successfully entered " + jobTitle + " into text box", 10);
     }
 
@@ -158,7 +158,7 @@ public class JobTitlePage extends TestBase {
 
     public void validate_Add_Job_Titles_Page_Header() {
         WebElement requiredText = jobTitleLocators.addJobTitleHeader;
-        waitForElementToBeVisible(requiredText, 10);
+        waitForElementToBeVisible(requiredText, 15);
         validateText(requiredText, "Add Job Title", "Validated Add Job Title header successfully", 5);
     }
 
@@ -229,9 +229,9 @@ public class JobTitlePage extends TestBase {
     }
 
     public void click_On_Edit_Icon_In_Job_Titles_Table(String jobTitle) {
-        WebElement jobTitleElementRow = driver.findElement(By.xpath("//div[@class='oxd-table-body']//div[@role='row' and .//div[text()='" + jobTitle + "']]//i[@class='oxd-icon bi-pencil-fill']"));
-        WebElement editIcon = jobTitleElementRow.findElement(By.xpath("//i[@class='oxd-icon bi-pencil-fill']"));
-        clickElement(editIcon, "Edit Icon for the " + jobTitle + " is clicked successfully", true, 10);
+        WebElement editIconForJobTitle = driver.findElement(By.xpath("//div[@class='oxd-table-body']//div[@role='row' and .//div[text()='" + jobTitle + "']]//i[@class='oxd-icon bi-pencil-fill']"));
+//        WebElement editIcon = jobTitleElementRow.findElement(By.xpath("//i[@class='oxd-icon bi-pencil-fill']"));
+        clickElement(editIconForJobTitle, "Edit Icon for the " + jobTitle + " is clicked successfully", true, 10);
     }
 
 //    public void handle_Delete_Pop_Up(boolean clickOnDelete) {

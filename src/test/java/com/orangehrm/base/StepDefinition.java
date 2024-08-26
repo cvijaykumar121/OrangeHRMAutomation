@@ -104,4 +104,16 @@ public class StepDefinition extends TestBase {
         }
     }
 
+    public void validate_Table_Header_Is_Present() {
+        waitForElementToBeVisible(locators.tableHeader, 30, "Table header is present");
+    }
+
+    public void validate_Table_Header_Checkbox_Is_Present() {
+        waitForElementToBeVisible(locators.tableHeaderCheckbox, 30, "Table header Checkbox is present");
+    }
+
+    public void validate_Error_Message(String errorMessage) {
+        waitForElementToBeVisible(locators.errorMessage, 30);
+        validateText(locators.errorMessage, errorMessage, "Error message validated successfully", 40);
+    }
 }

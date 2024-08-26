@@ -92,4 +92,13 @@ public class PayGradesLocators {
     @FindBy(xpath = "//span[text()='Should be higher than Minimum Salary']")
     public WebElement minSalaryGreaterThanMaxSalaryError;
 
+    @FindBy(xpath = "//div[@class='oxd-table-header']//div[@role='columnheader' and text()='Name']")
+    public WebElement nameHeaderInTable;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']//div[@role='columnheader' and text()='Currency']")
+    public WebElement currencyHeaderInTable;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']//div[@role='columnheader' and text()='Actions']")
+    public WebElement actionsHeaderInTable;
+
 }

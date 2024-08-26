@@ -49,4 +49,13 @@ public class Locators {
     @FindBy(xpath = "//span[text()='No Records Found']")
     public WebElement noRecordsFoundText;
 
+    @FindBy(xpath = "//div[@class='oxd-table-header']")
+    public WebElement tableHeader;
+
+    @FindBy(xpath = "//div[@class='oxd-table-header']//div[@role='columnheader']//input[@type='checkbox']")
+    public WebElement tableHeaderCheckbox;
+
+    @FindBy(xpath = "//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']")
+    public WebElement errorMessage;
+
 }

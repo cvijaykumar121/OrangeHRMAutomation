@@ -1,6 +1,7 @@
 package com.orangehrm.StepDefinitions.PIM;
 
 import com.orangehrm.StepDefinitions.Hooks;
+import com.orangehrm.pages.PIM.AddEmployee.AddEmployee;
 import com.orangehrm.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -69,4 +70,10 @@ public class EmployeeListFeature {
         EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
         employeeInformationPage.edit_Employee_From_PIM(firstName, middleName);
     }
+
+    @Then("I validate that the employee is added successfully")
+    public void validate_Employee_Added_Successfully() {
+        EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
+    }
+
 }

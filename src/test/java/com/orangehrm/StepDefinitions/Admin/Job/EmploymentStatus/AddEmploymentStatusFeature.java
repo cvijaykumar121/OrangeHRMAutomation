@@ -1,12 +1,18 @@
 package com.orangehrm.StepDefinitions.Admin.Job.EmploymentStatus;
 
 import com.orangehrm.StepDefinitions.Hooks;
+import com.orangehrm.base.StepDefinition;
 import com.orangehrm.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.pages.Admin.Job.EmploymentStatus.EmploymentStatusPage;
 import com.orangehrm.pages.SideMenu.SideMenu;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class AddEmploymentStatusFeature {
+    public static int numberOfRecords = 0;
+
     @Then("I navigate to Employment Status Page")
     public void i_navigate_to_employment_status_page() {
         SideMenu sideMenu = new SideMenu(Hooks.driver);
@@ -18,19 +24,69 @@ public class AddEmploymentStatusFeature {
         employmentStatusPage.validate_Employment_Status_Title();
     }
 
-    @Then("I add an {string} and save it")
-    public void i_add_an_employment_status_and_save_it(String employmentStatusName) {
-        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
-        employmentStatusPage.validate_Employment_Status_Title();
-        employmentStatusPage.click_On_Employment_Status_Add_Button();
-        employmentStatusPage.validate_Add_Employment_Status_Title();
-        employmentStatusPage.enter_EmploymentStatus_Name(employmentStatusName);
-        employmentStatusPage.click_On_Save_Button();
-    }
-
-    @Then("I validate that after adding valid Employment status, user is redirected to Employment Status Page")
+    @And("I am on the Employment Status Page")
     public void validate_Employment_Status_Page() {
         EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
         employmentStatusPage.validate_Employment_Status_Title();
+    }
+
+    @And("I delete all the Employment Status from the Employment Status Table")
+    @Then("I validate there are no Employment Status present in Employment Status Table")
+    @Given("there are no Employment Status present in the Employment Status Table")
+    public void delete_All_Employment_Status_From_Employment_Status_Table() {
+        StepDefinition stepDefinition = new StepDefinition(Hooks.driver);
+        stepDefinition.deleteAllPayGradesFromPayGradesPage();
+    }
+
+    @And("I navigate to the Add Employment Status Page")
+    public void navigate_To_Add_Employment_Status_Page() {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.validate_Add_Employment_Status_Title();
+    }
+
+    @When("I enter an {string} of more than the permissible characters")
+    @And("I enter a valid {string} into the Employment Status field")
+    @When("I enter an {string} that already exists")
+    public void enter_Employment_Status(String employmentStatus) {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.enter_EmploymentStatus_Name(employmentStatus);
+    }
+
+    @Then("the {string} should be successfully saved and displayed in the Employment Status Table")
+    public void employment_Status_Should_Be_Saved_Successfully(String employmentStatus) {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.validate_EmploymentStatus_Is_Displayed_In_Table(employmentStatus);
+    }
+
+    @And("the number of records displayed should also be increased")
+    public void validate_Number_Of_Records_Displayed_Is_Increased() {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.validate_Number_Records_Increased(numberOfRecords);
+    }
+
+    @Given("I am on the Add Employment Status Page")
+    public void validate_Add_Employment_Status_Page() {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+
+        employmentStatusPage.click_On_Employment_Status_Add_Button();
+        employmentStatusPage.validate_Add_Employment_Status_Title();
+    }
+
+    @Then("I should get an {string}")
+    public void validate_Error_Message(String errorMessage) {
+        StepDefinition stepDefinition = new StepDefinition(Hooks.driver);
+        stepDefinition.validate_Error_Message(errorMessage);
+    }
+
+    @And("I click on Cancel Button")
+    public void click_On_Cancel_Button() {
+        StepDefinition stepDefinition = new StepDefinition(Hooks.driver);
+        stepDefinition.clickOnCancelButton();
+    }
+
+    @Then("the {string} should not be added in the table")
+    public void validate_Employment_Status_Is_Not_Added(String employmentStatus) {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.validate_EmploymentStatus_Is_Not_Displayed_In_Table(employmentStatus);
     }
 }

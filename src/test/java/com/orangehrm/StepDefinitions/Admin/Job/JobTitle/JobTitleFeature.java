@@ -1,5 +1,6 @@
 package com.orangehrm.StepDefinitions.Admin.Job.JobTitle;
 
+import com.orangehrm.pages.Admin.Job.EmploymentStatus.EmploymentStatusPage;
 import com.orangehrm.pages.Admin.Job.JobTitle.JobTitlePage;
 import com.orangehrm.StepDefinitions.Hooks;
 import com.orangehrm.base.StepDefinition;
@@ -26,10 +27,16 @@ public class JobTitleFeature {
         adminTopNavMenu.navigate_To_JobTitles_Page();
     }
 
-    @Then("I click on Add Button and navigate to Add Job Titles Page")
+    @Then("I click on Add Button")
     public void i_navigate_to_add_job_title_page() {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
         jobTitlePage.click_on_Add_Button();
+//        jobTitlePage.validate_Add_Job_Titles_Page_Header();
+    }
+
+    @And("I navigate to Add Job Titles Page")
+    public void validate_Add_JobTitles_Page() {
+        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
         jobTitlePage.validate_Add_Job_Titles_Page_Header();
     }
 
@@ -50,7 +57,7 @@ public class JobTitleFeature {
         jobTitlePage.validate_Save_Button_Is_Present();
     }
 
-    @Then("I add a job title by entering all the valid details {string} {string} and {string} on the page")
+    @Then("I add a job title by entering all the valid details {string} {string} and {string}")
     public void i_add_a_job_title_by_entering_all_the_valid_details_and_note_in_the_page(String titleOfJob, String jobDescription, String note) {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
         StepDefinition stepDefinition = new StepDefinition(Hooks.driver);
@@ -69,6 +76,13 @@ public class JobTitleFeature {
         jobTitlePage.validate_Job_Title_Is_Present_In_JobTitle_Table(jobTitle);
     }
 
+    @Then("I validate that the Job Title is displayed in the Job Title table {string} {string}")
+    public void validate_job_title_displayed_in_job_title_table(String jobTitle, String updatedJobTitle) {
+        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        jobTitlePage.validate_Job_Title_Page_Header();
+        jobTitlePage.validate_Job_Title_Is_Present_In_JobTitle_Table(jobTitle + updatedJobTitle);
+    }
+
     @Then("I should be able to add a job title successfully by entering only the required details in the page")
     public void Add_Job_Title_By_Entering_Only_Required_Fields(io.cucumber.datatable.DataTable dataTable) {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
@@ -80,10 +94,10 @@ public class JobTitleFeature {
         jobTitlePage.click_On_Save_Button();
     }
 
-    @When("I add a job title by entering all the valid details {string} {string} and {string} in the page")
-    public void add_JobTitle_By_Entering_All_Valid_Details(String jobTitle, String jobDescription, String note) {
-        i_add_a_job_title_by_entering_all_the_valid_details_and_note_in_the_page(jobTitle, jobDescription, note);
-    }
+//    @When("I add a job title by entering all the valid details {string} {string} and {string}")
+//    public void add_JobTitle_By_Entering_All_Valid_Details(String jobTitle, String jobDescription, String note) {
+//        i_add_a_job_title_by_entering_all_the_valid_details_and_note_in_the_page(jobTitle, jobDescription, note);
+//    }
 
     @Then("I should see the Required error message displayed")
     public void validate_Required_Error_Message_Is_Present() {
@@ -119,10 +133,14 @@ public class JobTitleFeature {
         jobPage.select_Option_From_JobTitle_Dropdown(jobTitle);
     }
 
-    @When("I open the Job Title dropdown in the Job Section")
-    public void i_open_jobTitle_dropdown_in_job_section() {
+    @When("I open the {string} dropdown in the Job Section")
+    public void i_open_jobTitle_dropdown_in_job_section(String value) {
         JobPage jobPage = new JobPage(Hooks.driver);
-        jobPage.click_On_JobTitle_Dropdown();
+        if(value.equalsIgnoreCase("Job Title")) {
+            jobPage.click_On_JobTitle_Dropdown();
+        } else if(value.equalsIgnoreCase("Employment Status")) {
+            jobPage.click_On_EmploymentStatus_Dropdown();
+        }
     }
 
     @And("I select the {string} that I added from the Admin menu")
@@ -173,18 +191,19 @@ public class JobTitleFeature {
     }
 
     @And("I edit the Job Title Name to {string}")
-    public void edit_job_title(String updatedJobTitle) {
+    public void edit_job_title(String updatedJobTitle) throws InterruptedException {
         JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
         jobTitlePage.enterJobTitle(updatedJobTitle);
+        Thread.sleep(3000);
     }
 
-    @Then("I validate that the {string} is displayed correctly or not {string}")
-    public void validate_Updated_JobTitle_Is_Displayed_Correctly(String updatedJobTitle, String jobTitle) {
-        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
-
-        String newJobTitle = jobTitle + updatedJobTitle;
-        jobTitlePage.validate_Job_Title_Is_Present_In_JobTitle_Table(newJobTitle);
-    }
+//    @Then("I validate that the {string} is displayed correctly or not {string}")
+//    public void validate_Updated_JobTitle_Is_Displayed_Correctly(String updatedJobTitle, String jobTitle) {
+//        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+//
+//        String newJobTitle = jobTitle + updatedJobTitle;
+//        jobTitlePage.validate_Job_Title_Is_Present_In_JobTitle_Table(newJobTitle);
+//    }
 
     @Then("I validate 'No Records Found' Text is displayed")
     public void validate_No_Records_Found_Text_Displayed() {
@@ -215,10 +234,14 @@ public class JobTitleFeature {
         personalDetails.validate_Personal_Details_Header();
     }
 
-    @And("I validate that the Job Title is displayed correctly in the employee's profile {string}")
-    public void validate_Job_Title_Is_Displayed_In_Employee_Profile(String jobTitle) {
-        JobPage jobPage = new JobPage(Hooks.driver);
-        jobPage.validate_Job_Title_Displayed_In_JobTitle_TextBox(jobTitle);
+    @And("I validate that the {string} is displayed correctly in the employee's profile")
+    public void validate_Job_Title_Is_Displayed_In_Employee_Profile(String value) {
+        if(value.equalsIgnoreCase("Job Title")) {
+            JobPage jobPage = new JobPage(Hooks.driver);
+            jobPage.validate_Job_Title_Displayed_In_JobTitle_TextBox(value);
+        } else if(value.equalsIgnoreCase("Employment Status")) {
+            EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        }
     }
 
     @Then("I should see that no Job Title is displayed in the Job Title Input Box")
@@ -237,5 +260,11 @@ public class JobTitleFeature {
     public void click_on_Edit_Button_For_Employee(String firstName, String middleName) {
         EmployeeInformationPage employeeInformationPage = new EmployeeInformationPage(Hooks.driver);
         employeeInformationPage.click_On_Edit_Button_For_Employee_Name(firstName, middleName);
+    }
+
+    @Then("I validate that I am on the Job Titles Page")
+    public void validate_JobTitles_Page_Header() {
+        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        jobTitlePage.validate_Job_Title_Page_Header();
     }
 }

@@ -27,6 +27,10 @@ public class PayGradesPage extends TestBase {
         clickElement(payGradesLocators.payGradesAddButton, "Successfully clicked on Pay Grades Add Button", true, 20);
     }
 
+    private void validate_AddPayGrade_Button() {
+        waitForElementToBeVisible(payGradesLocators.payGradesAddButton,30, "Pay Grades Add Button is present");
+    }
+
     public void validate_AddPayGrade_Title() {
         waitForElementToBeVisible(payGradesLocators.addPayGradeTitle, 30, "Successfully navigated to Add Pay Grades Page");
     }
@@ -84,6 +88,15 @@ public class PayGradesPage extends TestBase {
             stepDefinition.handle_Delete_Pop_Up(true);
 
             waitForElementToBeVisible(payGradesLocators.payGradesTableHeaderRow, 30, "All Pay Grades deleted");
+
+            while (isElementPresent(payGradesLocators.allPayGrades)) {
+                clickElement(payGradesLocators.selectAllPayGradesCheckbox, "Clicked on select all Pay Grades checkbox", true, 30);
+                clickElement(payGradesLocators.deleteSelectedButton, "Clicked on delete selected button", true, 30);
+                stepDefinition.handle_Delete_Pop_Up(true);
+
+                waitForElementToBeVisible(locators.tableHeader, 30);
+            }
+            System.out.println("No Pay Grades present now");
         }
     }
 
@@ -127,6 +140,36 @@ public class PayGradesPage extends TestBase {
         } else {
             logInfo("No Pay Grades are present", true);
         }
+    }
+
+    private void validate_Name_Header_Is_Present() {
+        waitForElementToBeVisible(payGradesLocators.nameHeaderInTable, 30, "Name Header in table is present");
+    }
+
+    private void validate_Currency_Header_Is_Present() {
+        waitForElementToBeVisible(payGradesLocators.currencyHeaderInTable, 30, "Currency Header in table is present");
+    }
+
+    private void validate_Actions_Header_Is_Present() {
+        waitForElementToBeVisible(payGradesLocators.actionsHeaderInTable, 30, "Actions Header in table is present");
+    }
+
+    private void validate_Table_Header_Elements_Are_Present() {
+//        stepDefinition.validate_Table_Header_Checkbox_Is_Present();
+        validate_Name_Header_Is_Present();
+        validate_Currency_Header_Is_Present();
+        validate_Actions_Header_Is_Present();
+    }
+
+    public void validate_All_Elements_Of_PayGrades_Page() {
+        validate_PayGrades_Title();
+        validate_AddPayGrade_Button();
+        stepDefinition.validate_Table_Header_Is_Present();
+        validate_Table_Header_Elements_Are_Present();
+    }
+
+    public void validate_Currency_And_PayGrade_Is_Displayed_In_Table() {
+
     }
 
 //    public void addPayGrades_WithValidDetails(String payGradeName) {

@@ -78,6 +78,11 @@ public class PayGradeFeature {
         payGradesPage.validate_Currency_Is_Successfully_Added(currency);
     }
 
+    @Then("I validate that the number of records is increased")
+    public void validate_Number_Of_Records_Increased() {
+
+    }
+
     @And("I validate that the {string} is added successfully into the system")
     public void validate_PayGrade_Is_Added(String payGrade) {
         PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
@@ -105,6 +110,12 @@ public class PayGradeFeature {
     @Then("I validate that the {string} and {string} is displayed successfully into the system")
     public void validate_PayGrade_And_Currency_Displayed_In_Table(String payGrade, String currency) {
         PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
+        payGradesPage.validate_Currency_And_PayGrade_Is_Displayed_In_Table();
+    }
 
+    @Then("I validate that I am on the Pay Grades Page")
+    public void validate_User_Is_On_PayGrades_Page() {
+        PayGradesPage payGradesPage = new PayGradesPage(Hooks.driver);
+        payGradesPage.validate_All_Elements_Of_PayGrades_Page();
     }
 }

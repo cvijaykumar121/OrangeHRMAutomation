@@ -1,7 +1,12 @@
 package com.orangehrm.pages.Admin.Job.EmploymentStatus;
 
 import com.orangehrm.base.TestBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import java.util.List;
 
 public class EmploymentStatusPage extends TestBase {
     public WebDriver driver;
@@ -34,5 +39,40 @@ public class EmploymentStatusPage extends TestBase {
 
     public void click_On_Save_Button() {
         clickElement(employmentStatusLocators.saveButton, "Clicked on Save Button", true, 30);
+    }
+
+    public void validate_EmploymentStatus_Is_Displayed_In_Table(String employmentStatus) {
+        waitForElementToBeVisible(employmentStatusLocators.employmentStatusTitle, 40);
+        WebElement employmentStatusElement = driver.findElement(By.xpath("//div[@role='cell']/div[text()='" + employmentStatus + "']"));
+        waitForElementToBeVisible(employmentStatusElement, 40, "Employment Status: " + employmentStatus + " is found in the table");
+    }
+
+    public void validate_Number_Records_Increased(int numberOfRecords) {
+        int increasedNumberOfRecords = numberOfRecords + 1;
+        WebElement recordsFoundElement = employmentStatusLocators.recordsFoundElement;
+        String recordsFoundText = recordsFoundElement.getText();
+        String[] parts = recordsFoundText.split(" ");
+        String number = parts[0].replaceAll("[()]", ""); // Removes parentheses;
+        System.out.println("Number part: " + number);
+        int numberInt = Integer.parseInt(number);
+        System.out.println("Number in Integer: " + numberInt);
+
+        Assert.assertEquals(numberOfRecords, increasedNumberOfRecords);
+    }
+
+    public void validate_EmploymentStatus_Is_Not_Displayed_In_Table(String employmentStatus) {
+        List<WebElement> employmentStatusElement = driver.findElements(By.xpath("//div[@role='cell']/div[text()='" + employmentStatus + "']"));
+        if(isElementPresent(employmentStatusElement)) {
+            logFail("Employment Status is displayed", true);
+        } else {
+            logPass("Employment Status is not displayed", true);
+        }
+    }
+
+    public void validate_EmploymentStatus_Displayed_In_EmploymentStatus_TextBox(String employmentStatus) {
+//        waitForElementToBeVisible(saveButton, 30);
+        WebElement employmentStatusTextInBox = driver.findElement(By.xpath("//label[text()='Employment Status']/parent::div/following-sibling::div//div[text()='" + employmentStatus + "']"));
+        waitForElementToBeVisible(employmentStatusTextInBox, 30);
+        validateText(employmentStatusTextInBox, employmentStatus, "Validated Employment Status in Job Page", 40);
     }
 }

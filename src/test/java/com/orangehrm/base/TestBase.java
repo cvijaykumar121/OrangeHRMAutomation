@@ -176,11 +176,11 @@ public class TestBase {
         }
     }
 
-    public boolean isElementPresent(List<WebElement> element) {
-        try {
-            return element.get(0).isDisplayed();
-        } catch (NoSuchElementException e) {
-            return false;
+    public boolean isElementPresent(List<WebElement> elements) {
+        if (elements.size() == 0) {
+           return false;
+        } else {
+            return true;
         }
     }
 

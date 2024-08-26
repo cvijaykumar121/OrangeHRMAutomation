@@ -27,4 +27,7 @@ public class EmploymentStatusLocators {
 
     @FindBy(xpath = "//button[@type='submit' and text()=' Save ']")
     public WebElement saveButton;
+
+    @FindBy(xpath = "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']/span")
+    public WebElement recordsFoundElement;
 }
