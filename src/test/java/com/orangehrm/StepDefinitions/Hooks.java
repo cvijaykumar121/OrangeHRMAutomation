@@ -1,7 +1,7 @@
 package com.orangehrm.StepDefinitions;
 
 import com.orangehrm.pages.Login.LoginPage;
-import com.orangehrm.runners.JobTitlesRunner;
+import com.orangehrm.runners.TestRunner;
 import com.orangehrm.base.StepDefinition;
 import io.cucumber.java.*;
 import org.openqa.selenium.JavascriptExecutor;
@@ -63,7 +63,7 @@ public class Hooks {
             throw new RuntimeException(e);
         }
 
-        if (JobTitlesRunner.browser.equalsIgnoreCase("chrome")) {
+        if (TestRunner.browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
 //            options.addArguments("--headless");
 //            try {
@@ -75,7 +75,7 @@ public class Hooks {
 
 //            driver = new ChromeDriver(options);
             driver = new ChromeDriver();
-        } else if (JobTitlesRunner.browser.equalsIgnoreCase("Edge")) {
+        } else if (TestRunner.browser.equalsIgnoreCase("Edge")) {
             EdgeOptions options = new EdgeOptions();
             options.addArguments("headless");
 //            try {
@@ -85,7 +85,7 @@ public class Hooks {
 //            }
             System.setProperty("webdriver.edge.driver", edgeDriverPath);
             driver = new EdgeDriver();
-        } else if(JobTitlesRunner.browser.equalsIgnoreCase("firefox")) {
+        } else if(TestRunner.browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("headless");
 //            try {

@@ -30,4 +30,7 @@ public class EmploymentStatusLocators {
 
     @FindBy(xpath = "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']/span")
     public WebElement recordsFoundElement;
+
+    @FindBy(xpath = "//label[text()='Employment Status']/parent::div/following-sibling::div//child::*[@class='oxd-select-text-input']")
+    public WebElement employmentStatusDropdown;
 }

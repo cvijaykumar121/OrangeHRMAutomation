@@ -27,12 +27,6 @@ public class JobPage extends TestBase {
         return jobTitleDropdown;
     }
 
-    private WebElement validate_EmploymentStatus_Dropdown_Is_Present() {
-        WebElement employmentStatusDropdown = jobPageLocators.employmentStatusDropdown;
-        waitForElementToBeVisible(employmentStatusDropdown, 30, "Employment Status Dropdown is clickable");
-        return employmentStatusDropdown;
-    }
-
     public void click_On_JobTitle_Dropdown() {
         WebElement jobTitleDropdown = validate_Job_Title_Dropdown_Is_Present();
         waitForElementToBeVisible(jobTitleDropdown, 40, "Job Title Dropdown is clickable");
@@ -77,11 +71,5 @@ public class JobPage extends TestBase {
         System.out.println("Expected Text: " + expectedText);
 
         validateText(jobTitleInputBox, expectedText, textFromJobTitleInputBox, 30);
-    }
-
-    public void click_On_EmploymentStatus_Dropdown() {
-        WebElement employmentStatusDropdown = validate_EmploymentStatus_Dropdown_Is_Present();
-        waitForElementToBeVisible(employmentStatusDropdown, 40, "Employment Status Dropdown is clickable");
-        clickElement(employmentStatusDropdown, "Employment Status Dropdown clicked successfully", true, 20);
     }
 }

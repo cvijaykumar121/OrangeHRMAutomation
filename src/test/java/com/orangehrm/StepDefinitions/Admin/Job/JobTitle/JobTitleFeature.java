@@ -133,14 +133,10 @@ public class JobTitleFeature {
         jobPage.select_Option_From_JobTitle_Dropdown(jobTitle);
     }
 
-    @When("I open the {string} dropdown in the Job Section")
-    public void i_open_jobTitle_dropdown_in_job_section(String value) {
+    @When("I open the Job Title dropdown in the Job Section")
+    public void i_open_jobTitle_dropdown_in_job_section() {
         JobPage jobPage = new JobPage(Hooks.driver);
-        if(value.equalsIgnoreCase("Job Title")) {
-            jobPage.click_On_JobTitle_Dropdown();
-        } else if(value.equalsIgnoreCase("Employment Status")) {
-            jobPage.click_On_EmploymentStatus_Dropdown();
-        }
+        jobPage.click_On_JobTitle_Dropdown();
     }
 
     @And("I select the {string} that I added from the Admin menu")
@@ -234,14 +230,10 @@ public class JobTitleFeature {
         personalDetails.validate_Personal_Details_Header();
     }
 
-    @And("I validate that the {string} is displayed correctly in the employee's profile")
-    public void validate_Job_Title_Is_Displayed_In_Employee_Profile(String value) {
-        if(value.equalsIgnoreCase("Job Title")) {
+    @And("I validate that the Job Title is displayed correctly in the employee's profile {string}")
+    public void validate_Job_Title_Is_Displayed_In_Employee_Profile(String jobTitle) {
             JobPage jobPage = new JobPage(Hooks.driver);
-            jobPage.validate_Job_Title_Displayed_In_JobTitle_TextBox(value);
-        } else if(value.equalsIgnoreCase("Employment Status")) {
-            EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
-        }
+            jobPage.validate_Job_Title_Displayed_In_JobTitle_TextBox(jobTitle);
     }
 
     @Then("I should see that no Job Title is displayed in the Job Title Input Box")

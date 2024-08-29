@@ -75,4 +75,23 @@ public class EmploymentStatusPage extends TestBase {
         waitForElementToBeVisible(employmentStatusTextInBox, 30);
         validateText(employmentStatusTextInBox, employmentStatus, "Validated Employment Status in Job Page", 40);
     }
+
+    private WebElement validate_Employment_Status_Dropdown_Is_Present() {
+        WebElement employmentStatusDropdown = employmentStatusLocators.employmentStatusDropdown;
+        waitForElementToBeVisible(employmentStatusDropdown, 30, "Employment Status Dropdown is clickable");
+        return employmentStatusDropdown;
+    }
+
+    public void click_On_Employment_Status_Dropdown() {
+        WebElement jobTitleDropdown = validate_Employment_Status_Dropdown_Is_Present();
+        waitForElementToBeVisible(jobTitleDropdown, 40, "Job Title Dropdown is clickable");
+        clickElement(jobTitleDropdown, "Job Title Dropdown clicked successfully", true, 20);
+    }
+
+    public void validate_Job_Title_Displayed_In_JobTitle_TextBox(String employmentStatus) {
+//        waitForElementToBeVisible(jobPageLocators.saveButton, 30);
+        WebElement employmentStatusTextInBox = driver.findElement(By.xpath("//label[text()='Employment Status']/parent::div/following-sibling::div//div[text()='" + employmentStatus + "']"));
+        waitForElementToBeVisible(employmentStatusTextInBox, 30);
+        validateText(employmentStatusTextInBox, employmentStatus, "Validated Employment Status in Job Page", 40);
+    }
 }

@@ -9,7 +9,7 @@
     <test name="Browser Execution">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="com.orangehrm.runners.JobTitlesRunner"/>
+            <class name="com.orangehrm.runners.TestRunner"/>
         </classes>
     </test>
 </suite>

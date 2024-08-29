@@ -1,3 +1,4 @@
+@jobTitle @regression
 Feature: Edit Job Title Feature
 
   Background:
@@ -8,6 +9,7 @@ Feature: Edit Job Title Feature
 
 #########################################################################################################################################################################################################
 
+  @smoke @sanity
   Scenario: Delete all Job Titles and Employees Data
 #    Delete all Job Titles
     And I delete all the Job Titles in the Job Title Table
@@ -19,6 +21,7 @@ Feature: Edit Job Title Feature
 
 #########################################################################################################################################################################################################
 
+  @smoke
   Scenario Outline: Editing the Job Title Info and validating if the updated Info of Job Title is displayed correctly in the table
   #    Adding a Job Title with Admin Login
     When I add a job title by entering all the valid details "<Job Title>" "<Job Description>" and "<Note>"
@@ -53,10 +56,10 @@ Feature: Edit Job Title Feature
 
 #    Adding the job title to the above added employee
     And I navigate to Job Page
-    When I open the "<Job Title>" dropdown in the Job Section
+    When I open the Job Title dropdown in the Job Section
     And I select the "<Job Title>" that I added from the Admin menu
     And I save the selected Job Title
-    Then I validate that the "<Job Title>" is displayed correctly in the employee's profile
+    Then I validate that the Job Title is displayed correctly in the employee's profile "<Job Title>"
 
 #      Editing the Job Title Name
     When I navigate to Job Titles Page
@@ -78,7 +81,6 @@ Feature: Edit Job Title Feature
 
 ##########################################################################################################################################################################################################
 
-  @currentRun
   Scenario Outline: Editing the Job Title Info from Admin Login and validating if the updated Info is displayed in the employees profile from Employee Login
 
 #    Adding a Job Title with Admin Login
@@ -93,10 +95,10 @@ Feature: Edit Job Title Feature
 
 #    Adding the job title to the above added employee
     When I navigate to Job Page
-    When I open the "<Job Title>" dropdown in the Job Section
+    When I open the Job Title dropdown in the Job Section
     And I select the "<Job Title>" that I added from the Admin menu
     And I save the selected Job Title
-    Then I validate that the "<Job Title>" is displayed correctly in the employee's profile
+    Then I validate that the Job Title is displayed correctly in the employee's profile "<Job Title>"
 
 #      Editing the Job Title Name
     When I navigate to Job Titles Page

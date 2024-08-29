@@ -1,3 +1,4 @@
+@jobTitle @regression
 Feature: Remove Job Title Feature
 
   Background:
@@ -8,6 +9,7 @@ Feature: Remove Job Title Feature
 
 ##########################################################################################################################################################################################################
 
+  @smoke @sanity
   Scenario: Delete all Job Titles and Employees Data
 #    Delete all Job Titles
     And I delete all the Job Titles in the Job Title Table
@@ -19,6 +21,7 @@ Feature: Remove Job Title Feature
 
 ##########################################################################################################################################################################################################
 
+  @smoke
   Scenario: Deleting all the Job Titles and validating the Job Titles table is empty
 #    Deleting all the Job Title that is already present
     And I delete all the Job Titles in the Job Title Table
@@ -84,10 +87,10 @@ Feature: Remove Job Title Feature
 
 #    Add the employee with the job title that was added above
     When I navigate to Job Page
-    And I open the "<Job Title>" dropdown in the Job Section
+    And I open the Job Title dropdown in the Job Section
     And I select the "<Job Title>" that I added from the Admin menu
     And I save the selected Job Title
-    Then I validate that the "<Job Title>" is displayed correctly in the employee's profile
+    Then I validate that the Job Title is displayed correctly in the employee's profile "<Job Title>"
 
 #    Delete all the Job Titles
     And I navigate to Job Titles Page
@@ -114,6 +117,7 @@ Feature: Remove Job Title Feature
 
 ##########################################################################################################################################################################################################################################
 
+  @smoke @sanity
   Scenario: Delete all Job Titles and Employees Data
 #    Delete all Job Titles
     And I delete all the Job Titles in the Job Title Table

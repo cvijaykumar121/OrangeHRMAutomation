@@ -36,9 +36,6 @@ public class JobPageLocators {
     @FindBy(xpath = "//label[text()='Location']/parent::div/following-sibling::div//child::*[@class='oxd-select-text-input']")
     public WebElement locationDropdown;
 
-    @FindBy(xpath = "//label[text()='Employment Status']/parent::div/following-sibling::div//child::*[@class='oxd-select-text-input']")
-    public WebElement employmentStatusDropdown;
-
     @FindBy(xpath = "//p[text()='Include Employment Contract Details']/parent::div//child::span")
     public WebElement includeEmploymentContractDetailsCheckbox;
 

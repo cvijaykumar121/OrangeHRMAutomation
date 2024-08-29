@@ -1,3 +1,4 @@
+@JobTitle @regression
 Feature: Add Job Title Feature
 
   Background:
@@ -8,6 +9,7 @@ Feature: Add Job Title Feature
 
 ##########################################################################################################################################################################################################################################
 
+  @smoke @sanity
 #  Data Cleanup Process
   Scenario: Delete all Job Titles and Employees Data
 #    Delete all Job Titles
@@ -20,6 +22,7 @@ Feature: Add Job Title Feature
 
 ###########################################################################################################################################################################################################################################
 
+  @smoke
   Scenario Outline: Validating if the user is able to Add a Job Title by entering all the valid details
 
     When I add a job title by entering all the valid details "<Job Title>" "<Job Description>" and "<Note>"
@@ -72,10 +75,10 @@ Feature: Add Job Title Feature
 
 #    Adding job title to the employee's profile
     Then I navigate to Job Page
-    When I open the "<Job Title>" dropdown in the Job Section
+    When I open the Job Title dropdown in the Job Section
     And I select the "<Job Title>" that I added from the Admin menu
     And I save the selected Job Title
-    Then I validate that the "<Job Title>" is displayed correctly in the employee's profile
+    Then I validate that the Job Title is displayed correctly in the employee's profile "<Job Title>"
 
     Examples:
       | First Name | Middle Name | Last Name | Job Title                 | Job Description   | Note         | Employee ID |
@@ -98,10 +101,10 @@ Feature: Add Job Title Feature
 
 #    Adding the job title for the above added employee
     And I navigate to Job Page
-    When I open the "<Job Title>" dropdown in the Job Section
+    When I open the Job Title dropdown in the Job Section
     And I select the "<Job Title>" that I added from the Admin menu
     And I save the selected Job Title
-    Then I validate that the "<Job Title>" is displayed correctly in the employee's profile
+    Then I validate that the Job Title is displayed correctly in the employee's profile "<Job Title>"
     And I logout from the application
 
 #    Checking the Job Title displayed in employee's profile by logging in with employee's credentials
@@ -109,7 +112,7 @@ Feature: Add Job Title Feature
     And I am on the dashboard page
     And I navigate to My Info Page
     When I navigate to Job Page
-    Then I validate that the "<Job Title>" is displayed correctly in the employee's profile
+    Then I validate that the Job Title is displayed correctly in the employee's profile "<Job Title>"
 
     Examples:
       | Job Title                 | Job Description   | Note         | First Name | Middle Name | Last Name | Employee ID | Username | Password      | Confirm Password |

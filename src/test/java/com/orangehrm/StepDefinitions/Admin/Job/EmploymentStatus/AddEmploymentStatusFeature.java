@@ -4,6 +4,7 @@ import com.orangehrm.StepDefinitions.Hooks;
 import com.orangehrm.base.StepDefinition;
 import com.orangehrm.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.pages.Admin.Job.EmploymentStatus.EmploymentStatusPage;
+import com.orangehrm.pages.PIM.EmployeeList.Job.JobPage;
 import com.orangehrm.pages.SideMenu.SideMenu;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -88,5 +89,17 @@ public class AddEmploymentStatusFeature {
     public void validate_Employment_Status_Is_Not_Added(String employmentStatus) {
         EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
         employmentStatusPage.validate_EmploymentStatus_Is_Not_Displayed_In_Table(employmentStatus);
+    }
+
+    @And("I open the Employment Status dropdown in the Job Section")
+    public void open_Employment_Status_Dropdown() {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.click_On_Employment_Status_Dropdown();
+    }
+
+    @And("I validate that the Employment Status {string} is displayed correctly in the employee's profile")
+    public void validate_Job_Title_Is_Displayed_In_Employee_Profile(String employmentStatus) {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.validate_EmploymentStatus_Displayed_In_EmploymentStatus_TextBox(employmentStatus);
     }
 }

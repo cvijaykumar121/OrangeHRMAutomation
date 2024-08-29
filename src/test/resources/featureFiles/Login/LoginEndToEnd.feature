@@ -1,3 +1,4 @@
+@login @regression
 Feature: Login End To End Testing
 
   Background:
@@ -6,12 +7,14 @@ Feature: Login End To End Testing
     Then I should be on the "dashboard" page
     When I navigate to the PIM module
 
+    @smoke @sanity
   Scenario: Delete all employees from PIM
     And I delete all the employees from the employee list table
     Then I validate there are no employees present in PIM
     When I navigate to User Management in Admin menu
     And I delete all the Users from the Users List table
 
+  @smoke
   Scenario Outline: Employee Account Creation
 
   # Add an employee with login credentials of an ESS user
@@ -90,12 +93,14 @@ Feature: Login End To End Testing
 
 ########################################################################################################################################################################################################
 
+  @smoke
   Scenario: Logout Functionality for Security For Admin User
     And I logout from the application
     Then I am on the OrangeHRM login page
 
 ##########################################################################################################################################################################################################
 
+  @smoke
   Scenario Outline: Logout Functionality for Security For ESS User
 #    Adding an employee and log out
     And I add an employee in PIM along with their login credentials "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>" "<Username>" "Enabled" "<Password>" "<Confirm Password>"
@@ -141,6 +146,7 @@ Feature: Login End To End Testing
 
 ##########################################################################################################################################################################################################
 
+  @smoke
   Scenario Outline: Admin Account Creation
 
 # Add an employee without the login credentials

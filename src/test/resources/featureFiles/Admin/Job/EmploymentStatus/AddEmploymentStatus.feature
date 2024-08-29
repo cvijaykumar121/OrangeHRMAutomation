@@ -1,3 +1,4 @@
+@regression @employmentStatus
 Feature: Add Employment Status Feature
 
   Background:
@@ -8,7 +9,7 @@ Feature: Add Employment Status Feature
 
 #******************************************************************************************************************************************************************************************************************
 
-  @currentRun
+  @smoke @sanity
   Scenario: Delete all Employment Status and Employees Data
       #    Delete all Employment Status
     And I delete all the Employment Status from the Employment Status Table
@@ -22,6 +23,7 @@ Feature: Add Employment Status Feature
 
 ##******************************************************************************************************************************************************************************************************************
 
+  @smoke
   Scenario Outline: Validate Employment Status Input Field with Various Data Types
     Given I am on the Employment Status Page
     When I click on Add Button
@@ -32,7 +34,7 @@ Feature: Add Employment Status Feature
 ##    And the number of records displayed should also be increased
 #
     Examples:
-      | Employment Status |
+      | Employment Status        |
       | Full-Time                |
       | Consultant               |
       | 12345                    |
@@ -75,7 +77,6 @@ Feature: Add Employment Status Feature
       | Contract          |
 ###******************************************************************************************************************************************************************************************************************
 
-  @currentRun
   Scenario Outline: Adding an employment status and validating if the same appears in the PIM module while adding a new employee
 
     Given I am on the Add Employment Status Page
@@ -93,10 +94,10 @@ Feature: Add Employment Status Feature
 
 #    Adding Employment status to the employee's profile
     Then I navigate to Job Page
-    When I open the "<Employment Status>" dropdown in the Job Section
+    When I open the Employment Status dropdown in the Job Section
     And I select the "<Employment Status>" that I added from the Admin menu
     And I save the details
-    Then I validate that the "<Employment Status>" is displayed correctly in the employee's profile
+    Then I validate that the Employment Status "<Employment Status>" is displayed correctly in the employee's profile
 
     Examples:
       | First Name | Middle Name | Last Name | Employment Status | Employee ID |
