@@ -50,13 +50,14 @@ public class JobTitlePage extends TestBase {
     }
 
     public void enterJobTitle(String jobTitle) {
-        WebElement jobTitleInputBox = validate_Job_Title_Input_Box_Is_Present();
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-        sendKeys(jobTitleInputBox, jobTitle, "Successfully entered " + jobTitle + " into text box", 10);
+        WebElement jobTitleInput = jobTitleLocators.jobTitleInput;
+        jobTitleInput.clear();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        sendKeys(jobTitleInput, jobTitle, "Successfully entered " + jobTitle + " into text box", 10);
     }
 
     public void validate_Job_Description_Input_Text_Is_Present() {
@@ -230,7 +231,6 @@ public class JobTitlePage extends TestBase {
 
     public void click_On_Edit_Icon_In_Job_Titles_Table(String jobTitle) {
         WebElement editIconForJobTitle = driver.findElement(By.xpath("//div[@class='oxd-table-body']//div[@role='row' and .//div[text()='" + jobTitle + "']]//i[@class='oxd-icon bi-pencil-fill']"));
-//        WebElement editIcon = jobTitleElementRow.findElement(By.xpath("//i[@class='oxd-icon bi-pencil-fill']"));
         clickElement(editIconForJobTitle, "Edit Icon for the " + jobTitle + " is clicked successfully", true, 10);
     }
 

@@ -35,6 +35,7 @@ Feature: Login End To End Testing
 
 #########################################################################################################################################################################################################
 
+  @currentRun
   Scenario Outline: Change Password for Employees
 
 # Add an employee with login credentials of an ESS user

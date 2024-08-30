@@ -26,7 +26,7 @@ public class JobTitleLocators {
     @FindBy(xpath = "//form[@class='oxd-form']/div[@class='oxd-form-row']//label[text()='Job Title']")
     public WebElement jobTitleInputHeader;
 
-    @FindBy(xpath = "//form[@class='oxd-form']/div[@class='oxd-form-row']//input[@class='oxd-input oxd-input--active']")
+    @FindBy(xpath = "//label[text()='Job Title']/parent::div/following-sibling::div/input")
     public WebElement jobTitleInput;
 
     @FindBy(xpath = "//form[@class='oxd-form']/div[@class='oxd-form-row']//label[text()='Job Description']")

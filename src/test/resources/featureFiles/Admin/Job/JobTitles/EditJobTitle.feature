@@ -31,8 +31,8 @@ Feature: Edit Job Title Feature
   #      Editing the Job Title Info
     And I click on Edit Button for the Job Title "<Job Title>"
     And I edit the Job Title Name to "<Updated Job Title>"
+    And I save the details
     Then I validate that the Job Title is displayed in the Job Title table "<Job Title>" "<Updated Job Title>"
-
 
     Examples:
       | Job Title         | Job Description   | Note         | Job Title         | Updated Job Title |

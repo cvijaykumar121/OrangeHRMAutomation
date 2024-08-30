@@ -40,7 +40,11 @@ public class JobPage extends TestBase {
     }
 
     public void validate_Job_Title_Displayed_In_JobTitle_TextBox(String jobTitle) {
-        waitForElementToBeVisible(jobPageLocators.saveButton, 30);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         WebElement jobTitleTextInBox = driver.findElement(By.xpath("//label[text()='Job Title']/parent::div/following-sibling::div//div[text()='" + jobTitle + "']"));
         waitForElementToBeVisible(jobTitleTextInBox, 30);
         validateText(jobTitleTextInBox, jobTitle, "Validated Job Title in Job Page", 40);
