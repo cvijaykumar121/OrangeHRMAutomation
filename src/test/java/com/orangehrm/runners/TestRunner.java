@@ -7,7 +7,7 @@ import org.testng.annotations.Parameters;
 
 @CucumberOptions(
         plugin = {"html:target/cucumber-reports/cucumber-html-report.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
-        features = "src/test/resources/featureFiles/Admin/Job/EmploymentStatus/AddEmploymentStatus.feature",
+        features = "src/test/resources/featureFiles",
         glue = "com.orangehrm.StepDefinitions"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
