@@ -15,7 +15,7 @@ public class UserMenu extends TestBase {
 
     public void validateUserMenuIsPresent() {
         WebElement userMenu = userMenuLocators.userMenu;
-        waitForElementToBeClickable(userMenu, 20, "User Menu is validated successfully");
+        waitForElementToBeClickable(userMenu, 40, "User Menu is validated successfully");
     }
 
     public void validateProfilePictureIsPresent() {

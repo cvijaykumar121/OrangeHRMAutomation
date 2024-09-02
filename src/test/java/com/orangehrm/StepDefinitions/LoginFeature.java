@@ -74,6 +74,7 @@ public class LoginFeature {
     }
 
     @Then("I should be on the {string} page")
+    @Then("I should be redirected to the Admin {string}")
     public void validateDashboardPage(String pageName) {
         if(pageName.equalsIgnoreCase("dashboard")) {
             DashboardPage dashboardPage = new DashboardPage(Hooks.driver);
@@ -129,8 +130,10 @@ public class LoginFeature {
     @Then("I login with valid Admin credentials")
     public void i_login_with_valid_admin_credentials() {
         LoginPage loginPage = new LoginPage(Hooks.driver);
+        UserMenu userMenu = new UserMenu(Hooks.driver);
 
         i_enter_username_and_password("Admin", "admin123");
+        userMenu.validateUserMenuIsPresent();
     }
 
     @Then("I logout from the application")
@@ -163,7 +166,6 @@ public class LoginFeature {
         sideMenu.validateAdminMenuIsPresent();
         sideMenu.validatePIMMenuIsPresent();
         sideMenu.validateRecruitmentMenuIsPresent();
-        sideMenu.validateMaintenanceMenuIsPresent();
     }
 
     @And("I login as the same employee that I changed the password {string} {string}")

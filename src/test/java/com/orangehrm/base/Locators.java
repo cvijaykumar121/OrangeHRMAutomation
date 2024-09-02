@@ -58,4 +58,7 @@ public class Locators {
     @FindBy(xpath = "//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']")
     public WebElement errorMessage;
 
+    @FindBy(xpath = "//button[@type='button' and text()=' Add ']")
+    public WebElement addButton;
+
 }

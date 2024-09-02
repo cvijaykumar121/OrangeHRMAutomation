@@ -4,6 +4,7 @@ import com.orangehrm.StepDefinitions.Hooks;
 import com.orangehrm.base.StepDefinition;
 import com.orangehrm.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.pages.Admin.Job.EmploymentStatus.EmploymentStatusPage;
+import com.orangehrm.pages.Admin.Job.JobTitle.JobTitlePage;
 import com.orangehrm.pages.PIM.EmployeeList.Job.JobPage;
 import com.orangehrm.pages.SideMenu.SideMenu;
 import io.cucumber.java.en.And;
@@ -42,6 +43,7 @@ public class AddEmploymentStatusFeature {
     @And("I navigate to the Add Employment Status Page")
     public void navigate_To_Add_Employment_Status_Page() {
         EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.click_On_Employment_Status_Add_Button();
         employmentStatusPage.validate_Add_Employment_Status_Title();
     }
 
@@ -101,5 +103,24 @@ public class AddEmploymentStatusFeature {
     public void validate_Job_Title_Is_Displayed_In_Employee_Profile(String employmentStatus) {
         EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
         employmentStatusPage.validate_EmploymentStatus_Displayed_In_EmploymentStatus_TextBox(employmentStatus);
+    }
+
+    @And("I click on Edit Button for the Employment Status {string}")
+    public void click_On_Edit_Button_For_EmploymentStatus(String employmentStatus) {
+        JobTitlePage jobTitlePage = new JobTitlePage(Hooks.driver);
+        jobTitlePage.click_On_Edit_Icon_In_Job_Titles_Table(employmentStatus);
+    }
+
+    @And("I edit the Employment Status Name to {string}")
+    public void edit_Employment_Status_Name(String updatedEmploymentStatus) {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.enter_EmploymentStatus_Name(updatedEmploymentStatus);
+    }
+
+    @Then("I validate that the Employment Status is displayed in the Employment Status table {string} {string}")
+    public void validate_Updated_Employment_Status_Displayed_In_Table(String employmentStatus, String updatedEmploymentStatus) {
+        EmploymentStatusPage employmentStatusPage = new EmploymentStatusPage(Hooks.driver);
+        employmentStatusPage.validate_Employment_Status_Title();
+        employmentStatusPage.validate_EmploymentStatus_Is_Displayed_In_Table(employmentStatus + updatedEmploymentStatus);
     }
 }

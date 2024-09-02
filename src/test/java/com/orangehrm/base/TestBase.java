@@ -203,7 +203,7 @@ public class TestBase {
     }
 
     public void clickElement(WebElement element, String message, boolean takeScreenshot, int timeOut) {
-        waitForElementToBeClickable(element, timeOut);
+        waitForElementToBeVisible(element, timeOut);
         try {
             element.click();
             logInfo(message, takeScreenshot);
@@ -276,7 +276,8 @@ public class TestBase {
 
     public void selectOptionFromDropdown(String option, String message) {
         try {
-            WebElement optionToBeSelected = Hooks.driver.findElement(By.xpath("//div[@role='listbox']/div/span[text()='" + option + "']"));
+//            WebElement optionToBeSelected = Hooks.driver.findElement(By.xpath("//div[@role='listbox']/div/span[text()='" + option + "']"));
+            WebElement optionToBeSelected = Hooks.driver.findElement(By.xpath("//div[@role='listbox']/div/span[contains(text(),'" + option + "')]"));
             clickElement(optionToBeSelected, message, true, 20);
             logInfo(message, true);
         } catch (NoSuchElementException e) {

@@ -7,7 +7,7 @@ Feature: Login End To End Testing
     Then I should be on the "dashboard" page
     When I navigate to the PIM module
 
-    @smoke @sanity
+  @smoke @sanity
   Scenario: Delete all employees from PIM
     And I delete all the employees from the employee list table
     Then I validate there are no employees present in PIM
@@ -35,7 +35,6 @@ Feature: Login End To End Testing
 
 #########################################################################################################################################################################################################
 
-  @currentRun
   Scenario Outline: Change Password for Employees
 
 # Add an employee with login credentials of an ESS user
@@ -76,7 +75,6 @@ Feature: Login End To End Testing
 
 # Select status as enabled
     When I login with valid Admin credentials
-    Then I am on the dashboard page
     When I navigate to User Management in Admin menu
     Then I search for the same employee in User Search by username that I added in PIM "<Username>"
     And I click on Edit option for the employee "<Username>"
@@ -173,3 +171,10 @@ Feature: Login End To End Testing
     Examples:
       | First Name | Middle Name | Last Name | Employee ID | Username | Password      | Confirm Password | Employee Name    | User Role | Status  |
       | Ayush      | Kumar       | Saha      | 1001        | ayush123 | Password@1234 | Password@1234    | Ayush Kumar Saha | Admin     | Enabled |
+
+  @smoke @sanity
+  Scenario: Delete all employees from PIM
+    And I delete all the employees from the employee list table
+    Then I validate there are no employees present in PIM
+    When I navigate to User Management in Admin menu
+    And I delete all the Users from the Users List table

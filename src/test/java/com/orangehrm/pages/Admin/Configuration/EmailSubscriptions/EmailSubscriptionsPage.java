@@ -1,4 +1,97 @@
 package com.orangehrm.pages.Admin.Configuration.EmailSubscriptions;
 
-public class EmailSubscriptionsPage {
+import com.orangehrm.base.StepDefinition;
+import com.orangehrm.base.TestBase;
+import com.orangehrm.pages.Admin.AdminTopNavMenu.AdminTopNavMenuLocators;
+import org.openqa.selenium.WebDriver;
+
+public class EmailSubscriptionsPage extends TestBase {
+    public WebDriver driver;
+    public EmailSubscriptionsLocators emailSubscriptionsLocators;
+    public StepDefinition stepDefinition;
+    public AdminTopNavMenuLocators adminTopNavMenuLocators;
+
+    public EmailSubscriptionsPage(WebDriver driver) {
+        this.driver = driver;
+        this.emailSubscriptionsLocators = new EmailSubscriptionsLocators(driver);
+        adminTopNavMenuLocators = new AdminTopNavMenuLocators(driver);
+        this.stepDefinition = new StepDefinition(driver);
+    }
+
+    public void validate_Email_Subscription_Page() {
+        waitForElementToBeVisible(emailSubscriptionsLocators.emailSubscriptionsHeader, 40, "Validated Email Subscription Page");
+    }
+
+    private void click_On_Add_User_For_Leave_Applications() {
+        clickElement(emailSubscriptionsLocators.addUserButtonForLeaveApplications, "Clicked on Add user icon for leave applications", true, 40);
+    }
+
+    public void click_On_Add_User(String notificationType) {
+        switch (notificationType) {
+            case "Leave Applications":
+                click_On_Add_User_For_Leave_Applications();
+                break;
+
+            case "Leave Approvals":
+                click_On_Add_User_For_Leave_Approvals();
+                break;
+
+            case "Leave Assignments":
+                click_On_Add_User_For_Leave_Assignments();
+                break;
+
+            case "Leave Cancellations":
+                click_On_Add_User_For_Leave_Cancellations();
+                break;
+
+            case "Leave Rejections":
+                click_On_Add_User_For_Leave_Rejections();
+                break;
+        }
+    }
+
+    public void validate_Leave_Applications_Subscribers_Page() {
+        validateText(emailSubscriptionsLocators.leaveApplicationsSubscribersHeader, "Subscribers: Leave Applications", "Validated Subscribers: Leave Applications header", 50);
+    }
+
+    public void click_On_Add_Button() {
+        stepDefinition.click_On_Add_Button();
+    }
+
+    public void enterName(String name) {
+        sendKeys(emailSubscriptionsLocators.nameInput, name, "Entered name", 30);
+    }
+
+    public void enterEmail(String email) {
+        sendKeys(emailSubscriptionsLocators.emailInput, email, "Entered email", 40);
+    }
+
+    public void click_On_Save_Button() {
+        stepDefinition.clickOnSaveButton();
+    }
+
+    public void validate_Name_Added_Into_The_Table(String name) {
+        validateText(emailSubscriptionsLocators.valueInTable(name), name, "Validated Name in table", 30);
+    }
+
+    public void validate_Email_Added_Into_The_Table(String email) {
+        validateText(emailSubscriptionsLocators.valueInTable(email), email, "Validated Email in table", 30);
+    }
+
+    public void click_On_Cancel_Button() {
+        stepDefinition.clickOnCancelButton();
+    }
+
+    private void click_On_Add_User_For_Leave_Approvals() {
+        clickElement(emailSubscriptionsLocators.addUserButtonForLeaveApprovals, "Clicked on Add user icon for leave approvals", true, 40);
+    }
+    private void click_On_Add_User_For_Leave_Cancellations() {
+        clickElement(emailSubscriptionsLocators.addUserButtonForLeaveCancellations, "Clicked on Add user icon for leave cancellations", true, 40);
+    }
+    private void click_On_Add_User_For_Leave_Assignments() {
+        clickElement(emailSubscriptionsLocators.addUserButtonForLeaveAssignments, "Clicked on Add user icon for leave assignments", true, 40);
+    }
+    private void click_On_Add_User_For_Leave_Rejections() {
+        clickElement(emailSubscriptionsLocators.addUserButtonForLeaveRejections, "Clicked on Add user icon for leave rejections", true, 40);
+    }
 }

@@ -51,6 +51,10 @@ public class StepDefinition extends TestBase {
         clickElement(noCancelButton, "No Cancel button is clicked successfully", true, 10);
     }
 
+    public void click_On_Add_Button() {
+        clickElement(locators.addButton, "Clicked on Add Button", true, 30);
+    }
+
     public void validate_Already_Exists_Error_Message() {
         waitForElementToBeVisible(locators.alreadyExistsMessage, 20, "Validated already exists message successfully");
     }
