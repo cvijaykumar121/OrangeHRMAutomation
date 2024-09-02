@@ -10,7 +10,7 @@ Feature: Add Work Shifts Feature
     Then I validate all the column names of Work Shifts Table is displayed
 
 #    Add an employee in the before tag
-  @currentRun1 @failed
+  @currentRun1
   Scenario Outline: Validating if the user is able to add a valid Work Shift
       # Add an employee with login credentials of an ESS user
     And I enter all the employee details without login details: "<First Name>" "<Middle Name>" "<Last Name>" "<Employee ID>"

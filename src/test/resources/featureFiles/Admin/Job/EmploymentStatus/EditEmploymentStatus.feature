@@ -21,7 +21,7 @@ Feature: Edit Employment Status Feature
 
 #########################################################################################################################################################################################################
 
-  @smoke @currentRun1 @failed1
+  @smoke @currentRun1
   Scenario Outline: Editing the Employment Status Info and validating if the updated Info of Employment Status is displayed correctly in the table
   #    Adding an employment status with Admin Login
     When I navigate to the Add Employment Status Page
@@ -41,7 +41,6 @@ Feature: Edit Employment Status Feature
 
 #########################################################################################################################################################################################################
 
-  @failed
   Scenario Outline: Editing the Job Title Info and validating if the updated Info is displayed in the employees profile from Admin Login
 
 #    Adding a Job Title with Admin Login
@@ -83,7 +82,6 @@ Feature: Edit Employment Status Feature
 
 ##########################################################################################################################################################################################################
 
-  @failed
   Scenario Outline: Editing the Job Title Info from Admin Login and validating if the updated Info is displayed in the employees profile from Employee Login
 
 #    Adding a Job Title with Admin Login
