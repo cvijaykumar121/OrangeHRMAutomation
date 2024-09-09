@@ -1,5 +1,6 @@
 package com.orangehrm.base;
-import com.orangehrm.StepDefinitions.Hooks;
+import com.orangehrm.StepDefinitions.Hooks.Hooks;
+import com.orangehrm.pages.UserMenu.UserMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,10 +13,12 @@ public class StepDefinition extends TestBase {
     public WebDriver driver;
     public Locators locators;
     public static String employeeID;
+    public UserMenu userMenu;
 
     public StepDefinition(WebDriver driver) {
         this.driver = driver;
         this.locators = new Locators(driver);
+        this.userMenu = new UserMenu(driver);
     }
 
     public void clickOnSaveButton() {
@@ -117,7 +120,22 @@ public class StepDefinition extends TestBase {
     }
 
     public void validate_Error_Message(String errorMessage) {
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         waitForElementToBeVisible(locators.errorMessage, 30);
         validateText(locators.errorMessage, errorMessage, "Error message validated successfully", 40);
+    }
+
+    public void refreshPage() {
+        driver. navigate(). refresh();
+        userMenu.validateUserMenuIsPresent();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

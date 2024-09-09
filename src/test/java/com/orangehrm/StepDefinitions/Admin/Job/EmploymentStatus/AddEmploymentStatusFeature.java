@@ -1,11 +1,10 @@
 package com.orangehrm.StepDefinitions.Admin.Job.EmploymentStatus;
 
-import com.orangehrm.StepDefinitions.Hooks;
+import com.orangehrm.StepDefinitions.Hooks.Hooks;
 import com.orangehrm.base.StepDefinition;
 import com.orangehrm.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.pages.Admin.Job.EmploymentStatus.EmploymentStatusPage;
 import com.orangehrm.pages.Admin.Job.JobTitle.JobTitlePage;
-import com.orangehrm.pages.PIM.EmployeeList.Job.JobPage;
 import com.orangehrm.pages.SideMenu.SideMenu;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

@@ -1,7 +1,7 @@
 package com.orangehrm.StepDefinitions.Admin.UserManagement;
 
 import com.orangehrm.pages.Admin.Job.JobTitle.JobTitlePage;
-import com.orangehrm.StepDefinitions.Hooks;
+import com.orangehrm.StepDefinitions.Hooks.Hooks;
 import com.orangehrm.base.StepDefinition;
 import com.orangehrm.pages.Admin.UserManagement.Users.UsersPage;
 import com.orangehrm.pages.PIM.AddEmployee.AddEmployee;

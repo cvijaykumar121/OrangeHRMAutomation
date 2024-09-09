@@ -1,6 +1,6 @@
 package com.orangehrm.pages.Admin.Job.JobTitle;
 
-import com.orangehrm.StepDefinitions.Hooks;
+import com.orangehrm.StepDefinitions.Hooks.Hooks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

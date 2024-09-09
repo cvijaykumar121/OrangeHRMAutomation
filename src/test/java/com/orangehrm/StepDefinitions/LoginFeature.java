@@ -1,4 +1,5 @@
 package com.orangehrm.StepDefinitions;
+import com.orangehrm.StepDefinitions.Hooks.Hooks;
 import com.orangehrm.pages.Login.LoginPage;
 import com.orangehrm.pages.SideMenu.SideMenu;
 import com.orangehrm.pages.Dashboard.DashboardPage;
@@ -144,6 +145,14 @@ public class LoginFeature {
         userMenu.validateUserMenuIsPresent();
         userMenu.clickOnUserDropdown();
         userMenu.clickOnLogoutMenuOption();
+    }
+
+    @And("I log out and log back in as the admin")
+    public void logOutAndLoginAsAdmin() {
+        logout_From_Application();
+        i_am_on_the_orange_hrm_login_page();
+        i_enter_username_and_password("Admin","admin123");
+        validate_user_is_able_to_login();
     }
 
     @Then("I login as the same employee that I added in PIM as an Admin {string} {string}")

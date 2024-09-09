@@ -1,4 +1,4 @@
-package com.orangehrm.StepDefinitions;
+package com.orangehrm.StepDefinitions.Hooks;
 
 import com.orangehrm.pages.Login.LoginPage;
 import com.orangehrm.runners.TestRunner;
@@ -107,13 +107,6 @@ public class Hooks {
 
         System.out.println("Browser Launched");
 
-    }
-
-    @BeforeAll
-    public static void cleanUpData() {
-        // Logic to delete all Pay Grades from the table
-        System.out.println("Deleting all Pay Grades before running scenarios...");
-        // Implement your deletion logic here
     }
 
     @After

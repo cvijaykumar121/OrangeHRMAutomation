@@ -1,6 +1,6 @@
 package com.orangehrm.StepDefinitions.Admin.Job.JobCategories;
 
-import com.orangehrm.StepDefinitions.Hooks;
+import com.orangehrm.StepDefinitions.Hooks.Hooks;
 import com.orangehrm.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.pages.Admin.Job.JobCategories.JobCategoriesPage;
 import com.orangehrm.pages.SideMenu.SideMenu;

@@ -1,6 +1,6 @@
 package com.orangehrm.base;
 
-import com.orangehrm.StepDefinitions.Hooks;
+import com.orangehrm.StepDefinitions.Hooks.Hooks;
 import com.orangehrm.utilities.ExtentManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;

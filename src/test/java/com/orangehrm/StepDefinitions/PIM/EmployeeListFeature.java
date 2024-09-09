@@ -1,7 +1,6 @@
 package com.orangehrm.StepDefinitions.PIM;
 
-import com.orangehrm.StepDefinitions.Hooks;
-import com.orangehrm.pages.PIM.AddEmployee.AddEmployee;
+import com.orangehrm.StepDefinitions.Hooks.Hooks;
 import com.orangehrm.pages.PIM.EmployeeList.EmployeeInformation.EmployeeInformationPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

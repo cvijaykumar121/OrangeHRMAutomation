@@ -4,6 +4,9 @@ import com.orangehrm.base.StepDefinition;
 import com.orangehrm.base.TestBase;
 import com.orangehrm.pages.Admin.AdminTopNavMenu.AdminTopNavMenuLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class EmailSubscriptionsPage extends TestBase {
     public WebDriver driver;
@@ -93,5 +96,57 @@ public class EmailSubscriptionsPage extends TestBase {
     }
     private void click_On_Add_User_For_Leave_Rejections() {
         clickElement(emailSubscriptionsLocators.addUserButtonForLeaveRejections, "Clicked on Add user icon for leave rejections", true, 40);
+    }
+
+    public void delete_User_From_Leave_Applications_Notifications(String emailOfUser) {
+        clickElement(emailSubscriptionsLocators.deleteButtonForSpecificUser(emailOfUser), "Clicked on delete button for user", true, 40);
+        stepDefinition.handle_Delete_Pop_Up(true);
+        stepDefinition.validate_Table_Header_Is_Present();
+    }
+
+    private void click_On_User_Edit_Option(String emailOfUser) {
+        clickElement(emailSubscriptionsLocators.editButtonForSpecificUser(emailOfUser), "Clicked on edit button for user", true, 40);
+    }
+
+    public void update_Email_Address(String email) {
+        click_On_User_Edit_Option(email);
+        waitForElementToBeVisible(emailSubscriptionsLocators.editSubscriberHeader, 40);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        emailSubscriptionsLocators.emailInput.clear();
+        enterEmail(email);
+    }
+
+    public void validate_No_Duplicate_Entries_In_Table(String email) {
+        List<WebElement> usersInTable = emailSubscriptionsLocators.usersInTable(email);
+        System.out.println("Total users with email: " + usersInTable.size());
+        if(usersInTable.size() == 1) {
+            logPass("PASS: No duplicate entry", true);
+        } else {
+            logFail("FAIL: Duplicate entries are present", true);
+        }
+    }
+
+    public void validate_No_User_Present(String email) {
+        List<WebElement> usersInTable = emailSubscriptionsLocators.usersInTable(email);
+        System.out.println("Total users with email: " + usersInTable.size());
+        if(usersInTable.size() == 0) {
+            logPass("PASS: No entry with email: " + email + " present", true);
+        } else {
+            logFail("FAIL: Entry with email: " + email + " is present", true);
+        }
+    }
+
+    public void validate_Users_Present_In_Table() {
+        stepDefinition.validate_Table_Header_Is_Present();
+        List<WebElement> allUsersInTable = emailSubscriptionsLocators.allUsersInTable;
+        if(allUsersInTable.size() > 1) {
+            logPass("Users present in table", true);
+        } else {
+            logFail("Users are not present in table", true);
+        }
     }
 }

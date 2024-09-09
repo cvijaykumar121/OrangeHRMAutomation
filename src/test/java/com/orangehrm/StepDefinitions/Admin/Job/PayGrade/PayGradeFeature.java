@@ -2,7 +2,7 @@ package com.orangehrm.StepDefinitions.Admin.Job.PayGrade;
 
 import com.orangehrm.pages.Admin.AdminTopNavMenu.AdminTopNavMenu;
 import com.orangehrm.pages.Admin.Job.PayGrades.PayGradesPage;
-import com.orangehrm.StepDefinitions.Hooks;
+import com.orangehrm.StepDefinitions.Hooks.Hooks;
 import com.orangehrm.base.StepDefinition;
 import com.orangehrm.pages.SideMenu.SideMenu;
 import io.cucumber.java.en.And;
