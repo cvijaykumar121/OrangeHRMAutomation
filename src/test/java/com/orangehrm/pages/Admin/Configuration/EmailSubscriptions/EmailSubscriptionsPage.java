@@ -149,4 +149,8 @@ public class EmailSubscriptionsPage extends TestBase {
             logFail("Users are not present in table", true);
         }
     }
+
+    public void validate_Leave_Approvals_Subscriber_Page() {
+        validateText(emailSubscriptionsLocators.leaveApprovalsSubscriberHeader, "Subscribers: Leave Approvals", "Validated Subscribers: Leave Approvals header", 50);
+    }
 }

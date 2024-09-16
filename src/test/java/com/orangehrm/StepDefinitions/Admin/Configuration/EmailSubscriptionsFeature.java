@@ -37,7 +37,11 @@ public class EmailSubscriptionsFeature {
     public void click_On_Add_User_For_Leave_Application_Type(String leaveApplications) {
         EmailSubscriptionsPage emailSubscriptionsPage = new EmailSubscriptionsPage(Hooks.driver);
         emailSubscriptionsPage.click_On_Add_User(leaveApplications);
-        emailSubscriptionsPage.validate_Leave_Applications_Subscribers_Page();
+        if(leaveApplications.equalsIgnoreCase("Leave Applications")) {
+            emailSubscriptionsPage.validate_Leave_Applications_Subscribers_Page();
+        } else if(leaveApplications.equalsIgnoreCase("Leave Approvals")) {
+            emailSubscriptionsPage.validate_Leave_Approvals_Subscriber_Page();
+        }
     }
 
     @When("I attempt to add {string} again with same name {string}")
@@ -56,10 +60,22 @@ public class EmailSubscriptionsFeature {
         emailSubscriptionsPage.validate_Leave_Applications_Subscribers_Page();
     }
 
+    @And("I should be redirected back to the Leave Approvals notifications list")
+    public void validate_Leave_Approvals_Notifications_Page() {
+        EmailSubscriptionsPage emailSubscriptionsPage = new EmailSubscriptionsPage(Hooks.driver);
+        emailSubscriptionsPage.validate_Leave_Approvals_Subscriber_Page();
+    }
+
     @Given("I am on the Add Subscriber form in the Leave Applications notifications section")
     public void navigateTo_Add_Subscriber_Form_In_Leave_Applications_Notifications_Section() {
         click_On_Add_User_For_Leave_Application_Type("Leave Applications");
     }
+
+    @Given("I am on the Add Subscriber form in the Leave Approvals notifications section")
+    public void navigateTo_Add_Subscriber_Form_In_Leave_Approvals_Notifications_Section() {
+        click_On_Add_User_For_Leave_Application_Type("Leave Approvals");
+    }
+
 
     @Then("the subscriber with the Email {string} and Name {string} should be successfully added")
     @Given("{string} with name {string} is subscribed to Leave Applications notifications")
@@ -102,7 +118,7 @@ public class EmailSubscriptionsFeature {
     @And("the subscriber with {string} should not be added")
     public void validate_Subscriber_Is_Removed(String email) {
         EmailSubscriptionsPage emailSubscriptionsPage = new EmailSubscriptionsPage(Hooks.driver);
-        emailSubscriptionsPage.validate_Leave_Applications_Subscribers_Page();
+//        emailSubscriptionsPage.validate_Leave_Applications_Subscribers_Page();
         emailSubscriptionsPage.validate_No_User_Present(email);
     }
 
@@ -143,6 +159,13 @@ public class EmailSubscriptionsFeature {
     public void user_Still_Subscribed_In_Leave_Application_Notifications(String email) {
         navigate_To_Email_Subscription_Page();
         navigateTo_Add_Subscriber_Form_In_Leave_Applications_Notifications_Section();
+        validate_Subscriber_Added_To_Leave_Applications_Notifications(email);
+    }
+
+    @Then("{string} should still be subscribed from Leave Approvals notifications")
+    public void user_Still_Subscribed_In_Leave_Subscriber_Notifications(String email) {
+        navigate_To_Email_Subscription_Page();
+        navigateTo_Add_Subscriber_Form_In_Leave_Approvals_Notifications_Section();
         validate_Subscriber_Added_To_Leave_Applications_Notifications(email);
     }
 

@@ -23,6 +23,9 @@ public class EmailSubscriptionsLocators {
     @FindBy(xpath = "//h6[text()='Subscribers: Leave Applications']")
     public WebElement leaveApplicationsSubscribersHeader;
 
+    @FindBy(xpath = "//h6[text()='Subscribers: Leave Approvals']")
+    public WebElement leaveApprovalsSubscriberHeader;
+
     @FindBy(xpath = "//label[text()='Name']/parent::div/following-sibling::div/input")
     public WebElement nameInput;
 
